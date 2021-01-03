@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Heavy-->
+    <font
+        android:font="@font/apple_sd_gothic_neo_heavy"
+        android:fontWeight="900"
+        android:fontStyle="normal"
+        app:font="@font/apple_sd_gothic_neo_heavy"
+        app:fontWeight="900"
+        app:fontStyle="normal"
+        tools:targetApi="o" />
+
+    <!--ExtraBold-->
+    <font
+        android:font="@font/apple_sd_gothic_neo_extra_bold"
+        android:fontWeight="800"
+        android:fontStyle="normal"
+        app:font="@font/apple_sd_gothic_neo_extra_bold"
+        app:fontWeight="800"
+        app:fontStyle="normal"
+        tools:targetApi="o" />
+
+    <!--Bold-->
+    <font
+        android:font="@font/apple_sd_gothic_neo_bold"
+        android:fontWeight="700"
+        android:fontStyle="normal"
+        app:font="@font/apple_sd_gothic_neo_bold"
+        app:fontWeight="700"
+        app:fontStyle="normal"
+        tools:targetApi="o" />
+
+    <!--Medium-->
+    <font
+        android:font="@font/apple_sd_gothic_neo_medium"
+        android:fontWeight="500"
+        android:fontStyle="normal"
+        app:font="@font/apple_sd_gothic_neo_medium"
+        app:fontWeight="500"
+        app:fontStyle="normal"
+        tools:targetApi="o" />
+
+    <!--Light-->
+    <font
+        android:font="@font/apple_sd_gothic_neo_light"
+        android:fontWeight="300"
+        android:fontStyle="normal"
+        app:font="@font/apple_sd_gothic_neo_light"
+        app:fontWeight="300"
+        app:fontStyle="normal"
+        tools:targetApi="o" />
+</font-family>
