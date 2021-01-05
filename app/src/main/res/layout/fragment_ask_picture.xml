@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".contact.WritePictureFragment">
+        tools:context=".ui.home.ask.AskPictureFragment">
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

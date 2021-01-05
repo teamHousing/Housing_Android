@@ -1,9 +1,9 @@
-package com.teamhousing.housing.contact
+package com.teamhousing.housing.ui.home.ask
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.teamhousing.housing.ui.home.ask.data.ContactData
 
-class ContactViewModel : ViewModel() {
+class AskViewModel : ViewModel() {
 
     private var _contactList = mutableListOf<ContactData>()
     val contactList: MutableList<ContactData>
