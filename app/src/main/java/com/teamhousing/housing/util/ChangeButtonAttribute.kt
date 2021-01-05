@@ -1,4 +1,4 @@
-package com.teamhousing.housing.contact
+package com.teamhousing.housing.util
 
 import android.graphics.Color
 import android.util.Log
@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.teamhousing.housing.R
 
-class ChangeButtonAttributeListener {
+class ChangeButtonAttribute {
 
     private var buttonCheckList = mutableListOf<Boolean>()
 
@@ -63,7 +63,7 @@ class ChangeButtonAttributeListener {
         }
     }
 
-    private fun changeButtonAttribute(num: Int) {   // For WriteContentFragment
+    private fun changeButtonAttribute(num: Int) {   // For AskContentFragment
         for (i in 0..num) {
             if(buttonCheckList[i]){
                 buttonList[i].setBackgroundResource(R.drawable.border_orange_fill_1000)
@@ -75,7 +75,7 @@ class ChangeButtonAttributeListener {
         }
     }
 
-    private fun changeButtonAttribute2(num: Int) {  //  Used for WriteMemoFragment
+    private fun changeButtonAttribute2(num: Int) {  //  Used for AskMemoFragment
         for (i in 0..num) {
             if(buttonCheckList[i]){
                 buttonList[i].setBackgroundResource(R.drawable.border_orange_line_12)

@@ -1,4 +1,4 @@
-package com.teamhousing.housing.contact
+package com.teamhousing.housing.ui.home.ask
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -11,14 +11,14 @@ import androidx.fragment.app.FragmentTransaction
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ActivityWriteContactBinding
 
-class WriteContactActivity : AppCompatActivity() {
+class AskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var binding = DataBindingUtil.setContentView<ActivityWriteContactBinding>(this, R.layout.activity_write_contact)
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fm_temp, WriteContentFragment()).commit()
+        transaction.replace(R.id.fm_temp, AskContentFragment()).commit()
     }
 
     fun replaceFragment(fragment : Fragment){

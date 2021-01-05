@@ -1,29 +1,28 @@
-package com.teamhousing.housing.contact
+package com.teamhousing.housing.ui.home.ask
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
-import com.teamhousing.housing.databinding.FragmentWriteTimeBinding
+import com.teamhousing.housing.databinding.FragmentAskTimeBinding
+import com.teamhousing.housing.util.ChangeButtonAttribute
 
-class WriteTimeFragment : Fragment() {
+class AskTimeFragment : Fragment() {
 
-    private val viewModel : ContactViewModel by activityViewModels()
-    private lateinit var binding: FragmentWriteTimeBinding
+    private val viewModel : AskViewModel by activityViewModels()
+    private lateinit var binding: FragmentAskTimeBinding
     var buttonList = mutableListOf<ConstraintLayout>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_time, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ask_time, container, false)
         return binding.root
     }
 
@@ -36,7 +35,7 @@ class WriteTimeFragment : Fragment() {
 
     private fun changeButtonState() {
         buttonList = arrayListOf(binding.btnTimeMeet, binding.btnTimeCall)
-        val buttonListener = ChangeButtonAttributeListener()
+        val buttonListener = ChangeButtonAttribute()
         buttonListener.changeButtonState2(buttonList as ArrayList<ConstraintLayout>, 1)
     }
 

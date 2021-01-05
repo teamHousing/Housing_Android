@@ -1,4 +1,4 @@
-package com.teamhousing.housing.contact
+package com.teamhousing.housing.ui.home.ask
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,12 @@ import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
-import com.teamhousing.housing.databinding.FragmentWriteContentBinding
+import com.teamhousing.housing.databinding.FragmentAskContentBinding
+import com.teamhousing.housing.util.ChangeButtonAttribute
 
-class WriteContentFragment() : Fragment() {
+class AskContentFragment() : Fragment() {
 
-    private lateinit var binding: FragmentWriteContentBinding
+    private lateinit var binding: FragmentAskContentBinding
     private var buttonList = mutableListOf<Button>()
     private var buttonList2 = mutableListOf<ConstraintLayout>()
 
@@ -22,7 +23,7 @@ class WriteContentFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_content, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ask_content, container, false)
         return binding.root
     }
 
@@ -32,7 +33,7 @@ class WriteContentFragment() : Fragment() {
         changeButtonState()
 
         binding.btnContentNext.setOnClickListener {
-            (activity as WriteContactActivity).replaceFragment(WritePictureFragment())
+            (activity as AskActivity).replaceFragment(AskPictureFragment())
         }
     }
 
@@ -41,10 +42,8 @@ class WriteContentFragment() : Fragment() {
             binding.btnContentFee, binding.btnContentNoise,
             binding.btnContentQuestion, binding.btnContentEtc)
         buttonList2 = arrayListOf(binding.btnContentPromise, binding.btnContentPromiseNot)
-        val buttonListener = ChangeButtonAttributeListener()
+        val buttonListener = ChangeButtonAttribute()
         buttonListener.changeButtonState(buttonList as ArrayList<Button>, 5, 0)
         buttonListener.changeButtonState2(buttonList2 as ArrayList<ConstraintLayout>, 1)
     }
-
-
 }
