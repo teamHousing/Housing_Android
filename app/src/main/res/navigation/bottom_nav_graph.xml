@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.teamhousing.housing.ui.home.HomeFragment"
+        android:label="home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/calenderFragment"
+        android:name="com.teamhousing.housing.ui.calender.CalenderFragment"
+        android:label="calender"
+        tools:layout="@layout/fragment_calender" />
+
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="com.teamhousing.housing.ui.notice.NoticeFragment"
+        android:label="notice"
+        tools:layout="@layout/fragment_notice" />
+
+</navigation>
