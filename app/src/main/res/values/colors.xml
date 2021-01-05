@@ -11,9 +11,14 @@
     <color name="primary_black">#080808</color>
 
     <color name="point_orange">#ff8577</color>
+    <color name="point_blue">#92a7fb</color>
 
     <color name="main_gray">#f5f6fa</color>
-    <color name="gray_01">#cbd6de</color>
-    <color name="gray_02">#56616b</color>
-    <color name="blue_gray">#94a0c0</color>
+    <color name="gray_1">#f1f5f9</color>
+    <color name="gray_2">#cbd6de</color>
+    <color name="gray_3">#dbdbdb</color>
+    <color name="gray_4">#bcbcbc</color>
+    <color name="gray_5">#818181</color>
+    <color name="gray_6">#56616b</color>
+
 </resources>
