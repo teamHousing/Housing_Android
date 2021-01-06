@@ -44,7 +44,7 @@
                 android:textColor="@color/primary_black"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/et_time_date" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_time_date" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -169,7 +169,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_time_start_time" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_time_start_time" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -213,7 +213,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
-                android:id="@+id/et_time_date"
+                android:id="@+id/edt_time_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
@@ -227,7 +227,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <EditText
-                android:id="@+id/et_time_start_time"
+                android:id="@+id/edt_time_start_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
@@ -244,7 +244,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <EditText
-                android:id="@+id/et_time_end_time"
+                android:id="@+id/edt_time_end_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -257,10 +257,10 @@
                 android:textColor="@color/primary_black"
                 android:textColorHint="@color/gray_4"
                 android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="@+id/et_time_start_time"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
-                app:layout_constraintTop_toTopOf="@+id/et_time_start_time"
+                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -271,10 +271,10 @@
                 android:text="-"
                 android:textColor="@color/primary_black"
                 android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="@+id/et_time_start_time"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_time_start_time" />
+                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

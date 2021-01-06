@@ -38,6 +38,6 @@ class AskMemoFragment : Fragment() {
         buttonList = arrayListOf(binding.btnMemoThank, binding.btnMemoQuick,
             binding.btnMemoPrecontact, binding.btnMemoAbsence)
         val buttonListener = ChangeButtonAttribute()
-        buttonListener.changeButtonState3(buttonList as ArrayList<Button>, binding.etMemoDirect, 3)
+        buttonListener.changeButtonState3(buttonList as ArrayList<Button>, binding.edtMemoDirect, 3)
     }
 }
