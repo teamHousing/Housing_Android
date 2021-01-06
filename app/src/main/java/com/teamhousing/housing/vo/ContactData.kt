@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.home.ask.data
+package com.teamhousing.housing.vo
 
 data class ContactData (
     val date : String,
