@@ -57,11 +57,15 @@ class AskTimeFragment : Fragment() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DATE)
 
+        val minDate = Calendar.getInstance()
+        minDate.set(year, month, day)
+
         binding.edtTimeDate.setOnFocusChangeListener { _, chk ->
             if(chk){
                 val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
                     binding.edtTimeDate.setText(year.toString() + "." + month.plus(1).toString() + "." + day.toString())
                 }, year, month, day)
+                datePickerDialog.datePicker.minDate = minDate.time.time
                 datePickerDialog.show()
                 binding.edtTimeDate.clearFocus()
                 //if(binding.etTimeDate.text.isNullOrBlank())
