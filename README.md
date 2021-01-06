@@ -97,6 +97,10 @@
   - 접두어/담당뷰
 
     ex) feature/home, feature/home-detail
+	
+  - 접두어/기능명  
+
+	ex) feature/date-picker, feature/time-picker  
 
 <br/>
 
@@ -172,13 +176,12 @@
  ┣ 📂network
  ┣ 📂ui
  ┃ ┣ 📂calender
- ┃ ┃ ┗ 📜CalenderFragment.kt
+ ┃ ┃ ┗ 📂ask
  ┃ ┣ 📂home
- ┃ ┃ ┗ 📜HomeFragment.kt
+ ┃ ┣ 📂join
+ ┃ ┣ 📂login
  ┃ ┣ 📂main
- ┃ ┃ ┗ 📜MainActivity.kt
  ┃ ┗ 📂notice
- ┃ ┃ ┗ 📜NoticeFragment.kt
  ┣ 📂util
  ┗ 📂vo
 ```
