@@ -1,5 +1,6 @@
 package com.teamhousing.housing.ui.home.ask
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskTimeBinding
 import com.teamhousing.housing.util.ChangeButtonAttribute
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AskTimeFragment : Fragment() {
 
@@ -31,6 +34,7 @@ class AskTimeFragment : Fragment() {
 
         changeButtonState()
         makeContact()
+        selectDate()
     }
 
     private fun changeButtonState() {
@@ -45,5 +49,23 @@ class AskTimeFragment : Fragment() {
 
         binding.rvTime.adapter = adapter
         adapter.notifyDataSetChanged()
+    }
+
+    private fun selectDate() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DATE)
+
+        binding.etTimeDate.setOnFocusChangeListener { _, chk ->
+            if(chk){
+                val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
+                    binding.etTimeDate.setText(year.toString() + "." + month.plus(1).toString() + "." + day.toString())
+                }, year, month, day)
+                datePickerDialog.show()
+                binding.etTimeDate.clearFocus()
+                //if(binding.etTimeDate.text.isNullOrBlank())
+            }
+        }
     }
 }
