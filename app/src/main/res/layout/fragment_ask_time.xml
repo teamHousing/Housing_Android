@@ -9,7 +9,6 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             tools:context=".ui.home.ask.AskTimeFragment">
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -24,16 +23,13 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
                 android:text="일자를 선택해주세요!"
                 android:textColor="@color/primary_black"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btn_time_call"
                 app:layout_constraintTop_toBottomOf="@+id/btn_time_call" />
-
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
@@ -43,9 +39,8 @@
                 android:text="시간을 선택해주세요!"
                 android:textColor="@color/primary_black"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/edt_time_date"
                 app:layout_constraintTop_toBottomOf="@+id/edt_time_date" />
-
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
@@ -70,16 +65,26 @@
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:text="-"
+                android:textColor="@color/primary_black"
+                android:textSize="21sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_time_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/border_gray_line_16"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
                 app:layout_constraintTop_toBottomOf="@+id/textView9">
 
                 <ImageView
@@ -201,11 +206,13 @@
                     android:layout_marginTop="56dp"
                     android:layout_marginEnd="60dp"
                     android:layout_marginRight="60dp"
+                    android:layout_marginBottom="90dp"
                     android:background="@drawable/border_black_fill_200"
-                    android:text="등록하기"
-                    android:textSize="16sp"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                    android:text="등록하기"
                     android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv_time" />
@@ -214,15 +221,18 @@
 
             <EditText
                 android:id="@+id/edt_time_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:inputType="textPersonName"
-                android:hint="YYYY.MM.DD"
-                android:textColorHint="@color/gray_4"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                android:textSize="21sp"
+                android:hint="YYYY.MM.DD"
+                android:inputType="textPersonName"
                 android:textColor="@color/primary_black"
+                android:textColorHint="@color/gray_4"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView10"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -263,19 +273,6 @@
                 app:layout_constraintTop_toTopOf="@+id/edt_time_start_time"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                android:text="-"
-                android:textColor="@color/primary_black"
-                android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
 </layout>
