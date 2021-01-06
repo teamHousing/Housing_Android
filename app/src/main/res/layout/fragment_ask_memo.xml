@@ -108,7 +108,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_memo_precontact" />
 
         <EditText
-            android:id="@+id/et_memo_direct"
+            android:id="@+id/edt_memo_direct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -144,7 +144,7 @@
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_memo_direct" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_memo_direct" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

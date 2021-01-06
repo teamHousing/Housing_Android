@@ -1,7 +1,7 @@
 package com.teamhousing.housing.ui.home.ask
 
 import androidx.lifecycle.ViewModel
-import com.teamhousing.housing.ui.home.ask.data.ContactData
+import com.teamhousing.housing.vo.ContactData
 
 class AskViewModel : ViewModel() {
 
