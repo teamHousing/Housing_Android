@@ -2,11 +2,15 @@ package com.teamhousing.housing.ui.home.ask
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -25,6 +29,9 @@ class AskTimeFragment : Fragment() {
     private lateinit var contactStartTime: String
     private lateinit var contactEndTime: String
 
+    private lateinit var boldFont: Typeface
+    private lateinit var mediumFont: Typeface
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +43,15 @@ class AskTimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        boldFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_bold)!!
+        mediumFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_medium)!!
+
         changeButtonState()
         makeContact()
         selectDate()
         selectTime(binding.edtTimeStartTime)
         selectTime(binding.edtTimeEndTime)
         addContactList()
-
     }
 
     private fun addContactList() {
@@ -77,6 +86,8 @@ class AskTimeFragment : Fragment() {
         val minDate = Calendar.getInstance()
         minDate.set(year, month, day)
 
+        editTextIsChanged(binding.edtTimeDate)
+
         binding.edtTimeDate.setOnFocusChangeListener { _, chk ->
             if(chk){
                 val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
@@ -92,6 +103,8 @@ class AskTimeFragment : Fragment() {
     }
 
     private fun selectTime(edt: EditText) {
+
+        editTextIsChanged(edt)
 
         val dialogBinding : DialogTimePickerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(
@@ -158,5 +171,21 @@ class AskTimeFragment : Fragment() {
         if(meridian == 1) return (hour + 12).toString()
         if(hour < 10) return "0$hour"
         return hour.toString()
+    }
+
+    private fun editTextIsChanged(view : EditText){
+        view.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrBlank()){
+                    view.typeface = mediumFont
+                }else{
+                    view.typeface = boldFont
+                    view.setBackgroundResource(R.drawable.border_black_title_underline)
+                }
+            }
+        })
     }
 }

@@ -1,13 +1,16 @@
 package com.teamhousing.housing.ui.home.ask
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
-import androidx.core.content.ContextCompat.getColor
+import android.widget.EditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
@@ -17,6 +20,9 @@ class AskContentFragment() : Fragment() {
 
     private lateinit var binding: FragmentAskContentBinding
     private var buttonList = mutableListOf<CheckedTextView>()
+
+    private lateinit var boldFont: Typeface
+    private lateinit var mediumFont: Typeface
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +35,25 @@ class AskContentFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        boldFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_bold)!!
+        mediumFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_medium)!!
+
         changeButtonState()
 
         binding.btnContentNext.setOnClickListener {
             (activity as AskActivity).replaceFragment(AskPictureFragment())
         }
+
+        binding.edtContentTitle.setOnFocusChangeListener { _, chk ->
+            if(chk){
+                binding.edtContentTitle.setBackgroundResource(R.drawable.border_black_title_underline)
+            }else{
+                if(binding.edtContentTitle.text.isNullOrBlank()){
+                    binding.edtContentTitle.setBackgroundResource(R.drawable.border_gray_title_underline)
+                }
+            }
+        }
+        editTextIsChanged(binding.edtContentTitle)
     }
 
     private fun changeButtonState() {
@@ -49,9 +69,6 @@ class AskContentFragment() : Fragment() {
         buttonList = arrayListOf(binding.btnContentRepair, binding.btnContentContract,
             binding.btnContentFee, binding.btnContentNoise,
             binding.btnContentQuestion, binding.btnContentEtc)
-
-        val boldFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_bold)
-        val mediumFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_medium)
 
         for(i in 0..5){
             buttonList[i].setOnClickListener {
@@ -70,5 +87,22 @@ class AskContentFragment() : Fragment() {
                 }
             }
         }
+    }
+
+    private fun editTextIsChanged(view : EditText){
+        view.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrBlank()){
+                    view.typeface = mediumFont
+                    view.setBackgroundResource(R.drawable.border_gray_title_underline)
+                }else{
+                    view.typeface = boldFont
+                    view.setBackgroundResource(R.drawable.border_black_title_underline)
+                }
+            }
+        })
     }
 }
