@@ -9,7 +9,9 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             tools:context=".ui.home.ask.AskTimeFragment">
+
             <View
+                android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
@@ -78,85 +80,60 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/btn_time_meet"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/border_gray_line_16"
+                android:background="@drawable/selector_ask_image_button"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:gravity="bottom"
+                android:paddingLeft="16dp"
+                android:paddingTop="104dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="24dp"
+                android:text="만나서 해결하고 싶어요"
+                android:textColor="@color/primary_black"
+                android:textSize="13dp"
                 app:layout_constraintStart_toStartOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="66dp"
-                    android:layout_marginLeft="66dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@drawable/img_4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:text="만나서 해결하고 싶어요"
-                    android:textColor="@color/primary_black"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_time_call"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:src="@drawable/img_4"
+                app:layout_constraintStart_toStartOf="@+id/btn_time_meet"
+                app:layout_constraintTop_toTopOf="@+id/btn_time_meet" />
+
+            <androidx.appcompat.widget.AppCompatCheckedTextView
+                android:id="@+id/btn_time_call"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/border_gray_line_16"
-                app:layout_constraintBottom_toBottomOf="@id/btn_time_meet"
+                android:background="@drawable/selector_ask_image_button"
+                android:checked="false"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:gravity="bottom"
+                android:paddingLeft="16dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="24dp"
+                android:text="전화로 해결하고 싶어요"
+                android:textColor="@color/primary_black"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_time_meet"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_time_meet">
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|right"
-                    android:layout_marginStart="66dp"
-                    android:layout_marginLeft="66dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@drawable/img_5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:text="전화로 해결하고 싶어요"
-                    android:textColor="@color/primary_black"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="@+id/btn_time_meet" />
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:src="@drawable/img_5"
+                app:layout_constraintStart_toStartOf="@+id/btn_time_call"
+                app:layout_constraintTop_toTopOf="@+id/btn_time_call" />
 
             <Button
                 android:id="@+id/btn_time_add"

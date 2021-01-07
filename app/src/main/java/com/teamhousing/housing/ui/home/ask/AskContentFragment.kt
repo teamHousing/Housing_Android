@@ -1,23 +1,22 @@
 package com.teamhousing.housing.ui.home.ask
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.CheckedTextView
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskContentBinding
-import com.teamhousing.housing.util.ChangeButtonAttribute
 
 class AskContentFragment() : Fragment() {
 
     private lateinit var binding: FragmentAskContentBinding
-    private var buttonList = mutableListOf<Button>()
-    private var buttonList2 = mutableListOf<ConstraintLayout>()
-
+    private var buttonList = mutableListOf<CheckedTextView>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +37,38 @@ class AskContentFragment() : Fragment() {
     }
 
     private fun changeButtonState() {
+        binding.btnContentPromise.setOnClickListener {
+            binding.btnContentPromise.isChecked = !binding.btnContentPromise.isChecked
+            binding.btnContentPromiseNot.isChecked = false
+        }
+        binding.btnContentPromiseNot.setOnClickListener {
+            binding.btnContentPromiseNot.isChecked = !binding.btnContentPromiseNot.isChecked
+            binding.btnContentPromise.isChecked = false
+        }
+
         buttonList = arrayListOf(binding.btnContentRepair, binding.btnContentContract,
             binding.btnContentFee, binding.btnContentNoise,
             binding.btnContentQuestion, binding.btnContentEtc)
-        buttonList2 = arrayListOf(binding.btnContentPromise, binding.btnContentPromiseNot)
-        val buttonListener = ChangeButtonAttribute()
-        buttonListener.changeButtonState(buttonList as ArrayList<Button>, 5, 0)
-        buttonListener.changeButtonState2(buttonList2 as ArrayList<ConstraintLayout>, 1)
+
+        val boldFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_bold)
+        val mediumFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_medium)
+
+        for(i in 0..5){
+            buttonList[i].setOnClickListener {
+                for (j in 0..5) if(i != j){
+                    buttonList[j].isChecked = false
+                    buttonList[j].typeface = mediumFont
+                    buttonList[j].setTextColor(Color.parseColor("#080808"))
+                }
+                buttonList[i].isChecked = !buttonList[i].isChecked
+                if(buttonList[i].isChecked){
+                    buttonList[i].typeface = boldFont
+                    buttonList[i].setTextColor(Color.parseColor("#ffffff"))
+                }else{
+                    buttonList[i].typeface = mediumFont
+                    buttonList[i].setTextColor(Color.parseColor("#080808"))
+                }
+            }
+        }
     }
 }
