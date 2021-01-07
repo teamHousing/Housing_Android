@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <TextView
             android:id="@+id/txt_calendar_title"
@@ -46,7 +47,7 @@
             android:layout_marginTop="37dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:src="@drawable/circle_point_orange"
+            android:src="@drawable/border_orange_fill_5"
             app:layout_constraintEnd_toStartOf="@+id/txt_me"
             app:layout_constraintTop_toTopOf="@+id/line_calendar" />
 
@@ -55,8 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="31dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:fontFamily="@font/apple_sd_gothic_neo"
             android:text="나"
             android:textColor="@color/primary_black"
@@ -73,7 +74,7 @@
             android:layout_marginTop="37dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:src="@drawable/circle_point_blue"
+            android:src="@drawable/border_blue_fill_5"
             app:layout_constraintEnd_toStartOf="@+id/txt_notice"
             app:layout_constraintTop_toTopOf="@+id/line_calendar" />
 
@@ -99,7 +100,34 @@
             android:layout_marginTop="26dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_calendar_orange" />
+            app:layout_constraintTop_toBottomOf="@id/img_calendar_orange"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendar"
+            android:background="@color/main_gray">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/apple_sd_gothic_neo"
+                android:textFontWeight="500"
+                android:textSize="13dp"
+                android:textColor="@color/primary_black"
+                tools:text="00월 00일의 일정"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
