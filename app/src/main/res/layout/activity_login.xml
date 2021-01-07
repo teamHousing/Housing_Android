@@ -47,7 +47,7 @@
         android:textCursorDrawable="@drawable/cursur_orange_line"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColorHint="@color/gray_4"
-        android:backgroundTint="@color/primary_black"
+        android:background="@drawable/et_focus_check"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -78,6 +78,7 @@
         android:textColorHint="@color/gray_4"
         android:textSize="14sp"
         android:fontFamily="@font/apple_sd_gothic_neo_light"
+        android:background="@drawable/et_focus_check"
         app:layout_constraintEnd_toEndOf="@+id/et_login_id"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -119,14 +120,12 @@
         android:id="@+id/btn_login_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="95dp"
-        android:layout_marginRight="95dp"
         android:background="#00FF0000"
         android:fontFamily="@font/apple_sd_gothic_neo_bold"
         android:gravity="center_horizontal"
         android:text="회원가입"
         android:textColor="@color/primary_black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
