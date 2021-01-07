@@ -33,45 +33,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView7" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/btn_memo_thank"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/border_gray_line_12"
+            android:background="@drawable/selector_memo_button"
             android:text="늘 감사합니다. :)"
             android:textSize="13sp"
             android:gravity="left|center_vertical"
             android:paddingLeft="16dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:checked="false"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:textColor="@color/primary_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/btn_memo_quick"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="최대한 신속하게 확인 부탁드려요."
             android:textColor="@color/primary_black"
-            android:background="@drawable/border_gray_line_12"
+            android:background="@drawable/selector_memo_button"
             android:textSize="13sp"
             android:gravity="left|center_vertical"
             android:paddingLeft="16dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:checked="false"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             app:layout_constraintEnd_toEndOf="@+id/btn_memo_thank"
             app:layout_constraintStart_toStartOf="@+id/btn_memo_thank"
             app:layout_constraintTop_toBottomOf="@+id/btn_memo_thank" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/btn_memo_precontact"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -79,17 +81,18 @@
             android:text="방문 전 사전 연락 부탁드려요."
             android:textColor="@color/primary_black"
             android:textSize="13sp"
-            android:gravity="left|center_vertical"
             android:paddingLeft="16dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:gravity="left|center_vertical"
+            android:checked="false"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:background="@drawable/border_gray_line_12"
+            android:background="@drawable/selector_memo_button"
             app:layout_constraintEnd_toEndOf="@+id/btn_memo_quick"
             app:layout_constraintStart_toStartOf="@+id/btn_memo_quick"
             app:layout_constraintTop_toBottomOf="@+id/btn_memo_quick" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/btn_memo_absence"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -101,8 +104,9 @@
             android:paddingLeft="16dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:checked="false"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:background="@drawable/border_gray_line_12"
+            android:background="@drawable/selector_memo_button"
             app:layout_constraintEnd_toEndOf="@+id/btn_memo_precontact"
             app:layout_constraintStart_toStartOf="@+id/btn_memo_precontact"
             app:layout_constraintTop_toBottomOf="@+id/btn_memo_precontact" />
@@ -112,7 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/border_gray_line_12"
+            android:background="@drawable/selector_memo_edit_text"
             android:ems="10"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:gravity="left|center_vertical"
@@ -124,7 +128,6 @@
             android:paddingBottom="20dp"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/btn_memo_absence"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/btn_memo_absence"
             app:layout_constraintTop_toBottomOf="@+id/btn_memo_absence" />
 
