@@ -128,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="모든 문의가 해결되었어요!"
+            android:text="모든 문의가 해결되었어요&#33;"
             android:fontFamily="@font/apple_sd_gothic_neo_medium"
             android:textSize="14dp"
             android:includeFontPadding="false"

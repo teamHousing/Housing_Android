@@ -20,4 +20,18 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        initEmojiTitle()
+    }
+
+    private fun initEmojiTitle(){
+        binding.textView3.text = "뚝딱뚝딱"+getEmoji(0x1F6E0)+" 아직은 해결 중이에요!!"
+    }
+
+    fun getEmoji(unicode: Int): String {
+        return String(Character.toChars(unicode))
+    }
+
 }
