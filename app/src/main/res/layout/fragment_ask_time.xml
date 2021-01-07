@@ -28,8 +28,8 @@
                 android:text="일자를 선택해주세요!"
                 android:textColor="@color/primary_black"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/btn_time_call"
-                app:layout_constraintTop_toBottomOf="@+id/btn_time_call" />
+                app:layout_constraintStart_toStartOf="@+id/btn_time_meet"
+                app:layout_constraintTop_toBottomOf="@+id/btn_time_meet" />
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_time_call"
+                android:id="@+id/btn_time_meet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -118,15 +118,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_time_meet"
+                android:id="@+id/btn_time_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/border_gray_line_16"
-                app:layout_constraintBottom_toBottomOf="@id/btn_time_call"
+                app:layout_constraintBottom_toBottomOf="@id/btn_time_meet"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_time_call">
+                app:layout_constraintTop_toTopOf="@+id/btn_time_meet">
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"

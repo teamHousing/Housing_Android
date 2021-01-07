@@ -14,6 +14,8 @@ class ChangeButtonAttribute {
     private lateinit var buttonList : MutableList<Button>
     private lateinit var buttonList2 : MutableList<ConstraintLayout>
 
+    var btnClickStatus = -1
+
     fun changeButtonState(list: ArrayList<Button>, num : Int, case : Int) { // For button
         buttonList = list
         for (i in 0..num) buttonCheckList.add(false)
@@ -33,7 +35,10 @@ class ChangeButtonAttribute {
         for( i in 0..num){
             buttonList2[i].setOnClickListener {
                 buttonCheckList[i] = !buttonCheckList[i]
-                for(j in 0..num) if(i != j) buttonCheckList[j] = false
+                for(j in 0..num) {
+                    if(i != j) buttonCheckList[j] = false
+                    else btnClickStatus = i
+                }
                 changeButtonAttribute3(num)
             }
         }
@@ -45,8 +50,6 @@ class ChangeButtonAttribute {
         for( i in 0..num){
             buttonList[i].setOnClickListener {
                 buttonCheckList[i] = !buttonCheckList[i]
-                Log.e("asd", i.toString() + " : "+buttonCheckList[i].toString())
-
                 for(j in 0..num) if(i != j) buttonCheckList[j] = false
                 editText.clearFocus()
                 changeButtonAttribute2(num)
