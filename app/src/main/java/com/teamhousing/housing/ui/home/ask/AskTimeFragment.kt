@@ -3,6 +3,7 @@ package com.teamhousing.housing.ui.home.ask
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.DialogTimePickerBinding
 import com.teamhousing.housing.databinding.FragmentAskTimeBinding
 import com.teamhousing.housing.util.ChangeButtonAttribute
+import com.teamhousing.housing.vo.ContactData
 import java.util.*
 
 class AskTimeFragment : Fragment() {
@@ -22,6 +24,13 @@ class AskTimeFragment : Fragment() {
     private val viewModel : AskViewModel by activityViewModels()
     private lateinit var binding: FragmentAskTimeBinding
     var buttonList = mutableListOf<ConstraintLayout>()
+    private lateinit var adapter : ContactAdapter
+    private lateinit var buttonListener : ChangeButtonAttribute
+
+    private lateinit var contactDate: String
+    private lateinit var contactStartTime: String
+    private lateinit var contactEndTime: String
+    private var contactMethod: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,16 +48,42 @@ class AskTimeFragment : Fragment() {
         selectDate()
         selectTime(binding.edtTimeStartTime)
         selectTime(binding.edtTimeEndTime)
+        addContactList()
+    }
+
+    private fun addContactList() {
+        binding.btnTimeAdd.setOnClickListener {
+            contactMethod = when(buttonListener.btnClickStatus){
+                0 -> "집 방문"
+                1 -> "전화 연락"
+                else -> ""
+            }
+            Log.e("asd", ContactData(contactDate, contactStartTime+"-"+contactEndTime+"시", contactMethod).toString())
+            viewModel.contactList.add(ContactData(contactDate, contactStartTime+"-"+contactEndTime+"시", contactMethod))
+            adapter.notifyDataSetChanged()
+
+            binding.btnTimeMeet.setBackgroundResource(R.drawable.border_gray_line_16)
+            binding.btnTimeCall.setBackgroundResource(R.drawable.border_gray_line_16)
+            binding.edtTimeDate.setText("")
+
+            buttonListener.btnClickStatus = -1
+            contactDate = ""
+            contactStartTime = ""
+            contactEndTime = ""
+            contactMethod = ""
+            binding.edtTimeStartTime.setText("")
+            binding.edtTimeEndTime.setText("")
+        }
     }
 
     private fun changeButtonState() {
         buttonList = arrayListOf(binding.btnTimeMeet, binding.btnTimeCall)
-        val buttonListener = ChangeButtonAttribute()
+        buttonListener = ChangeButtonAttribute()
         buttonListener.changeButtonState2(buttonList as ArrayList<ConstraintLayout>, 1)
     }
 
     private fun makeContact() {
-        var adapter = ContactAdapter()
+        adapter = ContactAdapter()
         adapter.data = viewModel.contactList
 
         binding.rvTime.adapter = adapter
@@ -67,9 +102,8 @@ class AskTimeFragment : Fragment() {
         binding.edtTimeDate.setOnFocusChangeListener { _, chk ->
             if(chk){
                 val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
-                    binding.edtTimeDate.setText(
-                        changeDateFormat(year,month+1, day)
-                    )
+                    contactDate = changeDateFormat(year,month+1, day)
+                    binding.edtTimeDate.setText(contactDate)
                 }, year, month, day)
                 datePickerDialog.datePicker.minDate = minDate.time.time
                 datePickerDialog.show()
@@ -104,15 +138,20 @@ class AskTimeFragment : Fragment() {
                 }
 
                 dialogBinding.btnDatePickerOk.setOnClickListener {
-                    edt.setText(
-                        changeHourFormat(
-                            dialogBinding.pckHour.value,
-                            dialogBinding.pckMeridian.value
-                        ) + "시"
+                    val tempTime = changeHourFormat(
+                        dialogBinding.pckHour.value,
+                        dialogBinding.pckMeridian.value
                     )
+                    edt.setText(tempTime + "시")
                     dialog.dismiss()
                     dialog.cancel()
                     edt.clearFocus()
+
+                    if(edt == binding.edtTimeStartTime){
+                        contactStartTime = tempTime
+                    }else{
+                        contactEndTime = tempTime
+                    }
                 }
                 dialogBinding.pckHour.wrapSelectorWheel = false
                 dialogBinding.pckMeridian.wrapSelectorWheel = false
