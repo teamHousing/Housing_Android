@@ -24,12 +24,12 @@
             android:layout_marginLeft="20dp"
             android:background="@null"
             android:src="@drawable/border_black_circle_12"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/constraintLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -124,10 +124,10 @@
             android:layout_marginRight="20dp"
             android:background="@null"
             android:src="@drawable/img_delete_2"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
