@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="iv_rounded_square">
+        <item name="cornerSize">15dp</item>
+    </style>
+</resources>
