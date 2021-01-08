@@ -6,10 +6,12 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.DialogTimePickerBinding
 import com.teamhousing.housing.databinding.FragmentAskTimeBinding
+import com.teamhousing.housing.vo.ContactData
 import java.util.*
 
 class AskTimeFragment : Fragment() {
@@ -25,9 +28,10 @@ class AskTimeFragment : Fragment() {
     private lateinit var binding: FragmentAskTimeBinding
     private lateinit var adapter : ContactAdapter
 
-    private lateinit var contactDate: String
-    private lateinit var contactStartTime: String
-    private lateinit var contactEndTime: String
+    private var contactDate= ""
+    private var contactStartTime= ""
+    private var contactEndTime= ""
+    private var contactMethod = ""
 
     private lateinit var boldFont: Typeface
     private lateinit var mediumFont: Typeface
@@ -55,17 +59,44 @@ class AskTimeFragment : Fragment() {
     }
 
     private fun addContactList() {
+        binding.btnTimeAdd.setOnClickListener {
+            if(!contactMethod.isNullOrBlank() && !contactDate.isNullOrBlank() &&
+                    !contactStartTime.isNullOrBlank() && !contactEndTime.isNullOrBlank()){
+                viewModel.contactList.add(
+                    ContactData(
+                        contactDate, contactStartTime + "-" + contactEndTime + "시", contactMethod
+                    )
+                )
+                adapter.notifyDataSetChanged()
 
+                initContactOption()
+            }
+            else{
+                Toast.makeText(requireContext(), "선택 사항을 모두 눌러주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun changeButtonState() {
         binding.btnTimeMeet.setOnClickListener {
             binding.btnTimeMeet.isChecked = !binding.btnTimeMeet.isChecked
             binding.btnTimeCall.isChecked = false
+
+            if(binding.btnTimeMeet.isChecked){
+                contactMethod = "집 방문"
+            }else if(!binding.btnTimeCall.isChecked){
+                contactMethod = ""
+            }
         }
         binding.btnTimeCall.setOnClickListener {
             binding.btnTimeCall.isChecked = !binding.btnTimeCall.isChecked
             binding.btnTimeMeet.isChecked = false
+
+            if(binding.btnTimeCall.isChecked){
+                contactMethod = "전화 연락"
+            }else if(!binding.btnTimeMeet.isChecked){
+                contactMethod = ""
+            }
         }
     }
 
@@ -171,6 +202,19 @@ class AskTimeFragment : Fragment() {
         if(meridian == 1) return (hour + 12).toString()
         if(hour < 10) return "0$hour"
         return hour.toString()
+    }
+
+    private fun initContactOption() {
+        binding.btnTimeMeet.isChecked = false
+        binding.btnTimeCall.isChecked = false
+        binding.edtTimeDate.setText("")
+        binding.edtTimeStartTime.setText("")
+        binding.edtTimeEndTime.setText("")
+
+        contactDate= ""
+        contactStartTime= ""
+        contactEndTime= ""
+        contactMethod = ""
     }
 
     private fun editTextIsChanged(view : EditText){
