@@ -12,23 +12,28 @@ import com.teamhousing.housing.databinding.FragmentHomeBinding
 import java.util.*
 
 class CalenderFragment : Fragment() {
-    private lateinit var binding: FragmentCalenderBinding
+    private var _binding: FragmentCalenderBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCalenderBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
+        _binding = FragmentCalenderBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val events = arrayListOf<EventDay>()
-//        val calendar = Calendar.getInstance()
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
