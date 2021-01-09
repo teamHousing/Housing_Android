@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         >
 
         <TextView
@@ -98,6 +99,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
+            app:type="one_day_picker"
+            app:eventsEnabled="true"
+            app:headerColor="@color/white"
+            app:headerLabelColor="@color/primary_black"
+            app:previousButtonSrc="@drawable/btn_navigate_left"
+            app:forwardButtonSrc="@drawable/btn_navigate_right"
+            app:abbreviationsLabelsColor="@color/gray_5"
+            app:selectionColor="@color/primary_black"
+            app:selectionLabelColor="@color/white"
+            app:daysLabelsColor="@color/gray_5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_calendar_orange"

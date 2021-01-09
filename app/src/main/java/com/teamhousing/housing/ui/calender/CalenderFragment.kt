@@ -1,15 +1,14 @@
 package com.teamhousing.housing.ui.calender
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
-import com.teamhousing.housing.databinding.FragmentHomeBinding
-import java.util.*
 
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
@@ -29,6 +28,13 @@ class CalenderFragment : Fragment() {
 
         val events = arrayListOf<EventDay>()
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
+
+        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
+                binding.calendar.setEvents(events)
+            }
+        })
     }
 
     override fun onDestroy() {
