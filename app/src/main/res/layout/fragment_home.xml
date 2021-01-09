@@ -91,7 +91,7 @@
             android:layout_marginLeft="8dp"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:includeFontPadding="false"
-            android:text="뚝딱뚝딱🛠 아직은 해결 중이에요!!"
+            android:text="뚝딱뚝딱, 아직 해결 중!"
             android:textColor="@color/primary_black"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
