@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.join.UserSelectActivity">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/baskerville_bold"
+        android:text="Join"
+        android:textColor="@color/primary_black"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/apple_sd_gothic_neo_medium"
+        android:text="하우징을 이용할 사용자를 선택해 주세요."
+        android:textColor="@color/primary_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/primary_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/btn_userselect_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="144dp"
+        android:background="@drawable/selector_ask_image_button"
+        android:fontFamily="@font/apple_sd_gothic_neo_medium"
+        android:gravity="bottom"
+        android:paddingLeft="56dp"
+        android:paddingTop="176dp"
+        android:paddingRight="56dp"
+        android:paddingBottom="20dp"
+        android:text="임대인"
+        android:textColor="@color/primary_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <ImageView
+        android:id="@+id/img_userselect_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_userselect_owner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_userselect_owner"
+        app:srcCompat="@drawable/img_4" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/btn_userselect_tenant"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:background="@drawable/selector_ask_image_button"
+        android:fontFamily="@font/apple_sd_gothic_neo_medium"
+        android:gravity="bottom"
+        android:paddingLeft="56dp"
+        android:paddingTop="176dp"
+        android:paddingRight="56dp"
+        android:paddingBottom="20dp"
+        android:text="세입자"
+        android:textColor="@color/primary_black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_userselect_owner"
+        app:layout_constraintTop_toTopOf="@+id/btn_userselect_owner" />
+
+    <ImageView
+        android:id="@+id/img_userselect_tenant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_userselect_tenant"
+        app:layout_constraintStart_toStartOf="@+id/btn_userselect_tenant"
+        app:layout_constraintTop_toTopOf="@+id/btn_userselect_tenant"
+        app:srcCompat="@drawable/img_4" />
+
+    <Button
+        android:id="@+id/btn_userselect_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="154dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/border_gray_fill_200"
+        android:textColor="@color/white"
+        android:fontFamily="@font/apple_sd_gothic_neo_bold"
+        android:textSize="14sp"
+        android:text="다음"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_userselect_owner" />
+
+    <ImageView
+        android:id="@+id/btn_userselect_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_back" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
