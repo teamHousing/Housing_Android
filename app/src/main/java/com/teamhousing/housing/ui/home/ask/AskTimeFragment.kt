@@ -62,7 +62,7 @@ class AskTimeFragment : Fragment() {
         binding.btnTimeAdd.setOnClickListener {
             if(!contactMethod.isNullOrBlank() && !contactDate.isNullOrBlank() &&
                     !contactStartTime.isNullOrBlank() && !contactEndTime.isNullOrBlank()){
-                viewModel.contactList.add(
+                viewModel.contactList.value?.add(
                     ContactData(
                         contactDate, contactStartTime + "-" + contactEndTime + "시", contactMethod
                     )
@@ -102,7 +102,7 @@ class AskTimeFragment : Fragment() {
 
     private fun makeContact() {
         adapter = ContactAdapter()
-        adapter.data = viewModel.contactList
+        adapter.data = viewModel.contactList.value!!
 
         binding.rvTime.adapter = adapter
         adapter.notifyDataSetChanged()

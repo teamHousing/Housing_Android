@@ -219,7 +219,7 @@
                 android:layout_marginEnd="60dp"
                 android:layout_marginRight="60dp"
                 android:layout_marginBottom="110dp"
-                android:background="@drawable/border_black_fill_200"
+                android:background="@drawable/selector_ask_next_button"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
                 android:text="다음 단계"
                 android:textColor="@color/white"
