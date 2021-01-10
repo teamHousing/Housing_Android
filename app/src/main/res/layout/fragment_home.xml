@@ -14,14 +14,25 @@
         tools:context=".ui.home.HomeFragment"
         android:background="@color/main_gray">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="0dp"
-            android:layout_height="231dp"
+        <FrameLayout
+            android:id="@+id/fl_home_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/border_white_fill_16" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:background="@drawable/border_white_fill_16"
+                android:elevation="3dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/textView"
@@ -78,9 +89,9 @@
             android:id="@+id/imageView4"
             android:layout_width="20dp"
             android:layout_height="1dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="275dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@color/primary_black" />
 
         <TextView
