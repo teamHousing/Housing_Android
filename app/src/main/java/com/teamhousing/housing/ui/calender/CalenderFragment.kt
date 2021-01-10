@@ -20,11 +20,6 @@ class CalenderFragment : Fragment() {
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
         val view = binding.root
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val events = arrayListOf<EventDay>()
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
@@ -35,6 +30,8 @@ class CalenderFragment : Fragment() {
                 binding.calendar.setEvents(events)
             }
         })
+
+        return view
     }
 
     override fun onDestroy() {
