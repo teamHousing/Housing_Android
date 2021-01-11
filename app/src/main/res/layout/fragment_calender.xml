@@ -102,8 +102,8 @@
             app:eventsEnabled="true"
             app:headerColor="@color/white"
             app:headerLabelColor="@color/primary_black"
-            app:previousButtonSrc="@drawable/btn_navigate_left"
-            app:forwardButtonSrc="@drawable/btn_navigate_right"
+            app:previousButtonSrc="@drawable/icon_calendar_previous"
+            app:forwardButtonSrc="@drawable/icon_calendar_forwawrd"
             app:abbreviationsLabelsColor="@color/gray_5"
             app:selectionColor="@color/primary_black"
             app:selectionLabelColor="@color/white"
@@ -124,6 +124,7 @@
             android:background="@color/main_gray"/>
 
         <TextView
+            android:id="@+id/txt_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/img_bg"
@@ -136,6 +137,15 @@
             android:textSize="13dp"
             android:textColor="@color/primary_black"
             tools:text="00월 00일의 일정"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_daily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txt_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
