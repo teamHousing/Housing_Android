@@ -22,7 +22,8 @@ data class ResponseCalendarData(
                 val solutionMethod: String,
                 val time: String,
                 val title: String,
-                val year: Int
+                val year: Int,
+                val userId: Int
         )
 
         data class Notice(

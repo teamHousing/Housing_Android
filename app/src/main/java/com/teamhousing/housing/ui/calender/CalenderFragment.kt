@@ -10,14 +10,15 @@ import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
+import kotlin.collections.MutableList as MutableList1
+
 
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
 
-    private var date: String? = null
     private var dailyData: List<Any>? = null
-    var allData: HashMap<String, MutableList<CalendarData>>? = null
+    var allData: MutableMap<String, MutableList1<CalendarData>> = hashMapOf()
 
     private lateinit var dailyAdapter: DailyAdapter
 
@@ -54,6 +55,8 @@ class CalenderFragment : Fragment() {
                         "수리해주세요.", "18:00")
         )
 
+
+
         binding.calendar.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
                 events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
@@ -64,6 +67,68 @@ class CalenderFragment : Fragment() {
 
     }
 
+    fun calendarDataBind(data: ResponseCalendarData.Data) {
+        for (notice in data.notice) {
+            var year = notice.year
+            var month = notice.month
+            var day = notice.day
+            var title = notice.title
+            var time = notice.time
+
+            var date = "${year}.${month}.${day}"
+            var noticeModel : CalendarData = CalendarData(
+                    type = 1,
+                    noticeId = notice.id,
+                    noticeTitle = title,
+                    noticeTime = time,
+                    issueId = null,
+                    userID = null,
+                    category = null,
+                    solutionMethod = null,
+                    issueTitle = null,
+                    issueContents = null,
+                    promiseTime = null
+            )
+
+            if(allData.containsKey(date)){
+                allData[date]!!.add(noticeModel)
+            }
+            else{
+                allData.put(date, mutableListOf(noticeModel))
+            }
+
+            for (promise in data.promise) {
+                var year = promise.year
+                var month = promise.month
+                var day = promise.day
+                var title = promise.title
+                var time = promise.time
+                var date = "${year}.${month}.${day}"
+
+                var promiseModel : CalendarData = CalendarData(
+                        type = 0,
+                        noticeId = null,
+                        noticeTitle = null,
+                        noticeTime = null,
+                        issueId = promise.id,
+                        userID = promise.userId,
+                        category =promise.category,
+                        solutionMethod = promise.solutionMethod,
+                        issueTitle = title,
+                        issueContents = promise.contents,
+                        promiseTime = time
+                )
+
+                if(allData.containsKey(date)){
+                    allData[date]!!.add(promiseModel)
+                }
+                else{
+                    allData.put(date, mutableListOf(promiseModel))
+                }
+            }
+
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
