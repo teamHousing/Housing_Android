@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.calender
+package com.teamhousing.housing.vo
 
 data class CalendarData(
         val type: Int,
@@ -6,7 +6,6 @@ data class CalendarData(
         val noticeTitle: String?,
         val noticeTime: String?,
         val issueId: Int?,
-        val userID: Int?,
         val category: Int?,
         val solutionMethod: String?,
         val issueTitle: String?,

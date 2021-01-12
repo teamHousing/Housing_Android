@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.calender
+package com.teamhousing.housing.vo
 
 data class ResponseCalendarData(
         val `data`: Data,
@@ -12,25 +12,25 @@ data class ResponseCalendarData(
             val notice: List<Notice>
     ) {
         data class Promise(
+                val id: Int,
+                val year: Int,
+                val month: Int,
+                val day: Int,
                 val category: Int,
                 val contents: String,
-                val day: Int,
-                val id: Int,
                 val isNotice: Int,
-                val month: Int,
-                // @SerializedName("solution_method")
+                // @SerializedName
                 val solutionMethod: String,
                 val time: String,
                 val title: String,
-                val year: Int
         )
 
         data class Notice(
-                val day: Int,
                 val id: Int,
-                val month: Int,
-                val title: String,
                 val year: Int,
+                val month: Int,
+                val day: Int,
+                val title: String,
                 val time: String
         )
     }
