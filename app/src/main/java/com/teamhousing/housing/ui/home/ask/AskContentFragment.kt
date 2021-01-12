@@ -131,21 +131,19 @@ class AskContentFragment() : Fragment() {
             }
         }
         binding.edtContentContent.setOnFocusChangeListener { _, chk ->
-            binding.edtContentContent.updatePadding(40,60,40,60)
             if(chk){
                 binding.edtContentContent.setBackgroundResource(R.drawable.border_white_fill_shadow_16)
                 binding.edtContentContent.hint = ""
                 if(binding.edtContentContent.text.isNullOrBlank()){
                     binding.edtContentContent.hint = "내용을 작성해주세요."
                 }
-                binding.edtContentContent.compoundDrawablePadding = 16
             }else{
                 if(binding.edtContentContent.text.isNullOrBlank()){
                     binding.edtContentContent.setBackgroundResource(R.drawable.border_gray_line_16)
                     binding.edtContentContent.hint = "내용을 작성해주세요."
-                    binding.edtContentContent.compoundDrawablePadding = 16
                 }
             }
+            binding.edtContentContent.updatePadding(50,70,50,70)
         }
 
         editTextIsChanged(binding.edtContentTitle)
@@ -190,6 +188,7 @@ class AskContentFragment() : Fragment() {
                     }
                 } else if (view == binding.edtContentContent) {
                     viewModel.changeIssueContents(s.toString())
+                    binding.edtContentContent.updatePadding(50,70,50,70)
                     if (s.isNullOrBlank()) {
                         binding.btnContentNext.isEnabled = false
                         binding.edtContentContent.hint = "내용을 작성해주세요."
