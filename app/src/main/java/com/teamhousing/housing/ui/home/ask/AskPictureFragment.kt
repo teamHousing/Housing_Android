@@ -142,13 +142,13 @@ class AskPictureFragment : Fragment() {
                 IMAGE_PICK_CODE -> {
                     filesAdapter.uriData.clear()
                     if (data?.clipData != null) {
-                        val filesSize = data?.clipData!!.itemCount
+                        val filesSize = data.clipData!!.itemCount
                         if(filesSize > 5){
                             Toast.makeText(requireContext(), "이미지 첨부는 5장까지만 가능합니다.", Toast.LENGTH_SHORT).show()
-                            for (i in 0 until 5) filesAdapter.uriData.add(data?.clipData!!.getItemAt(i).uri)
+                            for (i in 0 until 5) filesAdapter.uriData.add(data.clipData!!.getItemAt(i).uri)
                         }
                         else{
-                            for (i in 0 until filesSize) filesAdapter.uriData.add(data?.clipData!!.getItemAt(i).uri)
+                            for (i in 0 until filesSize) filesAdapter.uriData.add(data.clipData!!.getItemAt(i).uri)
                         }
                         binding.rvPicture.visibility = View.VISIBLE
                         binding.clLoadCamera.visibility = View.INVISIBLE

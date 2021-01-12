@@ -1,8 +1,6 @@
 package com.teamhousing.housing.ui.home.ask
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.EditText
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
@@ -63,7 +60,6 @@ class AskMemoFragment : Fragment() {
                 if(buttonList[i].isChecked){
                     viewModel.changeRequestedTerm(buttonList[i].text.toString())
                     binding.btnMemoNext.isEnabled = true
-                    Log.e("asd", viewModel.requestedTerm.value.toString())
                 }else {
                     binding.btnMemoNext.isEnabled = false
                 }
