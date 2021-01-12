@@ -33,6 +33,11 @@ class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<Ho
 
     override fun getItemCount(): Int = data.size
 
+    fun replaceAskList(list : MutableList<HomeAskListData>){
+        data = list
+        notifyDataSetChanged()
+    }
+
 }
 
 class HomeAskListViewHolder(val binding:RvItemHomeAskListBinding) : RecyclerView.ViewHolder(binding.root){
