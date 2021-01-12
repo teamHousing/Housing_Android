@@ -1,20 +1,13 @@
 package com.teamhousing.housing.ui.home.ask
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.teamhousing.housing.vo.ContactData
 
 class AskViewModel : ViewModel() {
 
-    // contact data
-    private var _contactList = MutableLiveData<MutableList<ContactData>>()
-    val contactList: LiveData<MutableList<ContactData>>
-        get() = _contactList
-
-    private val _isPromise = MutableLiveData<Boolean>(true)
-    val isPromise: LiveData<Boolean>
+    private val _isPromise = MutableLiveData<Int>(-1)
+    val isPromise: LiveData<Int>
         get() = _isPromise
 
     private val _category =  MutableLiveData<Int>(-1)
@@ -33,13 +26,7 @@ class AskViewModel : ViewModel() {
     val requestedTerm: LiveData<String>
         get() = _requestedTerm
 
-
-    init {
-        var dataList = mutableListOf<ContactData>()
-        _contactList.value = dataList
-    }
-
-    fun changeIsPromise(chk: Boolean){
+    fun changeIsPromise(chk: Int){
         _isPromise.value = chk
     }
 

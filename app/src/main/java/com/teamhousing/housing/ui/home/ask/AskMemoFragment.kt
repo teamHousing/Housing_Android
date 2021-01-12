@@ -1,5 +1,7 @@
 package com.teamhousing.housing.ui.home.ask
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
@@ -42,14 +45,7 @@ class AskMemoFragment : Fragment() {
         changeButtonState()
         editTextIsChanged(binding.edtMemoDirect)
 
-        binding.btnMemoNext.setOnClickListener {
-            (activity as AskActivity).replaceFragment(AskTimeFragment())
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("asd","term : " + viewModel.requestedTerm.value.toString())
+        nextPage()
     }
 
     private fun changeButtonState() {
@@ -91,5 +87,24 @@ class AskMemoFragment : Fragment() {
                 binding.btnMemoNext.isEnabled = !s.isNullOrBlank()
             }
         })
+    }
+
+
+    private fun nextPage() {
+        binding.btnMemoNext.setOnClickListener {
+            when(viewModel.isPromise.value){
+                0 -> {
+                    val intent = Intent(requireContext(), PromiseActivity::class.java)
+                    startActivity(intent)
+                }
+                1 -> {
+                    // 서버 전송
+                }
+
+            }
+            // 홈으로 돌아가기
+//          val intent = Intent()
+//          setResult(Activity.RESULT_OK, intent)
+        }
     }
 }
