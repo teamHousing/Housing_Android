@@ -29,32 +29,34 @@
             android:layout_marginEnd="75dp"
             android:layout_marginRight="75dp"
             android:theme="@style/AppTheme.NumberPicker"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pck_meridian" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pck_hour">
-            <Button
-                android:id="@+id/btn_date_picker_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="취소" />
+        <Button
+            android:id="@+id/btn_date_picker_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:text="취소"
+            android:textColor="@color/point_orange"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_date_picker_ok"
+            app:layout_constraintEnd_toStartOf="@+id/btn_date_picker_ok"
+            app:layout_constraintTop_toTopOf="@+id/btn_date_picker_ok" />
 
-            <Button
-                android:id="@+id/btn_date_picker_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="확인" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_date_picker_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:text="확인"
+            android:textSize="16dp"
+            android:textColor="@color/point_orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pck_hour" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
