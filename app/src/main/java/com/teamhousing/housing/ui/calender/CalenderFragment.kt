@@ -12,7 +12,6 @@ import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
 import com.teamhousing.housing.vo.CalendarData
 import com.teamhousing.housing.vo.ResponseCalendarData
-import kotlin.collections.MutableList as MutableList1
 
 
 class CalenderFragment : Fragment() {
@@ -20,7 +19,7 @@ class CalenderFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var dailyData: List<Any>? = null
-    var allData: MutableMap<String, MutableList1<CalendarData>> = hashMapOf()
+    var allData: MutableMap<String, MutableList<CalendarData>> = hashMapOf()
 
     private lateinit var dailyAdapter: DailyAdapter
 
@@ -51,9 +50,8 @@ class CalenderFragment : Fragment() {
         dailyAdapter.data = mutableListOf(
                 CalendarData(1, 2, "관리비내세요", "18-19",
                         null, null, null, null, null,
-                        null, null),
-                CalendarData(0, null, null, null, 1,
-                        3648, 0, "직접 방문", "물콸콸",
+                        null),
+                CalendarData(0, null, null, null, 1, 0, "직접 방문", "물콸콸",
                         "수리해주세요.", "18:00")
         )
 
@@ -84,7 +82,6 @@ class CalenderFragment : Fragment() {
                     noticeTitle = title,
                     noticeTime = time,
                     issueId = null,
-                    userID = null,
                     category = null,
                     solutionMethod = null,
                     issueTitle = null,
@@ -113,7 +110,6 @@ class CalenderFragment : Fragment() {
                         noticeTitle = null,
                         noticeTime = null,
                         issueId = promise.id,
-                        userID = promise.userId,
                         category = promise.category,
                         solutionMethod = promise.solutionMethod,
                         issueTitle = title,

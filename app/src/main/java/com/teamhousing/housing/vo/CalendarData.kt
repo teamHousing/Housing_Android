@@ -6,7 +6,6 @@ data class CalendarData(
         val noticeTitle: String?,
         val noticeTime: String?,
         val issueId: Int?,
-        val userID: Int?,
         val category: Int?,
         val solutionMethod: String?,
         val issueTitle: String?,
