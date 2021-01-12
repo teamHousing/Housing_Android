@@ -36,6 +36,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
             android:text=" 최대 5개까지만 가능합니다."
             android:textSize="11sp"
@@ -54,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="66dp"
@@ -80,7 +82,7 @@
                 android:textSize="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_content_promise">
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="66dp"
@@ -119,21 +121,55 @@
                 android:textSize="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_picture"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="52dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btn_picture_camera"
+            app:layout_constraintTop_toBottomOf="@+id/btn_picture_gallery"
+            android:visibility="invisible"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toStartOf="@+id/btn_picture_camera"
+            app:layout_constraintTop_toBottomOf="@+id/btn_picture_camera"
+            android:id="@+id/cl_load_camera"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="invisible">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_picture_load_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_picture_gallery" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/iv_rounded_square"
+            android:padding="5dp" />
+
+        <ImageButton
+            android:id="@+id/btn_picture_load_camera_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/iv_picture_load_picture"
+            app:layout_constraintTop_toTopOf="@+id/iv_picture_load_picture"
+            android:src="@drawable/btn_delete"
+            android:background="@null"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <Button
             android:id="@+id/btn_picture_next"
@@ -141,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="220dp"
             android:layout_marginEnd="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/border_black_fill_200"
@@ -151,7 +187,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_picture" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_picture_camera" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

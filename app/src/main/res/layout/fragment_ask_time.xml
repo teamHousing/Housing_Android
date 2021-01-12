@@ -11,6 +11,7 @@
             tools:context=".ui.home.ask.AskTimeFragment">
 
             <View
+                android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
@@ -24,28 +25,24 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
                 android:text="일자를 선택해주세요!"
                 android:textColor="@color/primary_black"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_time_call" />
-
+                app:layout_constraintStart_toStartOf="@+id/btn_time_meet"
+                app:layout_constraintTop_toBottomOf="@+id/btn_time_meet" />
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="시간을 선택해주세요!"
+                android:layout_marginTop="64dp"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                android:textSize="15sp"
+                android:text="시간을 선택해주세요!"
                 android:textColor="@color/primary_black"
-                app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/edt_time_date"
+                app:layout_constraintTop_toBottomOf="@+id/edt_time_date" />
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
@@ -70,88 +67,73 @@
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_time_call"
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/border_gray_line_16"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:text="-"
+                android:textColor="@color/primary_black"
+                android:textSize="21sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9">
+                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="66dp"
-                    android:layout_marginLeft="66dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@drawable/img_4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:text="만나서 해결하고 싶어요"
-                    android:textColor="@color/primary_black"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/btn_time_meet"
                 android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/selector_ask_image_button"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:gravity="bottom"
+                android:paddingLeft="16dp"
+                android:paddingTop="104dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="24dp"
+                android:text="만나서 해결하고 싶어요"
+                android:textColor="@color/primary_black"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:src="@drawable/img_4"
+                app:layout_constraintStart_toStartOf="@+id/btn_time_meet"
+                app:layout_constraintTop_toTopOf="@+id/btn_time_meet" />
+
+            <androidx.appcompat.widget.AppCompatCheckedTextView
+                android:id="@+id/btn_time_call"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/border_gray_line_16"
-                app:layout_constraintBottom_toBottomOf="@id/btn_time_call"
+                android:background="@drawable/selector_ask_image_button"
+                android:checked="false"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:gravity="bottom"
+                android:paddingLeft="16dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="24dp"
+                android:text="전화로 해결하고 싶어요"
+                android:textColor="@color/primary_black"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_time_meet"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_time_call">
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|right"
-                    android:layout_marginStart="66dp"
-                    android:layout_marginLeft="66dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@drawable/img_5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:text="전화로 해결하고 싶어요"
-                    android:textColor="@color/primary_black"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="@+id/btn_time_meet" />
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:src="@drawable/img_5"
+                app:layout_constraintStart_toStartOf="@+id/btn_time_call"
+                app:layout_constraintTop_toTopOf="@+id/btn_time_call" />
 
             <Button
                 android:id="@+id/btn_time_add"
@@ -159,17 +141,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="72dp"
                 android:layout_marginEnd="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/border_black_line_200"
-                android:text="추가하기"
-                android:textSize="16sp"
-                android:textColor="@color/primary_black"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:text="추가하기"
+                android:textColor="@color/primary_black"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_time_start_time" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -201,17 +183,75 @@
                     android:layout_marginTop="56dp"
                     android:layout_marginEnd="60dp"
                     android:layout_marginRight="60dp"
-                    android:background="@drawable/border_black_fill_200"
-                    android:text="등록하기"
-                    android:textSize="16sp"
+                    android:layout_marginBottom="90dp"
+                    android:background="@drawable/selector_ask_next_button"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                    android:text="등록하기"
                     android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv_time" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/edt_time_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_medium"
+                android:hint="YYYY.MM.DD"
+                android:inputType="textPersonName"
+                android:background="@drawable/border_gray_title_underline"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/gray_4"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <EditText
+                android:id="@+id/edt_time_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_medium"
+                android:hint="07시"
+                android:inputType="textPersonName"
+                android:background="@drawable/border_gray_title_underline"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/gray_4"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:id="@+id/edt_time_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_medium"
+                android:background="@drawable/border_gray_title_underline"
+                android:hint="17시"
+                android:inputType="textPersonName"
+                android:textColor="@color/primary_black"
+                android:textColorHint="@color/gray_4"
+                android:textSize="21sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_time_start_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/edt_time_start_time" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
 </layout>

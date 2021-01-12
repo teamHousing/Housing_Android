@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.BR
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ItemContactBinding
-import com.teamhousing.housing.ui.home.ask.data.ContactData
+import com.teamhousing.housing.vo.ContactData
 
 class ContactAdapter : RecyclerView.Adapter<ContactAdapter.VHolder>() {
 
