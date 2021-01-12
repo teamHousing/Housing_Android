@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckedTextView
 import android.widget.EditText
-import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
@@ -29,11 +27,17 @@ class AskMemoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ask_memo, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        when(viewModel.isPromise.value){
+            0 -> binding.btnMemoNext.text = "다음 단계"
+            1 -> binding.btnMemoNext.text = "등록하기"
+        }
 
         changeButtonState()
         editTextIsChanged(binding.edtMemoDirect)
@@ -43,8 +47,12 @@ class AskMemoFragment : Fragment() {
         }
     }
 
-    private fun changeButtonState() {
+    override fun onResume() {
+        super.onResume()
+        Log.e("asd","term : " + viewModel.requestedTerm.value.toString())
+    }
 
+    private fun changeButtonState() {
         buttonList = arrayListOf(binding.btnMemoThank, binding.btnMemoQuick,
             binding.btnMemoPrecontact, binding.btnMemoAbsence)
 
@@ -58,11 +66,19 @@ class AskMemoFragment : Fragment() {
                 buttonList[i].isChecked = !buttonList[i].isChecked
                 if(buttonList[i].isChecked){
                     viewModel.changeRequestedTerm(buttonList[i].text.toString())
+                    binding.btnMemoNext.isEnabled = true
+                    Log.e("asd", viewModel.requestedTerm.value.toString())
+                }else {
+                    binding.btnMemoNext.isEnabled = false
                 }
             }
         }
         binding.edtMemoDirect.setOnFocusChangeListener { _, chk ->
-            if(chk) for(i in 0..3) buttonList[i].isChecked = false
+            if(chk) for(i in 0..3)  {
+                buttonList[i].isChecked = false
+                binding.btnMemoNext.isEnabled = !binding.edtMemoDirect.text.isNullOrBlank()
+            }
+            else binding.btnMemoNext.isEnabled = false
         }
     }
 
@@ -72,6 +88,7 @@ class AskMemoFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.changeRequestedTerm(s.toString())
+                binding.btnMemoNext.isEnabled = !s.isNullOrBlank()
             }
         })
     }
