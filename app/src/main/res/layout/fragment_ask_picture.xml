@@ -137,8 +137,6 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_picture_gallery"
             android:visibility="invisible"/>
 
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -154,13 +152,13 @@
             android:id="@+id/iv_picture_load_picture"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:paddingLeft="8dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/iv_rounded_square" />
+            app:shapeAppearanceOverlay="@style/iv_rounded_square"
+            android:padding="5dp" />
 
         <ImageButton
             android:id="@+id/btn_picture_load_camera_delete"
