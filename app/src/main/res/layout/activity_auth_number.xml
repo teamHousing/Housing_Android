@@ -68,8 +68,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:layout_marginEnd="82dp"
-            android:layout_marginRight="82dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/et_focus_check"
             android:backgroundTint="@color/primary_black"
             android:ems="10"
@@ -120,6 +120,7 @@
             android:text="인증번호를 다시 확인해주세요."
             android:fontFamily="@font/apple_sd_gothic_neo_light"
             android:textSize="12sp"
+            android:textColor="@color/red"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/et_authnumber_auth"
             app:layout_constraintTop_toBottomOf="@+id/et_authnumber_auth" />
@@ -135,23 +136,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/btn_back" />
 
-        <Button
-            android:id="@+id/btn_authnumber_check"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/border_gray_fill_30"
-            android:fontFamily="@font/apple_sd_gothic_neo"
-            android:text="확인"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:enabled="false"
-            app:layout_constraintBottom_toBottomOf="@+id/et_authnumber_auth"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_authnumber_close"
-            app:layout_constraintTop_toTopOf="@+id/et_authnumber_auth" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
