@@ -15,12 +15,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskPictureBinding
 import java.util.jar.Manifest
 
 class AskPictureFragment : Fragment() {
 
+    private val viewModel : AskViewModel by activityViewModels()
     private lateinit var binding: FragmentAskPictureBinding
     private lateinit var filesAdapter : FilesAdapter
 
@@ -50,6 +52,12 @@ class AskPictureFragment : Fragment() {
 
         picturesFromCamera()
         picturesFromGallery()
+
+        Log.e("vm", viewModel.isPromise.value.toString())
+        Log.e("vm", viewModel.category.value.toString())
+        Log.e("vm", viewModel.issueTitle.value.toString())
+        Log.e("vm", viewModel.issueContents.value.toString())
+        Log.e("vm", viewModel.requestedTerm.value.toString())
     }
 
     private fun picturesFromGallery() {
