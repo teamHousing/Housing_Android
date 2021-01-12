@@ -1,6 +1,6 @@
 package com.teamhousing.housing.ui.calender
 
-data class Sample(
+data class ResponseCalendarData(
         val `data`: Data,
         val message: String,
         val status: Int,

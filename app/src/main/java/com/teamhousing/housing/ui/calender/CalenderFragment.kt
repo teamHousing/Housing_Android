@@ -10,15 +10,14 @@ import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
-import java.util.*
 
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
 
-    private var date : Date? = null
-    private var dailyData : List<Any>? = null
-    private var totalData : HashMap<Date, List<Any>>? = null
+    private var date: String? = null
+    private var dailyData: List<Any>? = null
+    var allData: HashMap<String, MutableList<CalendarData>>? = null
 
     private lateinit var dailyAdapter: DailyAdapter
 
@@ -27,50 +26,49 @@ class CalenderFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
-        val view = binding.root
-        dailyAdapter = DailyAdapter(requireContext())
+
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val events = arrayListOf<EventDay>()
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
 
-        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
-            override fun onDayClick(eventDay: EventDay) {
-                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
-                binding.calendar.setEvents(events)
-            }
-        })
+        dailyAdapter = DailyAdapter(requireContext())
 
-        binding.rvDaily.apply{
+        binding.rvDaily.apply {
             adapter = dailyAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
         dailyAdapter.data = mutableListOf(
-                NoticeData(
-                        true,
-                         1,
-                         2021,
-                        1,
-                        28,
-                        "관리비 납부 안내",
-                        "18:00"
-                ),
-                PromiseData(
-                        false,
-                        1, 2021, 7, 27, 123, 0,
-                        "직접 방문", "수도꼭지가 고장났어요.",
-                        "일주일째 못 씻고있어요, 간지러워요.",
-                        "21:00"
-                )
+                CalendarData(1, 2, "관리비내세요", "18-19",
+                        null, null, null, null, null,
+                        null, null),
+                CalendarData(0, null, null, null, 1,
+                        3648, 0, "직접 방문", "물콸콸",
+                        "수리해주세요.", "18:00")
         )
 
-        dailyAdapter.notifyDataSetChanged()
-        return view
+        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
+                binding.calendar.setEvents(events)
+                dailyAdapter.notifyDataSetChanged()
+            }
+        })
+
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
 
 }

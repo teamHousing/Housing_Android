@@ -4,44 +4,48 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
+import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
 
 class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val category: TextView = itemView.findViewById(R.id.txt_category)
-    private val title: TextView = itemView.findViewById(R.id.txt_title)
-    private val how: TextView = itemView.findViewById(R.id.txt_how)
-    private val time: TextView = itemView.findViewById(R.id.txt_time)
+    var category: TextView = itemView.findViewById(R.id.txt_category)
+    var title: TextView = itemView.findViewById(R.id.txt_title)
+    var how: TextView = itemView.findViewById(R.id.txt_how)
+    var time: TextView = itemView.findViewById(R.id.txt_time)
     private lateinit var categoryTxt: String
-    private val timeFormat = SimpleDateFormat("a hh:mm", Locale.KOREA)
+    private val inputFormat = SimpleDateFormat("KK:mm")
+    val outputFormat: DateFormat = SimpleDateFormat("a h:mm")
 
-    fun onBind(data: PromiseData) {
-        val timeTxt = timeFormat.format(data.promise_time)
+    fun onBind(data: CalendarData) {
+        val timeTxt = inputFormat.parse(data.promiseTime)
 
         when (data.category) {
             0 -> {
                 categoryTxt = "고장/수리"
             }
             1 -> {
-                categoryTxt = "계약관련"
+                categoryTxt = "계약 관련"
             }
             2 -> {
-                categoryTxt = "요금납부"
+                categoryTxt = "요금 납부"
             }
             3 -> {
-                categoryTxt = "소음관련"
+                categoryTxt = "소음 관련"
             }
             4 -> {
-                categoryTxt = "문의사항"
+                categoryTxt = "문의 사항"
             }
             else -> {
                 categoryTxt = "그 외"
             }
         }
+
         category.text = categoryTxt
 
-        title.text = data.issue_title
-        how.text = data.solution_method
-        time.text = timeTxt
+
+        title.text = data.issueTitle
+        how.text = data.solutionMethod
+
+        time.text = outputFormat.format(timeTxt)
     }
 }

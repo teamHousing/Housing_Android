@@ -4,19 +4,20 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
+import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.Locale
 
 
 class NoticeViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
     private val title : TextView = itemView.findViewById(R.id.txt_title)
     private val time : TextView = itemView.findViewById(R.id.txt_time)
-    private val timeFormat = SimpleDateFormat("a hh:mm", Locale.KOREA)
+    private val inputFormat = SimpleDateFormat("KK:mm")
+    val outputFormat: DateFormat = SimpleDateFormat("a h:mm")
 
-    fun onBind(data : NoticeData){
+    fun onBind(data : CalendarData){
 
-        val timeTxt = timeFormat.format(data.notice_time)
-        title.text = data.notice_title
-        time.text = timeTxt
+        val timeTxt = inputFormat.parse(data.noticeTime.toString())
+        title.text = data.noticeTitle
+        time.text = outputFormat.format(timeTxt)
     }
 }

@@ -8,32 +8,28 @@ import com.teamhousing.housing.R
 
 class DailyAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var data = mutableListOf<Any>()
+    // 하루치 데이터
+    var data = mutableListOf<CalendarData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        if (viewType == 1) {
+        if (viewType == 0) {
             val view = LayoutInflater.from(context).inflate(R.layout.item_calendar_promise, parent, false)
-            return NoticeViewHolder(view)
+            return PromiseViewHolder(view)
         } else {
             val view = LayoutInflater.from(context).inflate(R.layout.item_calendar_notice, parent, false)
-            return PromiseViewHolder(view)
+            return NoticeViewHolder(view)
         }
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun getItemViewType(position: Int): Int {
-        super.getItemViewType(position)
-        if (data[position] is NoticeData) {
-            return 1
-        } else {
-            return 2
-        }
-    }
+    override fun getItemViewType(position: Int): Int = data[position].type
+        // super.getItemViewType(position)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.onBind(data[position])
-        // NoticeViewHolder, PromiseViewHolder 중 어떤 건지 안 알려줘도 되나?
+        when(holder){
+            is PromiseViewHolder -> holder.onBind(data[position])
+            is NoticeViewHolder -> holder.onBind(data[position])
+        }
     }
 }
