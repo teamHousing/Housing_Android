@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.calender
+package com.teamhousing.housing.vo
 
 data class ResponseCalendarData(
         val `data`: Data,

@@ -10,6 +10,8 @@ import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
+import com.teamhousing.housing.vo.CalendarData
+import com.teamhousing.housing.vo.ResponseCalendarData
 import kotlin.collections.MutableList as MutableList1
 
 
@@ -112,7 +114,7 @@ class CalenderFragment : Fragment() {
                         noticeTime = null,
                         issueId = promise.id,
                         userID = promise.userId,
-                        category =promise.category,
+                        category = promise.category,
                         solutionMethod = promise.solutionMethod,
                         issueTitle = title,
                         issueContents = promise.contents,
