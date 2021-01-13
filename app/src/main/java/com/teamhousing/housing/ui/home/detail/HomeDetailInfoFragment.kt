@@ -18,7 +18,18 @@ class HomeDetailInfoFragment : Fragment() {
         binding = FragmentHomeDetailInfoBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        initEmojiTitle()
+
         return  binding.root
+    }
+
+    private fun initEmojiTitle(){
+        binding.txtHomeDetailInfoAskTitle.text = getEmoji(0x1F6A8)+" 요청 사항"
+        binding.txtHomeDetailInfoSubTitle.text = getEmoji(0x1F5E3)+" 소통 방식"
+    }
+
+    fun getEmoji(unicode: Int): String {
+        return String(Character.toChars(unicode))
     }
 
 }

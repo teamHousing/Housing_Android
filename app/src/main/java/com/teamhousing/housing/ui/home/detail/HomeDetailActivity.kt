@@ -17,6 +17,7 @@ class HomeDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner=this
 
         initViewPager()
+        initTab()
     }
 
     private  fun initViewPager(){
@@ -29,5 +30,13 @@ class HomeDetailActivity : AppCompatActivity() {
         )
 
         binding.vpHomeDetail.adapter = viewPagerAdapter
+    }
+
+    private fun initTab(){
+        binding.tlHomeDetail.setupWithViewPager(binding.vpHomeDetail)
+        binding.tlHomeDetail.apply {
+            getTabAt(0)?.text = "상세 정보"
+            getTabAt(1)?.text = "하우징 쪽지"
+        }
     }
 }
