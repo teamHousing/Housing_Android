@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentHomeDetailInfoBinding
+import com.teamhousing.housing.ui.home.detail.adapter.InfoCommunicationListAdapter
 
 class HomeDetailInfoFragment : Fragment() {
     private lateinit var binding : FragmentHomeDetailInfoBinding
+    private lateinit var infoCommunicationListAdapter: InfoCommunicationListAdapter
+    private val homeDetailViewModel : HomeDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,8 +23,22 @@ class HomeDetailInfoFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         initEmojiTitle()
+        setCommunicationListAdapter()
 
         return  binding.root
+    }
+
+    private fun setCommunicationListAdapter(){
+        infoCommunicationListAdapter = InfoCommunicationListAdapter(requireContext())
+
+        binding.rvHomeDetailCommunication.adapter = infoCommunicationListAdapter
+
+        homeDetailViewModel.setDummyCommunicationList()
+
+        homeDetailViewModel.communicationList.observe(viewLifecycleOwner){ communicationList ->
+            infoCommunicationListAdapter.replaceAskList(communicationList)
+
+        }
     }
 
     private fun initEmojiTitle(){

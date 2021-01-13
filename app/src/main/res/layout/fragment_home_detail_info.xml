@@ -60,10 +60,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rv_home_detail_communication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_sub_title"
@@ -81,7 +83,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/primary_black"
             app:layout_constraintStart_toStartOf="@+id/txt_home_detail_info_ask_title"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_home_detail_communication" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView3"
