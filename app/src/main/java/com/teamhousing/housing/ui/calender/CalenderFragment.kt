@@ -12,17 +12,17 @@ import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
 import com.teamhousing.housing.vo.CalendarData
 import com.teamhousing.housing.vo.ResponseCalendarData
+import java.util.*
 
 
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
-
+    val events = arrayListOf<EventDay>()
     private var dailyData: List<Any>? = null
     var allData: MutableMap<String, MutableList<CalendarData>> = hashMapOf()
 
     private lateinit var dailyAdapter: DailyAdapter
-
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +30,9 @@ class CalenderFragment : Fragment() {
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
-        val events = arrayListOf<EventDay>()
+
         binding.calendar.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
-                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
-                binding.calendar.setEvents(events)
-
             }
         })
 
@@ -55,6 +52,15 @@ class CalenderFragment : Fragment() {
         )
 
         dailyAdapter.notifyDataSetChanged()
+
+
+        val sampleN = ResponseCalendarData.Data.Notice(34, 2020, 12, 24, "hey", "you")
+        val sampleN2 = ResponseCalendarData.Data.Notice(67, 2020, 12, 24, "hey", "you")
+        val sampleP = ResponseCalendarData.Data.Promise(345, 2021, 1, 13, 0,
+        "Yein", "직접 방문", "18:00", "visitiiiiii")
+        val sampleD = ResponseCalendarData.Data(listOf(sampleP), listOf(sampleN, sampleN2))
+        calendarDataBind(sampleD)
+        drawIcons()
 
 
         return binding.root
@@ -124,8 +130,38 @@ class CalenderFragment : Fragment() {
             }
 
         }
+
+        println(allData)
     }
 
+    fun drawIcons(){
+        for (i in allData.keys){
+            var isNotice = false
+            var isPromise = false
+            var splitArr = i.split(".")
+            var newDate = Calendar.getInstance()
+            newDate.set(splitArr[0].toInt(), splitArr[1].toInt() - 1, splitArr[2].toInt())
+
+            for ( j in allData[i]!!){
+                if(j.type == 0){
+                    isPromise = true
+                }
+                else{
+                    isNotice = true
+                }
+
+                if(isPromise && isNotice){
+                    break
+                }
+            }
+
+            if (isNotice&&isPromise){events.add(EventDay(newDate, R.drawable.border_orange_blue_fill)) }
+            else if(isNotice){events.add(EventDay(newDate, R.drawable.border_blue_fill_5)) }
+            else if(isPromise){events.add(EventDay(newDate, R.drawable.border_orange_fill_5)) }
+
+            binding.calendar.setEvents(events)
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
