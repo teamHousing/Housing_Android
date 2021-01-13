@@ -4,17 +4,15 @@
         android:bottom="7dp"
         android:left="-6dp"
         android:right="-6dp"
-        android:top="-6dp">
+        android:top="-5dp">
         <shape android:shape="rectangle" >
             <stroke
                 android:width="3px"
                 android:color="@color/red" />
-
             <padding
-                android:bottom="17dp"
+                android:bottom="16dp"
                 android:left="0dp"
-                android:right="17dp"
-                android:top="17dp" />
+                android:right="17dp" />
         </shape>
     </item>
 </layer-list>

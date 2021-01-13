@@ -81,7 +81,6 @@
             android:layout_marginTop="14dp"
             android:ems="10"
             android:textCursorDrawable="@drawable/cursur_orange_line"
-            android:backgroundTint="@color/primary_black"
             android:inputType="textNoSuggestions|textPassword"
             android:hint="비밀번호를 입력해 주세요."
             android:textColorHint="@color/gray_4"
@@ -142,20 +141,35 @@
             android:id="@+id/btn_login_idclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_login_id"
             app:layout_constraintEnd_toEndOf="@+id/et_login_id"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="@+id/et_login_id"
             app:srcCompat="@drawable/btn_close" />
 
         <ImageView
             android:id="@+id/btn_login_pwclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_login_pw"
             app:layout_constraintEnd_toEndOf="@+id/et_login_pw"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintTop_toTopOf="@+id/et_login_pw"
             app:srcCompat="@drawable/btn_close" />
+
+        <TextView
+            android:id="@+id/tv_login_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="아이디 혹은 비밀번호가 틀렸습니다."
+            android:visibility="invisible"
+            android:textSize="12sp"
+            android:fontFamily="@font/apple_sd_gothic_neo_light"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@+id/et_login_pw"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_pw" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
