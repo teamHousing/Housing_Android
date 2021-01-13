@@ -5,8 +5,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
 import com.teamhousing.housing.vo.CalendarData
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 
 class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var category: TextView = itemView.findViewById(R.id.txt_category)
@@ -14,11 +12,11 @@ class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var how: TextView = itemView.findViewById(R.id.txt_how)
     var time: TextView = itemView.findViewById(R.id.txt_time)
     private lateinit var categoryTxt: String
-    private val inputFormat = SimpleDateFormat("KK:mm")
-    val outputFormat: DateFormat = SimpleDateFormat("a h:mm")
+//    private val inputFormat = SimpleDateFormat("KK:mm")
+//    val outputFormat: DateFormat = SimpleDateFormat("a h:mm")
 
     fun onBind(data: CalendarData) {
-        val timeTxt = inputFormat.parse(data.promiseTime)
+        // val timeTxt = inputFormat.parse(data.promiseTime)
 
         when (data.category) {
             0 -> {
@@ -47,6 +45,6 @@ class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         title.text = data.issueTitle
         how.text = data.solutionMethod
 
-        time.text = outputFormat.format(timeTxt)
+        time.text = data.promiseTime
     }
 }

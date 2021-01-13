@@ -23,22 +23,21 @@ class CalenderFragment : Fragment() {
 
     private lateinit var dailyAdapter: DailyAdapter
 
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
-
-
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val events = arrayListOf<EventDay>()
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
+        val events = arrayListOf<EventDay>()
+        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
+                binding.calendar.setEvents(events)
+
+            }
+        })
 
         dailyAdapter = DailyAdapter(requireContext())
 
@@ -55,15 +54,14 @@ class CalenderFragment : Fragment() {
                         "수리해주세요.", "18:00")
         )
 
+        dailyAdapter.notifyDataSetChanged()
 
 
-        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
-            override fun onDayClick(eventDay: EventDay) {
-                events.add(EventDay(eventDay.calendar, R.drawable.border_orange_blue_fill))
-                binding.calendar.setEvents(events)
-                dailyAdapter.notifyDataSetChanged()
-            }
-        })
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
     }
 
