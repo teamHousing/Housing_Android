@@ -8,10 +8,9 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,7 +31,9 @@
                 android:textFontWeight="700"
                 android:textSize="40sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp"/>
 
             <View
                 android:id="@+id/line_calendar"
@@ -152,5 +153,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_date" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

@@ -58,7 +58,10 @@ class CalenderFragment : Fragment() {
         val sampleN2 = ResponseCalendarData.Data.Notice(67, 2020, 12, 24, "hey", "you")
         val sampleP = ResponseCalendarData.Data.Promise(345, 2021, 1, 13, 0,
         "Yein", "직접 방문", "18:00", "visitiiiiii")
-        val sampleD = ResponseCalendarData.Data(listOf(sampleP), listOf(sampleN, sampleN2))
+        val sampleP2 = ResponseCalendarData.Data.Promise(3458, 2020, 12, 24, 0,
+                "Yein", "직접 방문", "18:00", "visitiiiiii")
+
+        val sampleD = ResponseCalendarData.Data(listOf(sampleP,sampleP2), listOf(sampleN, sampleN2))
         calendarDataBind(sampleD)
         drawIcons()
 
