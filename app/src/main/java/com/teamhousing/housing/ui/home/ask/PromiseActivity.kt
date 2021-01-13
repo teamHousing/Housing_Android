@@ -1,32 +1,35 @@
 package com.teamhousing.housing.ui.home.ask
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
+import com.teamhousing.housing.databinding.ActivityPromiseBinding
 import com.teamhousing.housing.databinding.DialogTimePickerBinding
-import com.teamhousing.housing.databinding.FragmentAskTimeBinding
 import com.teamhousing.housing.vo.ContactData
 import java.util.*
+import kotlin.collections.ArrayList
 
-class AskTimeFragment : Fragment() {
+class PromiseActivity : AppCompatActivity() {
 
-    private val viewModel : AskViewModel by activityViewModels()
-    private lateinit var binding: FragmentAskTimeBinding
+    private lateinit var binding: ActivityPromiseBinding
     private lateinit var adapter : ContactAdapter
+    private val viewModel : PromiseViewModel by viewModels()
+    private val promiseList = mutableListOf<ContactData>()
 
     private var contactDate= ""
     private var contactStartTime= ""
@@ -36,19 +39,12 @@ class AskTimeFragment : Fragment() {
     private lateinit var boldFont: Typeface
     private lateinit var mediumFont: Typeface
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ask_time, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        boldFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_bold)!!
-        mediumFont = ResourcesCompat.getFont(requireContext(), R.font.apple_sd_gothic_neo_medium)!!
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_promise)
+        boldFont = ResourcesCompat.getFont(this, R.font.apple_sd_gothic_neo_bold)!!
+        mediumFont = ResourcesCompat.getFont(this, R.font.apple_sd_gothic_neo_medium)!!
 
         changeButtonState()
         makeContact()
@@ -56,25 +52,26 @@ class AskTimeFragment : Fragment() {
         selectTime(binding.edtTimeStartTime)
         selectTime(binding.edtTimeEndTime)
         addContactList()
+        requestAsk()
     }
 
     private fun addContactList() {
         binding.btnTimeAdd.setOnClickListener {
-            if(!contactMethod.isNullOrBlank() && !contactDate.isNullOrBlank() &&
-                    !contactStartTime.isNullOrBlank() && !contactEndTime.isNullOrBlank()){
-                viewModel.contactList.value?.add(
-                    ContactData(
-                        contactDate, contactStartTime + "-" + contactEndTime + "시", contactMethod
-                    )
+            promiseList.add(
+                ContactData(
+                    contactDate, contactStartTime + "-" + contactEndTime + "시", contactMethod
                 )
-                adapter.notifyDataSetChanged()
-
-                initContactOption()
-            }
-            else{
-                Toast.makeText(requireContext(), "선택 사항을 모두 눌러주세요.", Toast.LENGTH_SHORT).show()
-            }
+            )
+            viewModel.changePromiseList(promiseList as ArrayList<ContactData>)
+            initContactOption()
         }
+
+
+        viewModel.promiseList.observe(this, { list ->
+            binding.btnTimeAssign.isEnabled = list.size != 0
+            adapter.data = list
+            adapter.notifyDataSetChanged()
+        })
     }
 
     private fun changeButtonState() {
@@ -84,8 +81,15 @@ class AskTimeFragment : Fragment() {
 
             if(binding.btnTimeMeet.isChecked){
                 contactMethod = "집 방문"
+                if(!binding.edtTimeDate.text.isNullOrBlank() && !binding.edtTimeStartTime.text.isNullOrBlank()
+                    && !binding.edtTimeEndTime.text.isNullOrBlank()){
+                    binding.btnTimeAdd.isEnabled = true
+                    binding.btnTimeAdd.setTextColor(Color.parseColor("#080808"))
+                }
             }else if(!binding.btnTimeCall.isChecked){
                 contactMethod = ""
+                binding.btnTimeAdd.isEnabled = false
+                binding.btnTimeAdd.setTextColor(Color.parseColor("#cbd6de"))
             }
         }
         binding.btnTimeCall.setOnClickListener {
@@ -93,19 +97,23 @@ class AskTimeFragment : Fragment() {
             binding.btnTimeMeet.isChecked = false
 
             if(binding.btnTimeCall.isChecked){
-                contactMethod = "전화 연락"
+                contactMethod = "전화"
+                if(!binding.edtTimeDate.text.isNullOrBlank() && !binding.edtTimeStartTime.text.isNullOrBlank()
+                    && !binding.edtTimeEndTime.text.isNullOrBlank()){
+                    binding.btnTimeAdd.isEnabled = true
+                    binding.btnTimeAdd.setTextColor(Color.parseColor("#080808"))
+                }
             }else if(!binding.btnTimeMeet.isChecked){
                 contactMethod = ""
+                binding.btnTimeAdd.isEnabled = false
+                binding.btnTimeAdd.setTextColor(Color.parseColor("#cbd6de"))
             }
         }
     }
 
     private fun makeContact() {
         adapter = ContactAdapter()
-        adapter.data = viewModel.contactList.value!!
-
         binding.rvTime.adapter = adapter
-        adapter.notifyDataSetChanged()
     }
 
     private fun selectDate() {
@@ -121,14 +129,13 @@ class AskTimeFragment : Fragment() {
 
         binding.edtTimeDate.setOnFocusChangeListener { _, chk ->
             if(chk){
-                val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
+                val datePickerDialog = DatePickerDialog(this,{ _, year, month, day ->
                     contactDate = changeDateFormat(year,month+1, day)
                     binding.edtTimeDate.setText(contactDate)
                 }, year, month, day)
                 datePickerDialog.datePicker.minDate = minDate.time.time
                 datePickerDialog.show()
                 binding.edtTimeDate.clearFocus()
-                //if(binding.etTimeDate.text.isNullOrBlank())
             }
         }
     }
@@ -139,19 +146,20 @@ class AskTimeFragment : Fragment() {
 
         val dialogBinding : DialogTimePickerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(
-                context
+                this
             ), R.layout.dialog_time_picker, null, false
         )
 
         edt.setOnFocusChangeListener { _, chk ->
             if(chk){
-                val dialog = Dialog(requireContext())
+                edt.clearFocus()
+                val alertDialog = AlertDialog.Builder(this)
+                val dialog: AlertDialog = alertDialog.create()
 
                 if(dialogBinding.root.parent != null){
                     val viewGroup : ViewGroup = dialogBinding.root.parent as ViewGroup
                     viewGroup.removeView(dialogBinding.root)
                 }
-                dialog.setContentView(dialogBinding.root)
 
                 dialogBinding.btnDatePickerCancel.setOnClickListener {
                     dialog.dismiss()
@@ -185,6 +193,7 @@ class AskTimeFragment : Fragment() {
                 dialogBinding.pckHour.minValue = 1
                 dialogBinding.pckHour.maxValue = 12
 
+                dialog.setView(dialogBinding.root)
                 dialog.show()
             }
         }
@@ -225,11 +234,39 @@ class AskTimeFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.isNullOrBlank()){
                     view.typeface = mediumFont
+                    binding.btnTimeAdd.isEnabled = false
+                    binding.btnTimeAdd.setTextColor(Color.parseColor("#cbd6de"))
                 }else{
                     view.typeface = boldFont
                     view.setBackgroundResource(R.drawable.border_black_title_underline)
+                    if(view == binding.edtTimeDate && !contactMethod.isNullOrBlank()
+                        && !binding.edtTimeStartTime.text.isNullOrBlank()
+                        && !binding.edtTimeEndTime.text.isNullOrBlank()){
+                        binding.btnTimeAdd.isEnabled = true
+                        binding.btnTimeAdd.setTextColor(Color.parseColor("#080808"))
+                    }
+                    else if(view == binding.edtTimeStartTime && !contactMethod.isNullOrBlank()
+                        && !binding.edtTimeDate.text.isNullOrBlank()
+                        && !binding.edtTimeEndTime.text.isNullOrBlank()){
+                        binding.btnTimeAdd.isEnabled = true
+                        binding.btnTimeAdd.setTextColor(Color.parseColor("#080808"))
+                    }
+                    else if(view == binding.edtTimeEndTime && !contactMethod.isNullOrBlank()
+                        && !binding.edtTimeDate.text.isNullOrBlank()
+                        && !binding.edtTimeStartTime.text.isNullOrBlank()){
+                        binding.btnTimeAdd.isEnabled = true
+                        binding.btnTimeAdd.setTextColor(Color.parseColor("#080808"))
+                    }
                 }
             }
         })
+    }
+
+    private fun requestAsk() {
+        binding.btnTimeAssign.setOnClickListener {
+            val intent = Intent()
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 }

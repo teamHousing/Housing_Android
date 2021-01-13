@@ -20,7 +20,7 @@ class FilesAdapter : RecyclerView.Adapter<FilesAdapter.VHolder>() {
     }
 
     override fun onBindViewHolder(holder: VHolder, position: Int) {
-        holder.onBindForURI(uriData[position])
+        holder.onBind(uriData[position])
 
         holder.binding.btnPictureDelete.setOnClickListener {
             uriData.removeAt(position)
@@ -34,7 +34,7 @@ class FilesAdapter : RecyclerView.Adapter<FilesAdapter.VHolder>() {
     inner class VHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val binding : ItemFileBinding = DataBindingUtil.bind(itemView)!!
 
-        fun onBindForURI(uri: Uri) {
+        fun onBind(uri: Uri) {
             binding.ivPictureFile.setImageURI(uri)
         }
     }

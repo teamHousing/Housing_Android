@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.BR
 import com.teamhousing.housing.R
@@ -12,7 +13,7 @@ import com.teamhousing.housing.vo.ContactData
 
 class ContactAdapter : RecyclerView.Adapter<ContactAdapter.VHolder>() {
 
-    var data = mutableListOf<ContactData>()
+    var data: MutableList<ContactData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false)
@@ -28,7 +29,7 @@ class ContactAdapter : RecyclerView.Adapter<ContactAdapter.VHolder>() {
     inner class VHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         private val binding : ItemContactBinding = DataBindingUtil.bind(itemView)!!
         fun onBind(position: Int) {
-            binding.setVariable(BR.data ,data[position])
+            binding.setVariable(BR.data , data[position])
             binding.btnDeleteContactItem.setOnClickListener {
                 data.removeAt(position)
                 notifyItemRemoved(position)

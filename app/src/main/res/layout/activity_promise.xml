@@ -8,7 +8,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:context=".ui.home.ask.AskTimeFragment">
+            tools:context=".ui.home.ask.PromiseActivity">
 
             <View
                 android:id="@+id/view3"
@@ -144,10 +144,11 @@
                 android:layout_marginTop="72dp"
                 android:layout_marginEnd="60dp"
                 android:layout_marginRight="60dp"
-                android:background="@drawable/border_black_line_200"
+                android:background="@drawable/selector_add_button"
                 android:fontFamily="@font/apple_sd_gothic_neo_bold"
                 android:text="추가하기"
-                android:textColor="@color/primary_black"
+                android:enabled="false"
+                android:textColor="@color/gray_2"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,6 +188,7 @@
                     android:background="@drawable/selector_ask_next_button"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
                     android:text="등록하기"
+                    android:enabled="false"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"

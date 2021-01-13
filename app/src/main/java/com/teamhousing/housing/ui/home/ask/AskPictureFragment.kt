@@ -52,12 +52,6 @@ class AskPictureFragment : Fragment() {
 
         picturesFromCamera()
         picturesFromGallery()
-
-        Log.e("vm", viewModel.isPromise.value.toString())
-        Log.e("vm", viewModel.category.value.toString())
-        Log.e("vm", viewModel.issueTitle.value.toString())
-        Log.e("vm", viewModel.issueContents.value.toString())
-        Log.e("vm", viewModel.requestedTerm.value.toString())
     }
 
     private fun picturesFromGallery() {
@@ -150,7 +144,7 @@ class AskPictureFragment : Fragment() {
                     if (data?.clipData != null) {
                         val filesSize = data?.clipData!!.itemCount
                         if(filesSize > 5){
-                            Toast.makeText(requireContext(), "최대 5개까지만 가능합니다.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "이미지 첨부는 5장까지만 가능합니다.", Toast.LENGTH_SHORT).show()
                             for (i in 0 until 5) filesAdapter.uriData.add(data?.clipData!!.getItemAt(i).uri)
                         }
                         else{
