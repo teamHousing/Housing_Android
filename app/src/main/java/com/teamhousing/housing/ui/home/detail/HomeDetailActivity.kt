@@ -15,5 +15,19 @@ class HomeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_home_detail)
         binding.lifecycleOwner=this
+
+        initViewPager()
+    }
+
+    private  fun initViewPager(){
+        viewPagerAdapter = ViewPagerAdapter(
+                supportFragmentManager
+        )
+        viewPagerAdapter.fragments = listOf(
+                HomeDetailInfoFragment(),
+                HomeDetailNoteFragment()
+        )
+
+        binding.vpHomeDetail.adapter = viewPagerAdapter
     }
 }
