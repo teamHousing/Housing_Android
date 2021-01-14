@@ -59,6 +59,11 @@ class HomeFragment : Fragment() {
             startActivity(askIntent)
         }
 
+        binding.btnHomeAskCenter.setOnClickListener {
+            val askIntent = Intent(context, AskActivity::class.java)
+
+            startActivity(askIntent)
+        }
     }
 
 }

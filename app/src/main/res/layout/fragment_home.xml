@@ -177,7 +177,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/btn_home_ask_center"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="104dp"
