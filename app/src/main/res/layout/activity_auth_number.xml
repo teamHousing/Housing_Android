@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+        <variable
+            name="AuthNumberViewModel"
+            type="com.teamhousing.housing.ui.join.AuthNumberActivity" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/baskerville_bold"
+            android:text="Join"
+            android:textColor="@color/primary_black"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_medium"
+            android:text="회원가입을 위한 인증번호를 입력해 주세요."
+            android:textColor="@color/primary_black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="14dp"
+            android:background="@color/primary_black"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="71dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_medium"
+            android:text="인증번호"
+            android:textSize="16sp"
+            android:textColor="@color/primary_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <EditText
+            android:id="@+id/et_authnumber_auth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/et_focus_check"
+            android:backgroundTint="@color/primary_black"
+            android:ems="10"
+            android:fontFamily="@font/apple_sd_gothic_neo_light"
+            android:hint="인증번호를 입력해 주세요."
+            android:inputType="number"
+            android:textColorHint="@color/gray_4"
+            android:textCursorDrawable="@drawable/cursur_orange_line"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <Button
+            android:id="@+id/btn_authnumber_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="369dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/border_gray_fill_200"
+            android:textColor="@color/white"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:textSize="14sp"
+            android:text="다음"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_authnumber_auth" />
+
+        <ImageView
+            android:id="@+id/btn_authnumber_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/et_authnumber_auth"
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            app:srcCompat="@drawable/btn_close" />
+
+        <TextView
+            android:id="@+id/tv_authnumber_valid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="인증번호를 다시 확인해주세요."
+            android:fontFamily="@font/apple_sd_gothic_neo_light"
+            android:textSize="12sp"
+            android:textColor="@color/red"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/et_authnumber_auth"
+            app:layout_constraintTop_toBottomOf="@+id/et_authnumber_auth" />
+
+        <ImageView
+            android:id="@+id/btn_authnumber_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btn_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
