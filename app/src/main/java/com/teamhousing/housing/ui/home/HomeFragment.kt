@@ -1,5 +1,6 @@
 package com.teamhousing.housing.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentHomeBinding
 import com.teamhousing.housing.ui.home.adapter.HomeAskListAdapter
+import com.teamhousing.housing.ui.home.ask.AskActivity
 import com.teamhousing.housing.ui.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setAskListAdapter()
+        onClickAskBtn()
 
         return binding.root
     }
@@ -39,6 +42,15 @@ class HomeFragment : Fragment() {
             askListAdapter.replaceAskList(askList)
 
         }
+    }
+
+    private fun onClickAskBtn(){
+        binding.btnHomeAsk.setOnClickListener {
+            val askIntent = Intent(context, AskActivity::class.java)
+
+            startActivity(askIntent)
+        }
+
     }
 
 }
