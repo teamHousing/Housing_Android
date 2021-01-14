@@ -10,13 +10,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="14dp">
+            android:background="@color/white"
+            >
 
             <TextView
                 android:id="@+id/txt_calendar_title"
@@ -122,11 +124,12 @@
             <ImageView
                 android:id="@+id/img_bg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:background="@color/main_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendar" />
+                app:layout_constraintTop_toBottomOf="@+id/calendar"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/txt_date"
@@ -138,20 +141,18 @@
                 android:fontFamily="@font/apple_sd_gothic_neo"
                 android:textColor="@color/primary_black"
                 android:textFontWeight="500"
-                android:textSize="13dp"
+                android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_bg"
-                android:text="00월 00일의 일정" />
+                app:layout_constraintTop_toBottomOf="@+id/calendar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_daily"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_date"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/img_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                app:layout_constraintTop_toBottomOf="@+id/txt_date" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
