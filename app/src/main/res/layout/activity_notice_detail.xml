@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="noticeDetailActivity"
+            type="com.teamhousing.housing.ui.notice.NoticeDetailActivity" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:src="@drawable/btn_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_notice_detail_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:textSize="21sp"
+            android:textColor="@color/primary_black"
+            android:text="title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_notice_detail_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Contents"
+            android:fontFamily="@font/apple_sd_gothic_neo"
+            android:textSize="15sp"
+            android:textColor="@color/primary_black"
+            app:layout_constraintEnd_toEndOf="@+id/tv_notice_detail_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_notice_detail_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_notice_detail_title" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="342dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/tab_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="캘린더에 추가된 공지입니다."
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:textSize="15sp"
+            android:textColor="@color/primary_black"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notice_calendar_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
