@@ -12,7 +12,7 @@ import kotlinx.coroutines.selects.select
 
 class UserSelectActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserSelectBinding
-    var isTenantValid = 0
+    var isTenantValid : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +22,6 @@ class UserSelectActivity : AppCompatActivity() {
         selectOwnerButton()
         selectTenantButton()
 
-        binding.btnUserselectBack.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun selectOwnerButton(){
@@ -52,12 +48,13 @@ class UserSelectActivity : AppCompatActivity() {
                 binding.btnUserselectNext.isEnabled = true
                 binding.btnUserselectNext.setBackgroundResource(R.drawable.border_black_fill_200)
                 //세입자 타입을 intent로 넘겨주기-> 1 : 세입자, Postman통신할 때 :type 빼고 ~~/1 넣어서 보내주면 됨
-                isTenantValid = 1
-                //다음 버튼 클릭했을 때 intent로 isTenantValid 값을 계속 넘겨줘야 한다(JoinActivity까지)
                 //joinActivity로 넘어가기
+                isTenantValid = 1
                 binding.btnUserselectNext.setOnClickListener{
                     val intent = Intent(this, AuthNumberActivity::class.java)
+                    intent.putExtra("type", isTenantValid)
                     startActivity(intent)
+
                 }
             }
             //세입자 버튼 선택 안됐을 때 다음 버튼 비활성화
