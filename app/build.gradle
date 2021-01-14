@@ -54,6 +54,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // cardview
+    implementation "androidx.cardview:cardview:1.0.0"
 
     //bottom navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_ktx_version"
@@ -77,4 +79,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     // Retrofit에서 Gson을 사용하기 위한 라이브러리
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 }
