@@ -37,4 +37,10 @@ interface HousingService {
             @Path("id") askId: Int,
             @Body body: RequestPromiseData
     ) : Call<ResponsePromiseData>
+
+    @GET("communication/{unit}")
+    fun getCommunicationList(
+        @Header("jwt") token: String,
+        @Path("unit") unit: Int?
+    ) : Call<ResponseHomeAskListData>
 }
