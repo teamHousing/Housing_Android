@@ -78,6 +78,7 @@ dependencies {
     // https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.6'
     // Retrofit에서 Gson을 사용하기 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //StickyScrollView
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'

@@ -25,8 +25,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskPictureBinding
-import org.apache.commons.io.IOUtils
-import java.io.*
 
 class AskPictureFragment : Fragment() {
 
