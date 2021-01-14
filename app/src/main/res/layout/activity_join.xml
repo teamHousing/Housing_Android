@@ -202,50 +202,55 @@
             android:id="@+id/btn_join_nameclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_join_name"
             app:layout_constraintEnd_toEndOf="@+id/et_join_name"
-            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            app:layout_constraintTop_toTopOf="@+id/et_join_name"
             app:srcCompat="@drawable/btn_close" />
 
         <ImageView
             android:id="@+id/btn_join_ageclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_join_age"
             app:layout_constraintEnd_toEndOf="@+id/et_join_age"
-            app:layout_constraintTop_toBottomOf="@+id/textView26"
+            app:layout_constraintTop_toTopOf="@+id/et_join_age"
             app:srcCompat="@drawable/btn_close" />
 
         <ImageView
             android:id="@+id/btn_join_idclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_join_id"
             app:layout_constraintEnd_toEndOf="@+id/et_join_id"
-            app:layout_constraintTop_toBottomOf="@+id/textView27"
+            app:layout_constraintTop_toTopOf="@+id/et_join_id"
             app:srcCompat="@drawable/btn_close" />
 
         <ImageView
             android:id="@+id/btn_join_pwclear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_join_pw"
             app:layout_constraintEnd_toEndOf="@+id/et_join_pw"
-            app:layout_constraintTop_toBottomOf="@+id/textView28"
+            app:layout_constraintTop_toTopOf="@+id/et_join_pw"
             app:srcCompat="@drawable/btn_close" />
 
         <ImageView
             android:id="@+id/btn_join_pwc_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/et_join_pw_c"
             app:layout_constraintEnd_toEndOf="@+id/et_join_pw_c"
-            app:layout_constraintTop_toBottomOf="@+id/textView29"
+            app:layout_constraintTop_toTopOf="@+id/et_join_pw_c"
             app:srcCompat="@drawable/btn_close" />
 
         <TextView
@@ -261,15 +266,5 @@
             app:layout_constraintStart_toStartOf="@+id/et_join_pw_c"
             app:layout_constraintTop_toBottomOf="@+id/et_join_pw_c" />
 
-        <ImageView
-            android:id="@+id/btn_join_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/btn_back" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

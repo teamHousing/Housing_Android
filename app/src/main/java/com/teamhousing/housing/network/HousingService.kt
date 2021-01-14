@@ -11,6 +11,8 @@ interface HousingService {
 
     @POST("/authentication/confirm")
     fun postAuthCheck(@Body body : RequestAuthNumData) : Call<ResponseAuthNumData>
+    @POST("user/registration/1")
+    fun postJoin(@Body body : RequestJoinData) : Call<ResponseJoinData>
 
     @Multipart
     @POST("communication/image")
