@@ -11,5 +11,4 @@ object HousingServiceImpl {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     val service : HousingService = retrofit.create(HousingService::class.java)
-
 }

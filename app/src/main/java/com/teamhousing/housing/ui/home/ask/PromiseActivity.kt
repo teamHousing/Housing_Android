@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
@@ -19,7 +20,11 @@ import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ActivityPromiseBinding
 import com.teamhousing.housing.databinding.DialogTimePickerBinding
-import com.teamhousing.housing.vo.PromiseData
+import com.teamhousing.housing.network.HousingServiceImpl
+import com.teamhousing.housing.vo.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -262,9 +267,37 @@ class PromiseActivity : AppCompatActivity() {
 
     private fun submitAsk() {
         binding.btnTimeAssign.setOnClickListener {
-            val intent = Intent()
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+            var promiseList = mutableListOf<String>()
+            var promiseLists = mutableListOf<List<String>>()
+            for(i in 0 until viewModel.promiseList.value!!.size){
+                promiseList.add(viewModel.promiseList.value!![i].date)
+                promiseList.add(viewModel.promiseList.value!![i].time)
+                promiseList.add(viewModel.promiseList.value!![i].method)
+                promiseLists.add(promiseList.toList())
+                promiseList.clear()
+            }
+            Log.e("asd",intent.getIntExtra("askId", 0).toString())
+            val promiseCall: Call<ResponsePromiseData> = HousingServiceImpl.service.postPromises(
+                    intent.getStringExtra("token")!!,
+                    intent.getIntExtra("askId", 0),
+                    RequestPromiseData(promiseLists)
+                )
+            promiseCall.enqueue(object : Callback<ResponsePromiseData> {
+                override fun onResponse(
+                    call: Call<ResponsePromiseData>,
+                    response: Response<ResponsePromiseData>
+                ) {
+                    response.takeIf {it.isSuccessful}
+                        ?.body()
+                        ?.let{
+                            val intent = Intent()
+                            setResult(Activity.RESULT_OK, intent)
+                            finish()
+                        }
+                }
+                override fun onFailure(call: Call<ResponsePromiseData>, t: Throwable) {
+                }
+            })
         }
     }
 }
