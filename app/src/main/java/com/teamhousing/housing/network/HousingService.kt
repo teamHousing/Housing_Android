@@ -1,6 +1,5 @@
 package com.teamhousing.housing.network
 
-import com.teamhousing.housing.ui.calender.RequestCalendarData
 import com.teamhousing.housing.vo.RequestLoginData
 import com.teamhousing.housing.vo.ResponseCalendarData
 import com.teamhousing.housing.vo.ResponseLoginData
@@ -15,9 +14,8 @@ interface HousingService {
     @POST("/user/login")
     fun postLogin(@Body body : RequestLoginData) : Call<ResponseLoginData>
 
-    @POST("/calendar/month")
+    @POST("/calendar/schedule")
     fun postCalendar(
-            @Header("jwt") token: String?,
-            @Body body: RequestCalendarData
+            @Header("jwt") token: String?
     ) : Call<ResponseCalendarData>
 }

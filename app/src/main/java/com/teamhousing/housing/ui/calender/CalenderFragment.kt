@@ -1,6 +1,7 @@
 package com.teamhousing.housing.ui.calender
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,10 @@ import com.teamhousing.housing.network.HousingServiceImpl
 import com.teamhousing.housing.vo.CalendarData
 import com.teamhousing.housing.vo.ResponseCalendarData
 import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Calendar
+import java.util.*
 
 
 class CalenderFragment : Fragment() {
@@ -31,8 +31,8 @@ class CalenderFragment : Fragment() {
 
     private fun showError(error : ResponseBody?){
         val e = error ?: return
-        val ob = JSONObject(e.string())
-        Toast.makeText(context, ob.getString("message"), Toast.LENGTH_SHORT).show()
+        val ob = e.string()
+        Log.d("errorMessage", ob)
     }
 
     override fun onCreateView(
@@ -70,8 +70,7 @@ class CalenderFragment : Fragment() {
     fun connectSever(){
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IuydtOynleynlSIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIiwidHlwZSI6MSwiaWF0IjoxNjEwNTAzNjE3LCJleHAiOjE2MTExMDg0MTcsImlzcyI6ImN5aCJ9.HephRWwnmsYALG9ohvCGi6nURTHFlgdsaJeNz6kUe5Q"
         val call : Call<ResponseCalendarData> = HousingServiceImpl.service.postCalendar(
-                token,
-                RequestCalendarData(2021, 1)
+                token
         )
 
         call.enqueue(object : Callback<ResponseCalendarData>{

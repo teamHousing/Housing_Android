@@ -32,7 +32,7 @@ class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 categoryTxt = "소음 관련"
             }
             4 -> {
-                categoryTxt = "문의 사항"
+                categoryTxt = "거주 수칙 관련"
             }
             else -> {
                 categoryTxt = "그 외"
