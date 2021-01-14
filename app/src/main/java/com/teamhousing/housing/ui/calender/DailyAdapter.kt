@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
 import com.teamhousing.housing.vo.CalendarData
 
-class DailyAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DailyAdapter(private val context: Context)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    // 하루치 데이터
-    var data = mutableListOf<CalendarData>()
+    var data = listOf<CalendarData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == 0) {
@@ -24,7 +24,7 @@ class DailyAdapter(private val context: Context) : RecyclerView.Adapter<Recycler
 
     override fun getItemCount(): Int = data.size
 
-    override fun getItemViewType(position: Int): Int = data[position].type
+    override fun getItemViewType(position: Int): Int = data?.get(position).type
         // super.getItemViewType(position)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

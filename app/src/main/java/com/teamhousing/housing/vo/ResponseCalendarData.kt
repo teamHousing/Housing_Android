@@ -1,5 +1,7 @@
 package com.teamhousing.housing.vo
 
+import com.google.gson.annotations.SerializedName
+
 data class ResponseCalendarData(
         val `data`: Data,
         val message: String,
@@ -7,7 +9,7 @@ data class ResponseCalendarData(
         val success: Boolean
 ) {
     data class Data(
-            // @SerializedName("issue")
+            @SerializedName("issue")
             val promise: List<Promise>,
             val notice: List<Notice>
     ) {
@@ -18,8 +20,7 @@ data class ResponseCalendarData(
                 val day: Int,
                 val category: Int,
                 val contents: String,
-                val isNotice: Int,
-                // @SerializedName
+                @SerializedName("solution_method")
                 val solutionMethod: String,
                 val time: String,
                 val title: String,
