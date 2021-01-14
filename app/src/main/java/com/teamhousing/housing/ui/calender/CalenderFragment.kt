@@ -36,6 +36,9 @@ class CalenderFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        var today = Calendar.getInstance()
+        setDateText(today)
+
         var tempData : List<CalendarData>?
 
         binding.calendar.setOnDayClickListener(object : OnDayClickListener {
@@ -43,6 +46,8 @@ class CalenderFragment : Fragment() {
                 tempData = getDailyData(eventDay.calendar)
                 tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
                 dailyAdapter.notifyDataSetChanged()
+
+                setDateText(eventDay.calendar)
             }
         })
 
@@ -169,8 +174,10 @@ class CalenderFragment : Fragment() {
         allData[keyDate]?.let{return allData[keyDate]} ?: run {return emptyList()}
 
     }
-//        if(allData[keyDate] != null) {return keyDate}
-//        else {return null}
+
+    fun setDateText(clickedDay: Calendar){
+        binding.txtDate.text = "${(clickedDay.get(Calendar.MONTH) + 1)}월 ${clickedDay.get(Calendar.DAY_OF_MONTH)}일의 일정"
+    }
 
     override fun onDestroy() {
         super.onDestroy()
