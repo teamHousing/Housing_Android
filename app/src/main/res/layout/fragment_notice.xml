@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="(n)"
+            android:text="(23)"
             android:textColor="@color/notice_gray"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:textSize="15sp"
