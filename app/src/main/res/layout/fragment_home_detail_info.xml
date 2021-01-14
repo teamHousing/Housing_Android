@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.home.detail.HomeDetailInfoFragment">
+
+        <TextView
+            android:id="@+id/txt_home_detail_info_ask_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="52dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:includeFontPadding="false"
+            android:text="요청 사항"
+            android:textColor="@color/primary_black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="방문 전 사전 연락 부탁드려요&#33;"
+            android:fontFamily="@font/apple_sd_gothic_neo_medium"
+            android:textSize="15dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/primary_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_home_detail_info_ask_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_ask_title" />
+
+        <TextView
+            android:id="@+id/txt_home_detail_info_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:includeFontPadding="false"
+            android:text="소통 방식"
+            android:textColor="@color/primary_black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/txt_home_detail_info_ask_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_detail_communication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_sub_title"
+            tools:itemCount="2"
+            tools:listitem="@layout/rv_item_home_detail_info" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="첨부파일"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:textSize="15dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/primary_black"
+            app:layout_constraintStart_toStartOf="@+id/txt_home_detail_info_ask_title"
+            app:layout_constraintTop_toBottomOf="@+id/rv_home_detail_communication" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/rv_item_home_detail_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/border_gray2_line_200"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="4dp"
+            android:stateListAnimator="@null"
+            android:text="요청 취소"
+            android:textColor="@color/black_1"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

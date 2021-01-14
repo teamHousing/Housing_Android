@@ -54,6 +54,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // cardview
+    implementation "androidx.cardview:cardview:1.0.0"
 
     //bottom navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_ktx_version"
@@ -69,7 +71,6 @@ dependencies {
     // material calendar
     implementation 'com.applandeo:material-calendar-view:1.9.0-rc02'
 
-
     // https://github.com/square/retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // Retrofit 라이브러리 응답으로 가짜 객체를 만들기 위함
@@ -77,7 +78,7 @@ dependencies {
     // https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.6'
     // Retrofit에서 Gson을 사용하기 위한 라이브러리
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    implementation 'commons-io:commons-io:2.4'
+    //StickyScrollView
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
 }

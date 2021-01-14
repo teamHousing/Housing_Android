@@ -6,13 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface HousingService {
-
-//    @Headers("Content-Type:application/json")
-//    @POST("users/signin")
-//    fun postLogin(
-//        @Body body : RequestLoginData
-//    ) : Call<ResponseLoginData>
-
     @Multipart
     @POST("communication/image")
     fun postCommunicationFiles(

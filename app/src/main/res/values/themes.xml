@@ -15,4 +15,17 @@
         <item name="colorAccent">@color/point_orange</item>
 
     </style>
+
+    <style name="HomeDetailTab" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/apple_sd_gothic_neo_bold</item>
+    </style>
+
+    <style name="BottomNavigation" parent="Widget.Design.BottomNavigationView">
+        <item name="android:textSize">10dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/apple_sd_gothic_neo_medium</item>
+    </style>
+
 </resources>

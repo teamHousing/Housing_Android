@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.size
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamhousing.housing.R
@@ -25,7 +26,7 @@ class NoticeFragment : Fragment() {
         binding = FragmentNoticeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
-        return inflater.inflate(R.layout.fragment_notice, container, false)
+        //return inflater.inflate(R.layout.fragment_notice, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,13 +44,16 @@ class NoticeFragment : Fragment() {
                 NoticeData(
                         "11월 관리비 입금 안내",
                         "입금 계좌 : 1002455115135(우리은행/김미정) \n용돈 환영~! 카카오페이도 가능~!~!~! 이것도 최대 2줄이라네요 룰루라라ㅏ"
+                ),
+                NoticeData(
+                    "수도꼭지가 고장났어요. 집이 물바다💧",
+                    "입금 계좌 : 1002455115135(우리은행/김미정) \n용돈 환영~! 카카오페이도 가능~!~!~! 이것도 최대 2줄이라네요 우와아아"
+                ),
+                NoticeData(
+                        "수도꼭지가 고장났어요. 집이 물바다💧",
+                        "입금 계좌 : 1002455115135(우리은행/김미정) \n용돈 환영~! 카카오페이도 가능~!~!~! 이것도 최대 2줄이라네요 우와아아"
                 )
         )
         noticeAdapter.notifyDataSetChanged()
-
-        /*val bundle = bundleOf("amount" to amount)
-        view.findNavController().navigate(R.id.rv_notice_item, bundle)
-        */
-
     }
 }
