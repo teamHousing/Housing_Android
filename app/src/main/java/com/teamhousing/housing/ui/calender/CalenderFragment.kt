@@ -19,8 +19,7 @@ class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
     val events = arrayListOf<EventDay>()
-    private var dailyData: List<Any>? = null
-    var allData: MutableMap<String, MutableList<CalendarData>> = hashMapOf()
+    var allData: HashMap<String, MutableList<CalendarData>> = hashMapOf()
 
     private lateinit var dailyAdapter: DailyAdapter
 
@@ -30,12 +29,6 @@ class CalenderFragment : Fragment() {
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
-
-        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
-            override fun onDayClick(eventDay: EventDay) {
-            }
-        })
-
         dailyAdapter = DailyAdapter(requireContext())
 
         binding.rvDaily.apply {
@@ -43,28 +36,26 @@ class CalenderFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        dailyAdapter.data = mutableListOf(
-                CalendarData(1, 2, "관리비내세요", "18-19",
-                        null, null, null, null, null,
-                        null),
-                CalendarData(0, null, null, null, 1, 0, "직접 방문", "물콸콸",
-                        "수리해주세요.", "18:00")
-        )
+        var tempData : List<CalendarData>?
 
-        dailyAdapter.notifyDataSetChanged()
-
+        binding.calendar.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                tempData = getDailyData(eventDay.calendar)
+                tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
+                dailyAdapter.notifyDataSetChanged()
+            }
+        })
 
         val sampleN = ResponseCalendarData.Data.Notice(34, 2020, 12, 24, "hey", "you")
-        val sampleN2 = ResponseCalendarData.Data.Notice(67, 2020, 12, 24, "hey", "you")
+        val sampleN2 = ResponseCalendarData.Data.Notice(67, 2020, 12, 24, "second", "notice")
         val sampleP = ResponseCalendarData.Data.Promise(345, 2021, 1, 13, 0,
         "Yein", "직접 방문", "18:00", "visitiiiiii")
         val sampleP2 = ResponseCalendarData.Data.Promise(3458, 2020, 12, 24, 0,
-                "Yein", "직접 방문", "18:00", "visitiiiiii")
-
+                "Yein", "직접 방문", "18:00", "thirdcardmaybe")
         val sampleD = ResponseCalendarData.Data(listOf(sampleP,sampleP2), listOf(sampleN, sampleN2))
+
         calendarDataBind(sampleD)
         drawIcons()
-
 
         return binding.root
     }
@@ -75,33 +66,6 @@ class CalenderFragment : Fragment() {
     }
 
     fun calendarDataBind(data: ResponseCalendarData.Data) {
-        for (notice in data.notice) {
-            var year = notice.year
-            var month = notice.month
-            var day = notice.day
-            var title = notice.title
-            var time = notice.time
-
-            var date = "${year}.${month}.${day}"
-            var noticeModel : CalendarData = CalendarData(
-                    type = 1,
-                    noticeId = notice.id,
-                    noticeTitle = title,
-                    noticeTime = time,
-                    issueId = null,
-                    category = null,
-                    solutionMethod = null,
-                    issueTitle = null,
-                    issueContents = null,
-                    promiseTime = null
-            )
-
-            if(allData.containsKey(date)){
-                allData[date]!!.add(noticeModel)
-            }
-            else{
-                allData.put(date, mutableListOf(noticeModel))
-            }
 
             for (promise in data.promise) {
                 var year = promise.year
@@ -131,7 +95,32 @@ class CalenderFragment : Fragment() {
                     allData.put(date, mutableListOf(promiseModel))
                 }
             }
+        for (notice in data.notice) {
+            var year = notice.year
+            var month = notice.month
+            var day = notice.day
+            var title = notice.title
+            var time = notice.time
 
+            var date = "${year}.${month}.${day}"
+            var noticeModel: CalendarData = CalendarData(
+                    type = 1,
+                    noticeId = notice.id,
+                    noticeTitle = title,
+                    noticeTime = time,
+                    issueId = null,
+                    category = null,
+                    solutionMethod = null,
+                    issueTitle = null,
+                    issueContents = null,
+                    promiseTime = null
+            )
+
+            if (allData.containsKey(date)) {
+                allData[date]!!.add(noticeModel)
+            } else {
+                allData.put(date, mutableListOf(noticeModel))
+            }
         }
 
         println(allData)
@@ -165,6 +154,24 @@ class CalenderFragment : Fragment() {
             binding.calendar.setEvents(events)
         }
     }
+
+    fun getDailyData(clickedDay : Calendar) : List<CalendarData>? {
+        var year = clickedDay.get(Calendar.YEAR).toString()
+        var month = clickedDay.get(Calendar.MONTH) + 1
+        month.toString()
+        var day = clickedDay.get(Calendar.DATE).toString()
+        var keyDate = "$year.$month.$day"
+
+        println(keyDate)
+        println(allData[keyDate])
+        println(allData)
+
+        allData[keyDate]?.let{return allData[keyDate]} ?: run {return emptyList()}
+
+    }
+//        if(allData[keyDate] != null) {return keyDate}
+//        else {return null}
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

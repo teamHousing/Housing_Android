@@ -40,8 +40,6 @@ class PromiseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         category.text = categoryTxt
-
-
         title.text = data.issueTitle
         how.text = data.solutionMethod
 
