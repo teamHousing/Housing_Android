@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -145,40 +146,41 @@ class AskMemoFragment() : Fragment() {
     }
 
     fun requestContent(token: String, askId: Int){
-        when (viewModel.isPromise.value) {
-            0 -> {  // 약속이 있는 경우
-                val intent = Intent(requireContext(), PromiseActivity::class.java)
-                intent.putExtra("token", token)
-                intent.putExtra("askId", askId)
-                startActivityForResult(intent, REQUEST_PROMISE)
-            }
-            1 -> { // 약속이 없는 경우
-                val contentCall: Call<ResponseAskData> =
-                    HousingServiceImpl.service.postCommunication(
-                        token,
-                        askId,
-                        RequestAskData(
-                            viewModel.category.value!!,false,
-                            viewModel.issueContents.value!!, viewModel.issueTitle.value!!,
-                            viewModel.requestedTerm.value!!
-                        )
-                    )
-                contentCall.enqueue(object : Callback<ResponseAskData> {
-                    override fun onResponse(
-                        call: Call<ResponseAskData>,
-                        response: Response<ResponseAskData>
-                    ) {
-                        response.takeIf { it.isSuccessful }
-                            ?.body()
-                            ?.let {
-                                //finish()
+        val contentCall: Call<ResponseAskData> =
+            HousingServiceImpl.service.postCommunication(
+                token,
+                askId,
+                RequestAskData(
+                    viewModel.category.value!!,false,
+                    viewModel.issueContents.value!!, viewModel.issueTitle.value!!,
+                    viewModel.requestedTerm.value!!
+                )
+            )
+        contentCall.enqueue(object : Callback<ResponseAskData> {
+            override fun onResponse(
+                call: Call<ResponseAskData>,
+                response: Response<ResponseAskData>
+            ) {
+                response.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (viewModel.isPromise.value) {
+                            0 -> {  // 약속이 있는 경우
+                                val intent = Intent(requireContext(), PromiseActivity::class.java)
+                                intent.putExtra("token", token)
+                                intent.putExtra("askId", askId)
+                                startActivityForResult(intent, REQUEST_PROMISE)
                             }
+                            1 -> { // 약속이 없는 경우
+                                activity?.finish()
+                            }
+                            else -> null
+                        }
                     }
-                    override fun onFailure(call: Call<ResponseAskData>, t: Throwable) {
-                    }
-                })
             }
-        }
+            override fun onFailure(call: Call<ResponseAskData>, t: Throwable) {
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -186,7 +188,7 @@ class AskMemoFragment() : Fragment() {
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
                 REQUEST_PROMISE->{
-                    //finish()
+                    activity?.finish()
                 }
             }
         }
