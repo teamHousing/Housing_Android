@@ -16,18 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Housing_Android">
         <activity android:name=".ui.home.detail.HomeDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.home.ask.PromiseActivity"/>
         <activity
             android:name=".ui.home.ask.AskActivity"
             android:exported="true" />
         <activity android:name=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
