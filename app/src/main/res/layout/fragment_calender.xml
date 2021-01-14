@@ -8,145 +8,152 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:fillViewport="true"
         >
 
-        <TextView
-            android:id="@+id/txt_calendar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="56dp"
-            android:fontFamily="@font/baske"
-            android:text="Calendar"
-            android:textColor="@color/primary_black"
-            android:textFontWeight="700"
-            android:textSize="40sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/line_calendar"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="6dp"
-            android:background="@color/primary_black"
-            app:layout_constraintBottom_toBottomOf="@id/txt_calendar_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/txt_calendar_title" />
-
-        <ImageView
-            android:id="@+id/img_calendar_orange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/border_orange_fill_5"
-            app:layout_constraintEnd_toStartOf="@+id/txt_me"
-            app:layout_constraintTop_toTopOf="@+id/line_calendar" />
-
-        <TextView
-            android:id="@+id/txt_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:fontFamily="@font/apple_sd_gothic_neo"
-            android:text="나"
-            android:textColor="@color/primary_black"
-            android:textFontWeight="500"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/img_calendar_blue"
-            app:layout_constraintTop_toTopOf="@id/line_calendar" />
-
-
-        <ImageView
-            android:id="@+id/img_calendar_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/border_blue_fill_5"
-            app:layout_constraintEnd_toStartOf="@+id/txt_notice"
-            app:layout_constraintTop_toTopOf="@+id/line_calendar" />
-
-        <TextView
-            android:id="@+id/txt_notice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/apple_sd_gothic_neo"
-            android:text="공지사항"
-            android:textColor="@color/primary_black"
-            android:textFontWeight="500"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/line_calendar" />
-
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:type="one_day_picker"
-            app:eventsEnabled="true"
-            app:headerColor="@color/white"
-            app:headerLabelColor="@color/primary_black"
-            app:previousButtonSrc="@drawable/icon_calendar_previous"
-            app:forwardButtonSrc="@drawable/icon_calendar_forwawrd"
-            app:abbreviationsLabelsColor="@color/gray_5"
-            app:selectionColor="@color/primary_black"
-            app:selectionLabelColor="@color/white"
-            app:daysLabelsColor="@color/gray_5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_me"
-            />
-
-        <ImageView
-            android:id="@+id/img_bg"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/main_gray"/>
-
-        <TextView
-            android:id="@+id/txt_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/img_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:fontFamily="@font/apple_sd_gothic_neo"
-            android:textFontWeight="500"
-            android:textSize="13dp"
-            android:textColor="@color/primary_black"
-            tools:text="00월 00일의 일정"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_daily"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/txt_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:background="@color/white"
+            >
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/txt_calendar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="56dp"
+                android:fontFamily="@font/baske"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp"
+                android:text="Calendar"
+                android:textColor="@color/primary_black"
+                android:textFontWeight="700"
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/line_calendar"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="6dp"
+                android:background="@color/primary_black"
+                app:layout_constraintBottom_toBottomOf="@id/txt_calendar_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_calendar_title" />
+
+            <ImageView
+                android:id="@+id/img_calendar_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/border_orange_fill_5"
+                app:layout_constraintEnd_toStartOf="@+id/txt_me"
+                app:layout_constraintTop_toTopOf="@+id/line_calendar" />
+
+            <TextView
+                android:id="@+id/txt_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:fontFamily="@font/apple_sd_gothic_neo"
+                android:text="나"
+                android:textColor="@color/primary_black"
+                android:textFontWeight="500"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/img_calendar_blue"
+                app:layout_constraintTop_toTopOf="@id/line_calendar" />
+
+
+            <ImageView
+                android:id="@+id/img_calendar_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/border_blue_fill_5"
+                app:layout_constraintEnd_toStartOf="@+id/txt_notice"
+                app:layout_constraintTop_toTopOf="@+id/line_calendar" />
+
+            <TextView
+                android:id="@+id/txt_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/apple_sd_gothic_neo"
+                android:text="공지사항"
+                android:textColor="@color/primary_black"
+                android:textFontWeight="500"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/line_calendar" />
+
+            <com.applandeo.materialcalendarview.CalendarView
+                android:id="@+id/calendar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                app:abbreviationsLabelsColor="@color/gray_5"
+                app:daysLabelsColor="@color/gray_5"
+                app:eventsEnabled="true"
+                app:forwardButtonSrc="@drawable/icon_calendar_forwawrd"
+                app:headerColor="@color/white"
+                app:headerLabelColor="@color/primary_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_me"
+                app:previousButtonSrc="@drawable/icon_calendar_previous"
+                app:selectionColor="@color/primary_black"
+                app:selectionLabelColor="@color/white"
+                app:type="one_day_picker" />
+
+            <ImageView
+                android:id="@+id/img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/main_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/txt_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/apple_sd_gothic_neo"
+                android:textColor="@color/primary_black"
+                android:textFontWeight="500"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_daily"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="@+id/img_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

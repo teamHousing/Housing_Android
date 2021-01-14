@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:orientation="vertical">
+    android:background="?attr/selectableItemBackgroundBorderless">
 
     <TextView
         android:id="@+id/dayLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="7dp"
         android:padding="7dp"
         android:textAlignment="center"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginTop="4dp"
+        tools:text="12"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/dayIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/border_orange_blue_fill"
+        app:layout_constraintDimensionRatio="5"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/dayLabel"
+        app:layout_constraintStart_toStartOf="@+id/dayLabel"
         app:layout_constraintTop_toBottomOf="@+id/dayLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
