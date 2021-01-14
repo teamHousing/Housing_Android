@@ -75,7 +75,7 @@
                     android:layout_marginRight="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_write" />
+                    app:srcCompat="@drawable/ic_write" />
 
                 <ImageView
                     android:id="@+id/imageView2"
