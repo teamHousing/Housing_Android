@@ -35,12 +35,12 @@ class HomeFragment : Fragment() {
         askListAdapter = HomeAskListAdapter(requireContext())
 
         binding.rvHomeCompleteList.adapter = askListAdapter
+        binding.rvHomeAskList.adapter = askListAdapter
 
         homeViewModel.setDummyAskList()
 
         homeViewModel.askList.observe(viewLifecycleOwner){ askList ->
             askListAdapter.replaceAskList(askList)
-
         }
     }
 
