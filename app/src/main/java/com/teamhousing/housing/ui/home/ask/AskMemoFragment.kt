@@ -2,6 +2,7 @@ package com.teamhousing.housing.ui.home.ask
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -114,7 +115,23 @@ class AskMemoFragment() : Fragment() {
             var imageParts = mutableListOf<MultipartBody.Part>()
             var filesCall: Call<ResponseAskFileData>
 
-            if(!viewModel.issueFilesUri.value.isNullOrEmpty()){
+            if(viewModel.issueFileBitmap.value != null){
+                val bitmap = viewModel.issueFileBitmap.value!!
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+                val photoBody =
+                    RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
+
+                imageParts.add(
+                    MultipartBody.Part.createFormData(
+                        "issue_img",
+                        "jpg",
+                        photoBody
+                    )
+                )
+                filesCall = HousingServiceImpl.service.postCommunicationFiles(token, imageParts)
+            }
+            else if(!viewModel.issueFilesUri.value.isNullOrEmpty()){
                 for (i in 0 until viewModel.issueFilesUri.value!!.size) {
                     val file = File(viewModel.issueFilesUri.value!![i].toString())
                     var requestBody : RequestBody = RequestBody.create(
