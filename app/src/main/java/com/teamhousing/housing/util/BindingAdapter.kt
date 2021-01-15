@@ -50,4 +50,14 @@ object BindingAdapter {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun setImage(view: ImageView, res: String?) {
+        Glide.with(view.context)
+            .load(res)
+            .transform(CenterCrop(), RoundedCorners(15))
+            .into(view)
+
+    }
 }

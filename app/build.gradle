@@ -82,4 +82,7 @@ dependencies {
 
     //StickyScrollView
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
+
+    //Gilde-loadImage
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }

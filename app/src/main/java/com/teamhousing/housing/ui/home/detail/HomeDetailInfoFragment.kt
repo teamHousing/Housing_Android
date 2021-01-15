@@ -1,6 +1,7 @@
 package com.teamhousing.housing.ui.home.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.teamhousing.housing.databinding.FragmentHomeDetailInfoBinding
 import com.teamhousing.housing.ui.home.detail.adapter.InfoCommunicationListAdapter
+import com.teamhousing.housing.ui.home.detail.adapter.InfoPhotoListAdapter
 import com.teamhousing.housing.ui.home.detail.viewModel.HomeDetailViewModel
 
 class HomeDetailInfoFragment : Fragment() {
     private lateinit var binding : FragmentHomeDetailInfoBinding
     private lateinit var infoCommunicationListAdapter: InfoCommunicationListAdapter
+    private lateinit var infoPhotoListAdapter: InfoPhotoListAdapter
     private val homeDetailViewModel : HomeDetailViewModel by viewModels()
 
     override fun onCreateView(
@@ -20,10 +23,12 @@ class HomeDetailInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeDetailInfoBinding.inflate(inflater, container, false)
+        binding.viewModel = homeDetailViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         initEmojiTitle()
         setCommunicationListAdapter()
+        setPhotoListAdapter()
 
         return  binding.root
     }
@@ -34,7 +39,18 @@ class HomeDetailInfoFragment : Fragment() {
         binding.rvHomeDetailCommunication.adapter = infoCommunicationListAdapter
 
         homeDetailViewModel.communicationList.observe(viewLifecycleOwner){ communicationList ->
-            infoCommunicationListAdapter.replaceAskList(communicationList)
+            infoCommunicationListAdapter.replaceCommunicationList(communicationList)
+
+        }
+
+    }
+
+    private fun setPhotoListAdapter(){
+        infoPhotoListAdapter = InfoPhotoListAdapter(requireContext())
+
+        binding.rvHomeDetailPhoto.adapter = infoPhotoListAdapter
+        homeDetailViewModel.photoList.observe(viewLifecycleOwner){ photoList ->
+            infoPhotoListAdapter.replacePhotoList(photoList)
 
         }
     }

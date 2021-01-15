@@ -15,6 +15,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeDetailViewModel : ViewModel() {
+    private val _term = MutableLiveData<String>()
+    val term : LiveData<String>
+        get() = _term
+
+    private val _photoList = MutableLiveData<MutableList<String>>()
+    val photoList : LiveData<MutableList<String>>
+        get() = _photoList
+
     private val _topInfo = MutableLiveData<AskItem>()
     val topInfo : LiveData<AskItem>
         get() = _topInfo
@@ -25,7 +33,7 @@ class HomeDetailViewModel : ViewModel() {
 
     fun getCommunicationDetail(id : Int){
         val call : Call<ResponseHomeDetailData> = HousingServiceImpl.service.getCommunicationDetail(
-            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiLsnbTsp4TtmLgiLCJhZGRyZXNzIjoi6rK96riw64-EIOyViOyCsOyLnCDqs6DsnpTroZwxMTUiLCJ0eXBlIjoxLCJpYXQiOjE2MTA2NDQ4MTMsImV4cCI6MTYxMTI0OTYxMywiaXNzIjoiY3loIn0.rgAbXl5mkp-cDkx0v3qaoTQF_3mjm0ymKI4BHkokSag",
+            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Iu2VmOyasOynhCIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIDEzNSIsInR5cGUiOjEsImlhdCI6MTYxMDY4MzQzOSwiZXhwIjoxNjExMjg4MjM5LCJpc3MiOiJjeWgifQ.GwqiDkwtI54GLdMyS6jGvWJkHThPiede_wy7fqvFjjc",
             id = id
         )
         call.enqueue(object : Callback<ResponseHomeDetailData> {
@@ -41,13 +49,47 @@ class HomeDetailViewModel : ViewModel() {
                     ?.body()
                     ?.let {
                         Log.d("명",it.data.toString())
-                        _topInfo.value = AskItem(
-                            it.data.id,
-                            it.data.issue_title,
-                            it.data.issue_contents,
-                            it.data.progress,
-                            it.data.category
+                        _topInfo.postValue(
+                            AskItem(
+                                it.data.id,
+                                it.data.issue_title,
+                                it.data.issue_contents,
+                                it.data.progress,
+                                it.data.category
+                            )
                         )
+
+                        _term.postValue(it.data.requested_term)
+                        Log.d("요청사항", _term.value.toString())
+
+                        val responseCommunicationList = mutableListOf<InfoCommunicationListData>()
+                        for(item in it.data.promise_option){
+                            Log.d("명",item.toString())
+                            responseCommunicationList.apply {
+                                add(
+                                    InfoCommunicationListData(
+                                        item[0],
+                                        item[1],
+                                        item[2]
+                                    )
+                                )
+                            }
+                        }
+
+                        _communicationList.postValue(responseCommunicationList)
+                        Log.d("명",_communicationList.value.toString())
+
+                        val responsePhotoList = mutableListOf<String>()
+                        for(item in it.data.issue_img){
+                            responsePhotoList.apply {
+                                add(
+                                    item
+                                )
+                            }
+                        }
+
+                        _photoList.postValue(responsePhotoList)
+
                     } ?: showError(response.errorBody())
             }
         })
