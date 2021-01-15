@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.view.size
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamhousing.housing.R
@@ -82,7 +83,8 @@ class NoticeFragment : Fragment() {
                             }
                             noticeAdapter.data = responseNoticeList
                             noticeAdapter.notifyDataSetChanged()
-                            binding.tvNoticeCnt.text = noticeAdapter.data.size.toString()
+                            binding.tvNoticeCnt.text = "("+noticeAdapter.data.size.toString()+")"
+                            //binding.txtHomeAskCount.text = "("+askList.size.toString()+")"
 
                             //Log.e("NoticeFragment",responseNoticeList.toString())
                         } ?: showError(response.errorBody())
