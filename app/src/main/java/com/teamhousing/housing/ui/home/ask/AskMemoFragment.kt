@@ -3,8 +3,9 @@ package com.teamhousing.housing.ui.home.ask
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -13,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.EditText
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,7 +31,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AskMemoFragment() : Fragment() {
@@ -120,8 +119,17 @@ class AskMemoFragment() : Fragment() {
             if(!viewModel.issueFilesUri.value.isNullOrEmpty()){
                 for (i in 0 until viewModel.issueFilesUri.value!!.size) {
                     val file = File(viewModel.issueFilesUri.value!![i].toString())
-                    var requestBody : RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
-                    imageParts.add(MultipartBody.Part.createFormData("issue_img", file.name, requestBody))
+                    var requestBody : RequestBody = RequestBody.create(
+                        MediaType.parse("image/*"),
+                        file
+                    )
+                    imageParts.add(
+                        MultipartBody.Part.createFormData(
+                            "issue_img",
+                            file.name,
+                            requestBody
+                        )
+                    )
                 }
                 filesCall = HousingServiceImpl.service.postCommunicationFiles(token, imageParts)
             }else{
@@ -137,11 +145,14 @@ class AskMemoFragment() : Fragment() {
                         ?.let {
                             Log.e("asd", it.data.issue_id.toString())
                             requestContent(token, it.data.issue_id)
-                        }?:showError(response.errorBody())
+                        } ?: showError(response.errorBody())
                 }
+
                 override fun onFailure(call: Call<ResponseAskFileData>, t: Throwable) {
                 }
             })
+            var list = arrayListOf<Uri>()
+            viewModel.changeFilesUri(list)
         }
     }
 
@@ -151,7 +162,7 @@ class AskMemoFragment() : Fragment() {
                 token,
                 askId,
                 RequestAskData(
-                    viewModel.category.value!!,false,
+                    viewModel.category.value!!, false,
                     viewModel.issueContents.value!!, viewModel.issueTitle.value!!,
                     viewModel.requestedTerm.value!!
                 )
@@ -169,6 +180,7 @@ class AskMemoFragment() : Fragment() {
                                 val intent = Intent(requireContext(), PromiseActivity::class.java)
                                 intent.putExtra("token", token)
                                 intent.putExtra("askId", askId)
+                                intent.putExtra("isCheckFrom", false)
                                 startActivityForResult(intent, REQUEST_PROMISE)
                             }
                             1 -> { // 약속이 없는 경우
@@ -187,14 +199,14 @@ class AskMemoFragment() : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
-                REQUEST_PROMISE->{
+                REQUEST_PROMISE -> {
                     activity?.finish()
                 }
             }
         }
     }
 
-    fun showError(error : ResponseBody?){
+    fun showError(error: ResponseBody?){
         val e = error ?: return
         val ob = (e.string())
         Log.e("asd", ob)

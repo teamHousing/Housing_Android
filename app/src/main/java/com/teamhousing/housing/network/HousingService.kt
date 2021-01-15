@@ -40,6 +40,13 @@ interface HousingService {
             @Body body: RequestPromiseData
     ) : Call<ResponsePromiseData>
 
+    @PUT("communication/{id}/promise-option")
+    fun putPromises(
+        @Header("jwt") token: String,
+        @Path("id") askId: Int,
+        @Body body: RequestPromiseData
+    ) : Call<ResponsePromiseData>
+
     @GET("communication/{unit}")
     fun getCommunicationList(
         @Header("jwt") token: String,
