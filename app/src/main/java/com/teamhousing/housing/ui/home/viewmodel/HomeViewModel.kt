@@ -1,43 +1,126 @@
 package com.teamhousing.housing.ui.home.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.teamhousing.housing.vo.HomeAskListData
+import com.teamhousing.housing.network.HousingServiceImpl
+import com.teamhousing.housing.vo.AskItem
+import com.teamhousing.housing.vo.ResponseHomeAskListData
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
-    private val _askList = MutableLiveData<MutableList<HomeAskListData>>()
-    val askList : LiveData<MutableList<HomeAskListData>>
+    // 최초 여부
+    private val _isEmpty = MutableLiveData<Boolean>(true)
+    val isEmpty : LiveData<Boolean>
+        get() = _isEmpty
+
+    // 해결중인 문의사항 노출여부
+    private val _isAskList = MutableLiveData<Boolean>(false)
+    val isAskList : LiveData<Boolean>
+        get() = _isAskList
+
+    // 해결완료 문의사항 노출여부
+    private val _isCompleteList = MutableLiveData<Boolean>(false)
+    val isCompleteList : LiveData<Boolean>
+        get() = _isCompleteList
+
+    // 해결중인 문의사항 리스트
+    private val _askList = MutableLiveData<MutableList<AskItem>>()
+    val askList : LiveData<MutableList<AskItem>>
         get() = _askList
 
-    fun setDummyAskList(){
-        val dummyAskList = listOf(
-            HomeAskListData(
-                category = "고장/수리",
-                title = "밑에 층 집이 너무 시끄러워요... 하",
-                contents = "집도 좋고 늘 빠르게 소통해주셔서 2년간 굉장히 만족하면서 생활했어요. 계약 기간이 끝나 가는데 다시 재계약을 하고 싶어요.",
-                progress = 0
-            ),
-            HomeAskListData(
-                category = "계약 관련",
-                title = "이번달 계약 만료에 대해서 어쩌고 저쩌고",
-                contents = "집도 좋고 늘 빠르게 소통해주셔서 2년간 굉장히 만족하면서 생활했어요. 계약 기간이 끝나 가는데 다시 재계약을 하고 싶어요.",
-                progress = 1
-            ),
-            HomeAskListData(
-                category = "요금 납부",
-                title = "5일까지 관리비 입금바랍니다.",
-                contents = "집도 좋고 늘 빠르게 소통해주셔서 2년간 굉장히 만족하면서 생활했어요. 계약 기간이 끝나 가는데 다시 재계약을 하고 싶어요.",
-                progress = 2
-            ),
-            HomeAskListData(
-                category = "그 외",
-                title = "수도가 얼어서 집이 겨울왕국이 됐어요",
-                contents = "집도 좋고 늘 빠르게 소통해주셔서 2년간 굉장히 만족하면서 생활했어요. 계약 기간이 끝나 가는데 다시 재계약을 하고 싶어요.",
-                progress = 0
-            )
-        )
+    // 해결완료 문의사항 리스트
+    private val _completeList = MutableLiveData<MutableList<AskItem>>()
+    val completeList : LiveData<MutableList<AskItem>>
+        get() = _completeList
 
-        _askList.value = dummyAskList.toMutableList()
+    fun getCommunicationList(){
+        val call : Call<ResponseHomeAskListData> = HousingServiceImpl.service.getCommunicationList(
+                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiLsnbTsp4TtmLgiLCJhZGRyZXNzIjoi6rK96riw64-EIOyViOyCsOyLnCDqs6DsnpTroZwxMTUiLCJ0eXBlIjoxLCJpYXQiOjE2MTA2NDQ4MTMsImV4cCI6MTYxMTI0OTYxMywiaXNzIjoiY3loIn0.rgAbXl5mkp-cDkx0v3qaoTQF_3mjm0ymKI4BHkokSag",
+                unit = -1
+        )
+        call.enqueue(object : Callback<ResponseHomeAskListData> {
+            override fun onFailure(call: Call<ResponseHomeAskListData>, t: Throwable) {
+                // 통신 실패 로직
+                Log.d("홈 - 소통하기 전체리스트 조회 실패",t.toString())
+            }
+            override fun onResponse(
+                    call: Call<ResponseHomeAskListData>,
+                    response: Response<ResponseHomeAskListData>
+            ) {
+                response.takeIf { it.isSuccessful}
+                        ?.body()
+                        ?.let {
+                            // 해결중인 문의사항
+                            val responseAskList = mutableListOf<AskItem>()
+                            for(item in it.data.incomplete_list){
+                                responseAskList.apply {
+                                    add(
+                                        AskItem(
+                                            item.id,
+                                            item.issue_title,
+                                            item.issue_contents,
+                                            item.progress,
+                                            item.category,
+                                        )
+                                    )
+                                }
+                            }
+                            _askList.postValue(responseAskList)
+
+                            // 완료된 문의사항
+                            val responseCompleteList = mutableListOf<AskItem>()
+                            for(item in it.data.complete_list){
+                                responseCompleteList.apply {
+                                    add(
+                                            AskItem(
+                                                    item.id,
+                                                    item.issue_title,
+                                                    item.issue_contents,
+                                                    item.progress,
+                                                    item.category,
+                                            )
+                                    )
+                                }
+                            }
+                            _completeList.postValue(responseCompleteList)
+
+                            checkListSize(it.data.incomplete_length, it.data.complete_length)
+
+                        } ?: showError(response.errorBody())
+            }
+        })
+    }
+
+    private fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Log.d("홈 - 소통하기 전체리스트 조회 오류", ob.toString())
+    }
+
+    private fun checkListSize(askList : Int, completeList : Int){
+        _isEmpty.value = false
+        if(askList > 0 && completeList == 0){
+            _isAskList.value = true
+            _isCompleteList.value = false
+        }
+        else if(askList == 0 && completeList > 0){
+            _isAskList.value = false
+            _isCompleteList.value = true
+        }
+        else if(askList > 0 && completeList > 0){
+            _isAskList.value = true
+            _isCompleteList.value = true
+        }
+        else{
+            _isEmpty.value = true
+            _isAskList.value = false
+            _isCompleteList.value = false
+        }
     }
 }

@@ -71,7 +71,6 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:background="@drawable/et_focus_check"
-            android:backgroundTint="@color/primary_black"
             android:ems="10"
             android:fontFamily="@font/apple_sd_gothic_neo_light"
             android:hint="인증번호를 입력해 주세요."
@@ -124,17 +123,6 @@
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/et_authnumber_auth"
             app:layout_constraintTop_toBottomOf="@+id/et_authnumber_auth" />
-
-        <ImageView
-            android:id="@+id/btn_authnumber_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/btn_back" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

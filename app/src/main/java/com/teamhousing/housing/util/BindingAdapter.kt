@@ -21,4 +21,29 @@ object BindingAdapter {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setCategory")
+    fun TextView.setCategory(category: Int) {
+        text = when (category) {
+            0 -> {
+                "고장 / 수리"
+            }
+            1 -> {
+                "계약 관련"
+            }
+            2 -> {
+                "요금 납부"
+            }
+            3 -> {
+                "소음 관련"
+            }
+            4 -> {
+                "거주 수칙 관련"
+            }
+            else -> {
+                "그 외"
+            }
+        }
+    }
 }

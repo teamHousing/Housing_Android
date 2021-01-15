@@ -7,10 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.RvItemHomeAskListBinding
-import com.teamhousing.housing.vo.HomeAskListData
+import com.teamhousing.housing.vo.AskItem
+import com.teamhousing.housing.vo.ResponseHomeAskListData
 
 class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<HomeAskListViewHolder>() {
-    var data = mutableListOf<HomeAskListData>()
+    var data = mutableListOf<AskItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAskListViewHolder {
         val binding : RvItemHomeAskListBinding = DataBindingUtil.inflate(
@@ -33,7 +34,7 @@ class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<Ho
 
     override fun getItemCount(): Int = data.size
 
-    fun replaceAskList(list : MutableList<HomeAskListData>){
+    fun replaceAskList(list : MutableList<AskItem>){
         data = list
         notifyDataSetChanged()
     }
@@ -41,7 +42,7 @@ class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<Ho
 }
 
 class HomeAskListViewHolder(val binding:RvItemHomeAskListBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(item : HomeAskListData){
+    fun bind(item : AskItem){
         binding.item = item
     }
 }
