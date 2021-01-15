@@ -43,13 +43,14 @@
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="match_parent"
-                        android:layout_height="230dp"
+                        android:layout_height="270dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@drawable/border_white_fill_16"
                         android:elevation="3dp"
-                        android:layout_marginBottom="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </FrameLayout>
 
                 <TextView
@@ -68,6 +69,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/img_home_main" />
+
+                <ImageView
                     android:id="@+id/btn_home_ask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,18 +89,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_write" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_home_ask"
-                    app:srcCompat="@color/primary_black" />
 
                 <TextView
                     android:id="@+id/textView2"
