@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -14,7 +15,17 @@ import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ActivityJoinBinding
 import com.teamhousing.housing.databinding.ActivityLoginBinding
+import com.teamhousing.housing.network.HousingServiceImpl
 import com.teamhousing.housing.ui.login.LoginActivity
+import com.teamhousing.housing.ui.main.MainActivity
+import com.teamhousing.housing.util.UserTokenManager
+import com.teamhousing.housing.vo.RequestJoinData
+import com.teamhousing.housing.vo.ResponseJoinData
+import com.teamhousing.housing.vo.ResponseLoginData
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class JoinActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJoinBinding
@@ -25,8 +36,62 @@ class JoinActivity : AppCompatActivity() {
     private lateinit var etJoinPasswordCheck: EditText
     private lateinit var buttonConfirm: Button
     private lateinit var tvjoinPasswordCheck: TextView
-    var isValid = false
-    var isValidPw = false
+
+    fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = (e.string())
+        binding.btnJoinComplete.isEnabled = false
+        binding.btnJoinComplete.setBackgroundResource(R.drawable.border_gray_fill_200)
+        Log.e("asd", ob)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_join)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
+
+        etJoinName = binding.etJoinName
+        etJoinAge = binding.etJoinAge
+        etJoinId = binding.etJoinId
+        etJoinPassword = binding.etJoinPw
+        etJoinPasswordCheck = binding.etJoinPwC
+        buttonConfirm = binding.btnJoinComplete
+        tvjoinPasswordCheck = binding.tvJoinPwc
+
+        etAddTextChangedListener()
+
+        binding.btnJoinComplete.setOnClickListener{
+            val user_name = binding.etJoinName.text.toString()
+            val age = binding.etJoinAge.text.toString().toInt()
+            val email = binding.etJoinId.text.toString()
+            val password = binding.etJoinPw.text.toString()
+            val authnumber = intent.getIntExtra("auth_num",0)
+            val call : Call<ResponseJoinData> = HousingServiceImpl.service.postJoin(
+                    RequestJoinData(authentication_number = authnumber, user_name = user_name, age = age,email = email,
+                            password = password))
+            call.enqueue(object : Callback<ResponseJoinData> {
+                override fun onFailure(call: Call<ResponseJoinData>, t: Throwable) {
+                    Log.e("error", t.toString())
+                }
+                override fun onResponse(
+                        call: Call<ResponseJoinData>,
+                        response: Response<ResponseJoinData>
+                ) {
+                    response.takeIf { it.isSuccessful}
+                            ?.body()
+                            ?.let {
+                                Log.e("JoinActivity",it.toString())
+                                binding.btnJoinComplete.setBackgroundResource(R.drawable.border_black_fill_200)
+                                val intent = Intent(this@JoinActivity, LoginActivity::class.java)
+                                startActivity(intent)
+                            } ?: showError(response.errorBody())
+                }
+            }
+            )
+
+        }
+    }
 
     private val JoinTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -48,8 +113,7 @@ class JoinActivity : AppCompatActivity() {
                 buttonConfirm.setBackgroundResource(R.drawable.border_black_fill_200)
                 tvjoinPasswordCheck.isVisible = false
                 etJoinPasswordCheck.setBackgroundResource(R.drawable.border_black_underline)
-                //완료 누르면 로그인 화면으로 이동
-                goToLogin(buttonConfirm)
+
             } else if (!joinPwInput.equals(joinPwcInput)) {
                 buttonConfirm.setBackgroundResource(R.drawable.border_gray_fill_200)
                 etJoinPasswordCheck.setBackgroundResource(R.drawable.border_red_underline)
@@ -70,27 +134,6 @@ class JoinActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
-
-        etJoinName = binding.etJoinName
-        etJoinAge = binding.etJoinAge
-        etJoinId = binding.etJoinId
-        etJoinPassword = binding.etJoinPw
-        etJoinPasswordCheck = binding.etJoinPwC
-        buttonConfirm = binding.btnJoinComplete
-        tvjoinPasswordCheck = binding.tvJoinPwc
-
-        etAddTextChangedListener()
-
-        binding.btnJoinBack.setOnClickListener{
-            val intent = Intent(this, AuthNumberActivity::class.java)
-            startActivity(intent)
-        }
-    }
     private fun etAddTextChangedListener(){
         etJoinName.addTextChangedListener(JoinTextWatcher)
         etJoinAge.addTextChangedListener(JoinTextWatcher)
@@ -126,10 +169,4 @@ class JoinActivity : AppCompatActivity() {
         }
     }
 
-    fun goToLogin(btn: Button) {
-        btn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-    }
 }

@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/selector_menu_home"
         android:title="홈" />
     <item
         android:id="@+id/calenderFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/selector_menu_calendar"
         android:title="캘린더" />
     <item
         android:id="@+id/noticeFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/selector_menu_notice"
         android:title="우리집 소식" />
 </menu>

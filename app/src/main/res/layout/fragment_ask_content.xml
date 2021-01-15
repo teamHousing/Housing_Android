@@ -10,8 +10,8 @@
             android:id="@+id/fm_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.home.ask.AskContentFragment">
-
+            tools:context=".ui.home.ask.AskContentFragment"
+            android:background="@color/white">
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"

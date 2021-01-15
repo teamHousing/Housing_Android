@@ -5,7 +5,6 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskContentBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AskContentFragment() : Fragment() {
 
@@ -145,7 +141,6 @@ class AskContentFragment() : Fragment() {
             }
             binding.edtContentContent.updatePadding(50,70,50,70)
         }
-
         editTextIsChanged(binding.edtContentTitle)
         editTextIsChanged(binding.edtContentContent)
     }

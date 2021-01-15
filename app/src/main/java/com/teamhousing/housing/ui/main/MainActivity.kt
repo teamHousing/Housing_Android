@@ -26,5 +26,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_host_fragment
         )
         binding.bottomNavMenu.setupWithNavController(navController)
+        binding.bottomNavMenu.itemIconTintList = null
     }
 }

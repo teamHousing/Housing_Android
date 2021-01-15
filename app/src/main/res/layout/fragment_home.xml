@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
-            name="fragment"
-            type="com.teamhousing.housing.ui.home.HomeFragment" />
+            name="viewModel"
+            type="com.teamhousing.housing.ui.home.viewmodel.HomeViewModel" />
 
     </data>
 
@@ -75,7 +76,7 @@
                     android:layout_marginRight="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_write" />
+                    app:srcCompat="@drawable/ic_write" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -127,7 +128,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txt_home_ask_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -142,9 +143,10 @@
                     app:layout_constraintTop_toTopOf="@+id/textView3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="@{viewModel.isEmpty? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3">
@@ -175,7 +177,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/btn_home_ask_center"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="104dp"
@@ -183,7 +185,7 @@
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="104dp"
                         android:layout_marginRight="104dp"
-                        android:background="@drawable/border_black_fill_200"
+                        android:background="@drawable/border_orange_fill_200"
                         android:fontFamily="@font/apple_sd_gothic_neo_bold"
                         android:includeFontPadding="false"
                         android:lineSpacingExtra="6sp"
@@ -198,92 +200,153 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.isEmpty? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="48dp"
+                            android:visibility="@{viewModel.isAskList? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@color/primary_black" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/apple_sd_gothic_neo_medium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="모든 문의가 해결되었어요!"
+                            android:textColor="@color/primary_black"
+                            android:textSize="14dp"
+                            android:visibility="@{viewModel.isAskList? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_home_ask_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical"
+                            android:overScrollMode="never"
+                            android:visibility="@{viewModel.isAskList? View.VISIBLE : View.GONE}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/rv_item_home_ask_list" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                        android:includeFontPadding="false"
+                        android:text="해결 완료! 삶의 질 업그레이드"
+                        android:textColor="@color/primary_black"
+                        android:textSize="15dp"
+                        android:visibility="@{viewModel.isEmpty? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                        app:layout_constraintStart_toEndOf="@+id/imageView6"
+                        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                    <TextView
+                        android:id="@+id/txt_home_complete_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                        android:includeFontPadding="false"
+                        android:text="(23)"
+                        android:textColor="@color/gray_2"
+                        android:textSize="15dp"
+                        android:visibility="@{viewModel.isEmpty? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                        app:layout_constraintStart_toEndOf="@+id/textView6"
+                        app:layout_constraintTop_toTopOf="@+id/textView6" />
+
                     <ImageView
-                        android:id="@+id/imageView7"
+                        android:id="@+id/imageView6"
+                        android:layout_width="20dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="41dp"
+                        android:visibility="@{viewModel.isEmpty? View.GONE : View.VISIBLE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                        app:srcCompat="@color/primary_black" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_complete_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="76dp"
+                        android:orientation="vertical"
+                        android:overScrollMode="never"
+                        android:visibility="@{viewModel.isCompleteList? View.VISIBLE : View.GONE}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/rv_item_home_ask_list" />
+
+                    <ImageView
+                        android:id="@+id/imageView13"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="48dp"
+                        android:visibility="@{viewModel.isCompleteList? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6"
                         app:srcCompat="@color/primary_black" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/textView30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="80dp"
                         android:fontFamily="@font/apple_sd_gothic_neo_medium"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:text="모든 문의가 해결되었어요!"
+                        android:text="해결 완료된 문의가 없어요!"
                         android:textColor="@color/primary_black"
                         android:textSize="14dp"
+                        android:visibility="@{viewModel.isCompleteList? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:text="해결 완료! 삶의 질 업그레이드"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/primary_black"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                    app:layout_constraintStart_toEndOf="@+id/imageView6"
-                    app:layout_constraintTop_toTopOf="@+id/imageView6" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:text="(23)"
-                    android:fontFamily="@font/apple_sd_gothic_neo_bold"
-                    android:textSize="15dp"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/gray_2"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                    app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="20dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="73dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                    app:srcCompat="@color/primary_black" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_home_complete_list"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="48dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6"
-                    tools:listitem="@layout/rv_item_home_ask_list" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

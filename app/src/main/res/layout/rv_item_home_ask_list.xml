@@ -7,7 +7,7 @@
     <data>
         <variable
             name="item"
-            type="com.teamhousing.housing.vo.HomeAskListData" />
+            type="com.teamhousing.housing.vo.AskItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +48,7 @@
                     android:includeFontPadding="false"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp"
-                    android:text="@{item.category}"
+                    setCategory="@{item.category}"
                     android:textColor="@color/white"
                     android:textSize="11dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                     android:layout_marginRight="20dp"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
                     android:includeFontPadding="false"
-                    android:text="@{item.title}"
+                    android:text="@{item.issue_title}"
                     android:textColor="@color/primary_black"
                     android:textSize="17dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
                     android:fontFamily="@font/apple_sd_gothic_neo_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="5sp"
-                    android:text="@{item.contents}"
+                    android:text="@{item.issue_contents}"
                     android:textColor="@color/primary_black"
                     android:textSize="13dp"
                     android:maxLines="2"
