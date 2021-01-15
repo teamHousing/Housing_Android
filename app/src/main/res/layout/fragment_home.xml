@@ -94,14 +94,40 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:text="Housing"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/baskerville_bold"
-                    android:textSize="40dp"
                     android:includeFontPadding="false"
+                    android:text="HO"
                     android:textColor="@color/primary_black"
+                    android:textSize="40dp"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="US"
+                    android:fontFamily="@font/baskerville_bold"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/point_orange"
+                    android:textSize="40dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+                <TextView
+                    android:id="@+id/textView46"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ING"
+                    android:fontFamily="@font/baskerville_bold"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/primary_black"
+                    android:textSize="40dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView43"
+                    app:layout_constraintStart_toEndOf="@+id/textView43"
+                    app:layout_constraintTop_toTopOf="@+id/textView43" />
 
                 <ImageView
                     android:id="@+id/imageView4"
