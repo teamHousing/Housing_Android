@@ -1,14 +1,15 @@
 package com.teamhousing.housing.ui.home.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.RvItemHomeAskListBinding
+import com.teamhousing.housing.ui.home.detail.HomeDetailActivity
 import com.teamhousing.housing.vo.AskItem
-import com.teamhousing.housing.vo.ResponseHomeAskListData
 
 class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<HomeAskListViewHolder>() {
     var data = mutableListOf<AskItem>()
@@ -29,6 +30,13 @@ class HomeAskListAdapter(private val context: Context) : RecyclerView.Adapter<Ho
     override fun onBindViewHolder(holder: HomeAskListViewHolder, position: Int) {
         data[position].let{
             holder.bind(it)
+        }
+
+        holder.itemView.setOnClickListener {
+            val detailIntent = Intent(context, HomeDetailActivity::class.java)
+            detailIntent.putExtra("id", data[position].id)
+
+            context.startActivity(detailIntent)
         }
     }
 

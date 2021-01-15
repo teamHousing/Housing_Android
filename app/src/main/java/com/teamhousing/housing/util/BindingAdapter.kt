@@ -1,8 +1,12 @@
 package com.teamhousing.housing.util
 
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 object BindingAdapter {
 
@@ -45,5 +49,15 @@ object BindingAdapter {
                 "그 외"
             }
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun setImage(view: ImageView, res: String?) {
+        Glide.with(view.context)
+            .load(res)
+            .transform(CenterCrop(), RoundedCorners(15))
+            .into(view)
+
     }
 }

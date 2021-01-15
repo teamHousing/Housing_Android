@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.teamhousing.housing.ui.home.detail.viewModel.HomeDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,13 +41,13 @@
                     app:srcCompat="@drawable/btn_menu" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/txt_home_detail_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="72dp"
-                    android:text="고장 / 수리"
+                    setCategory="@{viewModel.topInfo.category}"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
                     android:textSize="12dp"
                     android:includeFontPadding="false"
@@ -57,13 +59,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/txt_home_detail_progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="27dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="확인 전"
+                    setProgress="@{viewModel.topInfo.progress}"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
                     android:textSize="14dp"
                     android:includeFontPadding="false"
@@ -72,21 +74,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/txt_home_detail_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="수도꼭지가 고장났어요. 집이 물바다"
+                    android:text="@{viewModel.topInfo.issue_title}"
                     android:fontFamily="@font/apple_sd_gothic_neo_bold"
                     android:textSize="21dp"
                     android:includeFontPadding="false"
                     android:textColor="@color/primary_black"
-                    app:layout_constraintEnd_toEndOf="@+id/textView23"
-                    app:layout_constraintStart_toStartOf="@+id/textView22"
-                    app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                    app:layout_constraintEnd_toEndOf="@+id/txt_home_detail_progress"
+                    app:layout_constraintStart_toStartOf="@+id/txt_home_detail_category"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_category" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/txt_home_detail_contents"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -95,10 +97,10 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/primary_black"
                     android:lineSpacingExtra="7sp"
-                    android:text="저희 집 화장실 세면대에 수도꼭지가 고장나서 물이 계속 새고 있는데...수도세가 너무 많이 나올 것 같아요ㅠ글 확인하시면 최대한 빠르게 수리 부탁드립니다..!!"
-                    app:layout_constraintEnd_toEndOf="@+id/textView24"
-                    app:layout_constraintStart_toStartOf="@+id/textView24"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                    android:text="@{viewModel.topInfo.issue_contents}"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_home_detail_title"
+                    app:layout_constraintStart_toStartOf="@+id/txt_home_detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_title" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tl_home_detail"
@@ -113,7 +115,7 @@
                     app:tabIndicatorHeight="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView25">
+                    app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_contents">
 
                 </com.google.android.material.tabs.TabLayout>
 

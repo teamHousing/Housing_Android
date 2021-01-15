@@ -1,8 +1,8 @@
 package com.teamhousing.housing.network
 
-import retrofit2.Call
 import com.teamhousing.housing.vo.*
 import okhttp3.MultipartBody
+import retrofit2.Call
 import retrofit2.http.*
 
 interface HousingService {
@@ -69,4 +69,10 @@ interface HousingService {
             @Header("jwt") token: String,
             @Path("id") id: Int
     ) : Call<ResponseAddCalendarData>
+
+    @GET("communication/detail/{id}")
+    fun getCommunicationDetail(
+        @Header("jwt") token: String,
+        @Path("id") id: Int?
+    ) : Call<ResponseHomeDetailData>
 }

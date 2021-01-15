@@ -33,7 +33,7 @@ class InfoCommunicationListAdapter (private val context: Context) : RecyclerView
 
     override fun getItemCount(): Int = data.size
 
-    fun replaceAskList(list : MutableList<InfoCommunicationListData>){
+    fun replaceCommunicationList(list : MutableList<InfoCommunicationListData>){
         data = list
         notifyDataSetChanged()
     }
@@ -43,5 +43,6 @@ class InfoCommunicationListAdapter (private val context: Context) : RecyclerView
 class InfoCommunicationListViewHolder(val binding:RvItemHomeDetailInfoBinding) : RecyclerView.ViewHolder(binding.root){
     fun bind(item : InfoCommunicationListData){
         binding.item = item
+        binding.executePendingBindings()
     }
 }

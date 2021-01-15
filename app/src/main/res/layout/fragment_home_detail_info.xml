@@ -6,6 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.teamhousing.housing.ui.home.detail.viewModel.HomeDetailViewModel" />
 
     </data>
 
@@ -31,13 +34,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/txt_home_detail_info_term"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:text="방문 전 사전 연락 부탁드려요&#33;"
+            android:text="최대한 신속하게 확인 부탁드려요."
             android:fontFamily="@font/apple_sd_gothic_neo_medium"
             android:textSize="15dp"
             android:includeFontPadding="false"
@@ -57,7 +60,7 @@
             android:textColor="@color/primary_black"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/txt_home_detail_info_ask_title"
-            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_term" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_detail_communication"
@@ -86,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rv_home_detail_communication" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView3"
+            android:id="@+id/rv_home_detail_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -120,6 +123,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_home_detail_photo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
