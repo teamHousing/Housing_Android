@@ -6,7 +6,7 @@
 >
 > 기분 좋은 문의 요청, 부담 없는 문제 해결! 방구석 소통의 시작, 하우징.
 >
-> 프로젝트 기간 2020.12.26 ~ 진행중
+> 프로젝트 기간 2020.12.26 ~ 2021.1.16
 
 <div span=center>
 <img src="https://user-images.githubusercontent.com/39720852/103648655-8fbfb780-4fa0-11eb-8c01-d10da8e37ea3.png" width = "40%" >
@@ -23,60 +23,22 @@
 
 <br/>
 
-## 👩‍💻Developer & Role👨‍💻
 
-🐶**가은** [xxeun](https://github.com/xxeun)
-
-```
-- 온보딩
-- 로그인/회원가입
-- 우리집 소식
-```
-
-🟢**승완** [wandukong](https://github.com/wandukong)
-
-```
-- 문의하기
-- 약속하기
-```
-
-🌊**예인** [yenny07](https://github.com/yenny07)
-
-```
-- 캘린더
-```
-
-🦕**명희** [Haeeul](https://github.com/Haeeul)
-
-```
-- 소통하기
-```
-
-<br/>
-
+ 
 ## 📑Meeting Log
 
-**1주차**
-
-- 20.12.27 1차 회의 - [일정 및 목표 공유, 과제 확인](https://www.notion.so/2020-12-27-1-340cd3cf97c2427a8d5fd79eec42cbf9)
-- 20.12.28 2차 회의 - [git issue 설명](https://www.notion.so/2020-12-28-2-git-issue-d2d6d3d76a884c9aa2686403ae806d02)
-- 20.12.29 3차 회의 - [룰세팅](https://www.notion.so/2020-12-29-3-bb31c936a5b54d9cae6f6f047dd72c56)
-- 20.12.30 4차 회의 - [DataBinding에 대해](https://www.notion.so/2020-12-30-4-DataBinding-be32c6fa317b4dbbb9407f0ccd7acf6b)
-- 20.01.01 5차 회의 - [역할분담 및 ViewModel에 대해](https://www.notion.so/2021-01-01-5-ViewModel-aaf099b3a8c14d4ab8823ff103143c21)
-- 20.01.02 6차 회의 - [git issue에 대해](https://www.notion.so/2021-01-02-6-git-issue-b01c951d43d947b698a4fb9caf632a11)
-
-**2주차**
-
-- 20.01.03 7차 회의 - [진행 상황 공유](https://www.notion.so/2021-01-03-7-50245148eb654d98ad03438206ae470e)
-- 20.01.05 8차 회의 - [오프라인 모임 및 과제 점검](https://www.notion.so/2021-01-05-8-70dadf0af5044ab0877efc5eedbbf135)
+- [20.12.27 1차 회의 ~ 21.01.15 정기 회의](https://www.notion.so/4f27928b98fb4d8bbe55b07dd3f30799)
 
 <br/>
 
-## 🔧 Tools
+## 🛠 Tech Stack
 
-- Android Studio
-- Zeplin
-- Figma
+| Category |       What we used           |
+|:--------| :------------------ |
+| Design Pattern | MVP |
+|JetPack Components | ViewModel, LiveData, Lifecycle, ViewBinding
+| Network | OkHttp, Retrofit2|
+| Other Tools | Notion, Slack, Zeplin, Figma |
 
 <br/>
 
@@ -169,20 +131,71 @@
 
 <br/>
 
+## 📜Libraries
+
+|    라이브러리                                                                    |          목적         |      |
+| :-----------------------------------------------------------------------------: | :------------------: | ---- |
+| [Material-Calendar](https://github.com/Applandeo/Material-Calendar-View)        |  아이콘 캘린더 사용   |      |
+|  [Lottie-for-android](https://github.com/airbnb/lottie-android)                 |  스플래시에 로티 사용   |       |
+| [Retrofit2](https://github.com/square/retrofit) | 서버 통신 |
+| [Gson](https://github.com/google/gson) | 서버 통신 |
+|[StickyScrollView](https://github.com/amarjain07/StickyScrollView) |  홈 TabLayout에 적용  |
+|[kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) | 스플래시 |
+
+
+<br/>
+
+## 👩‍💻Developer & Role👨‍💻
+
+|    기능     |        상세 기능        | 담당자 | 구현 여부 | 통신 구현 여부 |
+| :---------: | :---------------------: | :----: | :-------: | :------------: |
+|  스플래시   |        스플래시         |  예인  |     ✅     |       ✅        |
+|   로그인    |         로그인          |  가은  |     ✅     |       ✅        |
+|  회원가입   |        초대 인증        |  가은  |      ✅     |       ✅       |
+|             |        회원가입         |  가은  |     ✅     |       ✅        |
+|  소통하기   |        소통하기         |  명희  |     ✅     |       ✅        |
+|             |      소통하기 상세      |  명희  |     ✅     |               |
+|             |       문의 작성        |  승완  |     ✅     |       ✅        |
+|            |      문의 사진 첨부      |  승완  |     ✅     |       ✅        |
+|            |      약속 일정 잡기      |  승완  |     ✅     |       ✅        |
+|   캘린더    |         캘린더          |  예인  |     ✅     |       ✅        |
+|            |  당일 문의/공지사항 목록  |  예인  |     ✅     |      ✅        |
+| 우리집 소식 |      임대인 프로필      |  가은  |     ✅     |       ✅        |
+|             |        공지사항         |  가은  |     ✅     |       ✅        |
+
+<br/>
+<br/>
+
+
+## 🔍핵심 기능 구현 방법 및 코드, 화면
+### : wiki에 맡은 부분별로 정리되어 있어요 :)
+- [스플래시, 캘린더](https://github.com/teamHousing/Housing_Android/wiki/%EC%98%88%EC%9D%B8-%EC%BA%98%EB%A6%B0%EB%8D%94,-%EC%8A%A4%ED%94%8C%EB%9E%98%EC%8B%9C)
+- [회원가입, 로그인, 우리집 소식](https://github.com/teamHousing/Housing_Android/wiki/%EA%B0%80%EC%9D%80---%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85,-%EB%A1%9C%EA%B7%B8%EC%9D%B8,-%EC%9A%B0%EB%A6%AC%EC%A7%91-%EC%86%8C%EC%8B%9D)
+- [소통하기](https://github.com/teamHousing/Housing_Android/wiki/%EB%AA%85%ED%9D%AC-%ED%99%88,-%EC%86%8C%ED%86%B5%ED%95%98%EA%B8%B0)
+- [문의 작성, 약속 일정 잡기](https://github.com/teamHousing/Housing_Android/wiki/%EC%8A%B9%EC%99%84---%EB%AC%B8%EC%9D%98-%ED%95%98%EA%B8%B0,-%EC%95%BD%EC%86%8D-%ED%95%98%EA%B8%B0)
+
+<br/>
+
 ## 🧱Project Structure
 
 ```
-🏡housing
+📦housing
  ┣ 📂network
  ┣ 📂ui
  ┃ ┣ 📂calender
  ┃ ┣ 📂home
- ┃ ┃ ┗ 📂ask
+ ┃ ┃ ┣ 📂adapter
+ ┃ ┃ ┣ 📂ask
+ ┃ ┃ ┣ 📂detail
+ ┃ ┃ ┃ ┣ 📂adapter
+ ┃ ┃ ┣ 📂viewmodel
  ┃ ┣ 📂join
  ┃ ┣ 📂login
  ┃ ┣ 📂main
- ┃ ┗ 📂notice
+ ┃ ┣ 📂notice
+ ┃ ┗ 📂splash
  ┣ 📂util
+ ┣ 📂utill
  ┗ 📂vo
 ```
 
