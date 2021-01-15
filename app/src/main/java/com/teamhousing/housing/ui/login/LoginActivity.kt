@@ -1,28 +1,18 @@
 package com.teamhousing.housing.ui.login
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.UserManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ActivityLoginBinding
 import com.teamhousing.housing.network.HousingServiceImpl
-import com.teamhousing.housing.ui.home.HomeFragment
 import com.teamhousing.housing.ui.join.UserSelectActivity
 import com.teamhousing.housing.ui.main.MainActivity
 import com.teamhousing.housing.util.UserTokenManager
@@ -86,7 +76,9 @@ class LoginActivity : AppCompatActivity() {
                                 UserTokenManager.setToken(this@LoginActivity, response.body()!!.data.user_token)
                                 //Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 startActivity(intent)
+                                
                             } ?: showError(response.errorBody())
                 }
             }
