@@ -25,6 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.notice.NoticeDetailActivity"/>
+        <activity android:name=".ui.join.UserSelectActivity"/>
+        <activity android:name=".ui.join.AuthNumberActivity"/>
         <activity android:name=".ui.home.detail.HomeDetailActivity"/>
         <activity android:name=".ui.home.ask.PromiseActivity" />
         <activity android:name=".ui.home.ask.AskActivity" />
