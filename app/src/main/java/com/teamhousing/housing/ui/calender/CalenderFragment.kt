@@ -1,27 +1,41 @@
 package com.teamhousing.housing.ui.calender
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
+import com.teamhousing.housing.network.HousingServiceImpl
+import com.teamhousing.housing.util.UserTokenManager
 import com.teamhousing.housing.vo.CalendarData
 import com.teamhousing.housing.vo.ResponseCalendarData
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
+    val today = Calendar.getInstance()
     val events = arrayListOf<EventDay>()
     var allData: HashMap<String, MutableList<CalendarData>> = hashMapOf()
-
     private lateinit var dailyAdapter: DailyAdapter
+
+    private fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = e.string()
+        Log.d("errorMessage", ob)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -29,47 +43,58 @@ class CalenderFragment : Fragment() {
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
-        dailyAdapter = DailyAdapter(requireContext())
 
+        connectSever()
+        setDateText(today)
+
+        dailyAdapter = DailyAdapter(requireContext())
         binding.rvDaily.apply {
             adapter = dailyAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        var today = Calendar.getInstance()
-        setDateText(today)
-
-        var tempData : List<CalendarData>?
-
         binding.calendar.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
-                tempData = getDailyData(eventDay.calendar)
-                tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
-                dailyAdapter.notifyDataSetChanged()
-
+                setRecyclerView(eventDay.calendar)
                 setDateText(eventDay.calendar)
             }
         })
 
-        val sampleN = ResponseCalendarData.Data.Notice(34, 2020, 12, 24, "hey", "you")
-        val sampleN2 = ResponseCalendarData.Data.Notice(67, 2020, 12, 24, "second", "notice")
-        val sampleP = ResponseCalendarData.Data.Promise(345, 2021, 1, 13, 0,
-        "Yein", "직접 방문", "18:00", "visitiiiiii")
-        val sampleP2 = ResponseCalendarData.Data.Promise(3458, 2020, 12, 24, 0,
-                "Yein", "직접 방문", "18:00", "thirdcardmaybe")
-        val sampleD = ResponseCalendarData.Data(listOf(sampleP,sampleP2), listOf(sampleN, sampleN2))
-
-        calendarDataBind(sampleD)
-        drawIcons()
-
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    fun setRecyclerView(targetDay : Calendar){
+        var tempData : List<CalendarData>?
+        tempData = getDailyData(targetDay)
+        tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
+        dailyAdapter.notifyDataSetChanged()
 
+        Log.d("today", tempData.toString())
     }
 
+    fun connectSever(){
+
+        val token = UserTokenManager.getToken(requireContext())
+        val call : Call<ResponseCalendarData> = HousingServiceImpl.service.postCalendar(
+                token
+        )
+
+        call.enqueue(object : Callback<ResponseCalendarData>{
+            override fun onFailure(call: Call<ResponseCalendarData>, t: Throwable) {
+                Toast.makeText(context, "서버가 닫혀있어요!", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<ResponseCalendarData>, response: Response<ResponseCalendarData>) {
+                response.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.let { it ->
+                            calendarDataBind(it.data)
+                            drawIcons()
+                            setRecyclerView(today)
+                        } ?: showError(response.errorBody())
+            }
+        })
+    }
     fun calendarDataBind(data: ResponseCalendarData.Data) {
 
             for (promise in data.promise) {
@@ -128,7 +153,7 @@ class CalenderFragment : Fragment() {
             }
         }
 
-        println(allData)
+        Log.d("allData: ", allData.toString())
     }
 
     fun drawIcons(){
@@ -167,16 +192,14 @@ class CalenderFragment : Fragment() {
         var day = clickedDay.get(Calendar.DATE).toString()
         var keyDate = "$year.$month.$day"
 
-        println(keyDate)
-        println(allData[keyDate])
-        println(allData)
+        Log.d("getDailyData: ", allData[keyDate].toString())
 
         allData[keyDate]?.let{return allData[keyDate]} ?: run {return emptyList()}
 
     }
 
     fun setDateText(clickedDay: Calendar){
-        binding.txtDate.text = "${(clickedDay.get(Calendar.MONTH) + 1)}월 ${clickedDay.get(Calendar.DAY_OF_MONTH)}일의 일정"
+        binding.txtDate.text = "${clickedDay.get(Calendar.MONTH) + 1}월 ${clickedDay.get(Calendar.DAY_OF_MONTH)}일의 일정"
     }
 
     override fun onDestroy() {

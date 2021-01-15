@@ -28,6 +28,7 @@ class NoticeAdapter (private val context : Context) : RecyclerView.Adapter<Notic
 
             val intent = Intent(context, NoticeDetailActivity::class.java)
 
+            intent.putExtra("id",data[position].id)
             intent.putExtra("iTitle", gTitle)
             intent.putExtra("iContents", gContents)
 

@@ -9,6 +9,11 @@ interface HousingService {
     @POST("/user/login")
     fun postLogin(@Body body : RequestLoginData) : Call<ResponseLoginData>
 
+    @POST("/calendar/schedule")
+    fun postCalendar(
+            @Header("jwt") token: String?
+    ) : Call<ResponseCalendarData>
+
     @POST("/authentication/confirm")
     fun postAuthCheck(@Body body : RequestAuthNumData) : Call<ResponseAuthNumData>
     @POST("user/registration/1")
@@ -40,11 +45,30 @@ interface HousingService {
             @Body body: RequestPromiseData
     ) : Call<ResponsePromiseData>
 
+    @PUT("communication/{id}/promise-option")
+    fun putPromises(
+        @Header("jwt") token: String,
+        @Path("id") askId: Int,
+        @Body body: RequestPromiseData
+    ) : Call<ResponsePromiseData>
+
     @GET("communication/{unit}")
     fun getCommunicationList(
         @Header("jwt") token: String,
         @Path("unit") unit: Int?
     ) : Call<ResponseHomeAskListData>
+
+    @GET("/houseInfo")
+    fun postHouseNotice(
+            @Header("jwt") token: String,
+    ) : Call<ResponseNoticeData>
+
+
+    @GET("/houseInfo/{id}/notice")
+    fun getAddCalendarNotice(
+            @Header("jwt") token: String,
+            @Path("id") id: Int
+    ) : Call<ResponseAddCalendarData>
 
     @GET("communication/detail/{id}")
     fun getCommunicationDetail(

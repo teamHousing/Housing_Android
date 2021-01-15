@@ -33,7 +33,7 @@ class PromiseActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPromiseBinding
     private lateinit var adapter : PromiseAdapter
     private val viewModel : PromiseViewModel by viewModels()
-    private val promiseList = mutableListOf<PromiseData>()
+    private val promiseList = mutableListOf<PromiseData>() // 뷰모델에 넣을 리스트
 
     private var promiseDate= ""
     private var promiseStartTime= ""
@@ -64,6 +64,11 @@ class PromiseActivity : AppCompatActivity() {
             promiseList.add(
                 PromiseData(
                     promiseDate, promiseStartTime + "-" + promiseEndTime + "시", promiseMethod
+                )
+            )
+            adapter.data2.add(
+                PromiseData(
+                    promiseDate, "$promiseStartTime:00-$promiseEndTime:00", promiseMethod
                 )
             )
             viewModel.changePromiseList(promiseList as ArrayList<PromiseData>)
@@ -269,35 +274,59 @@ class PromiseActivity : AppCompatActivity() {
         binding.btnTimeAssign.setOnClickListener {
             var promiseList = mutableListOf<String>()
             var promiseLists = mutableListOf<List<String>>()
-            for(i in 0 until viewModel.promiseList.value!!.size){
-                promiseList.add(viewModel.promiseList.value!![i].date)
-                promiseList.add(viewModel.promiseList.value!![i].time)
-                promiseList.add(viewModel.promiseList.value!![i].method)
+            for(i in 0 until adapter.data2.size){
+                promiseList.add(adapter.data2[i].date)
+                promiseList.add(adapter.data2[i].time)
+                promiseList.add(adapter.data2[i].method)
                 promiseLists.add(promiseList.toList())
                 promiseList.clear()
-            }
+                }
             Log.e("asd",intent.getIntExtra("askId", 0).toString())
-            val promiseCall: Call<ResponsePromiseData> = HousingServiceImpl.service.postPromises(
+            if(intent.getBooleanExtra("isCheckFrom",true)){
+                val promiseCall: Call<ResponsePromiseData> = HousingServiceImpl.service.putPromises(
                     intent.getStringExtra("token")!!,
                     intent.getIntExtra("askId", 0),
                     RequestPromiseData(promiseLists)
                 )
-            promiseCall.enqueue(object : Callback<ResponsePromiseData> {
-                override fun onResponse(
-                    call: Call<ResponsePromiseData>,
-                    response: Response<ResponsePromiseData>
-                ) {
-                    response.takeIf {it.isSuccessful}
-                        ?.body()
-                        ?.let{
-                            val intent = Intent()
-                            setResult(Activity.RESULT_OK, intent)
-                            finish()
-                        }
-                }
-                override fun onFailure(call: Call<ResponsePromiseData>, t: Throwable) {
-                }
-            })
+                promiseCall.enqueue(object : Callback<ResponsePromiseData> {
+                    override fun onResponse(
+                        call: Call<ResponsePromiseData>,
+                        response: Response<ResponsePromiseData>
+                    ) {
+                        response.takeIf {it.isSuccessful}
+                            ?.body()
+                            ?.let{
+                                finish()
+                            }
+                    }
+                    override fun onFailure(call: Call<ResponsePromiseData>, t: Throwable) {
+                    }
+                })
+
+            }
+            else{
+                val promiseCall: Call<ResponsePromiseData> = HousingServiceImpl.service.postPromises(
+                    intent.getStringExtra("token")!!,
+                    intent.getIntExtra("askId", 0),
+                    RequestPromiseData(promiseLists)
+                )
+                promiseCall.enqueue(object : Callback<ResponsePromiseData> {
+                    override fun onResponse(
+                        call: Call<ResponsePromiseData>,
+                        response: Response<ResponsePromiseData>
+                    ) {
+                        response.takeIf {it.isSuccessful}
+                            ?.body()
+                            ?.let{
+                                val intent = Intent()
+                                setResult(Activity.RESULT_OK, intent)
+                                finish()
+                            }
+                    }
+                    override fun onFailure(call: Call<ResponsePromiseData>, t: Throwable) {
+                    }
+                })
+            }
         }
     }
 }

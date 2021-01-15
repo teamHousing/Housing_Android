@@ -39,9 +39,9 @@ class HomeViewModel : ViewModel() {
     val completeList : LiveData<MutableList<AskItem>>
         get() = _completeList
 
-    fun getCommunicationList(){
+    fun getCommunicationList(token : String){
         val call : Call<ResponseHomeAskListData> = HousingServiceImpl.service.getCommunicationList(
-                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Iu2VmOyasOynhCIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIDEzNSIsInR5cGUiOjEsImlhdCI6MTYxMDY4MzQzOSwiZXhwIjoxNjExMjg4MjM5LCJpc3MiOiJjeWgifQ.GwqiDkwtI54GLdMyS6jGvWJkHThPiede_wy7fqvFjjc",
+                token = token,
                 unit = -1
         )
         call.enqueue(object : Callback<ResponseHomeAskListData> {

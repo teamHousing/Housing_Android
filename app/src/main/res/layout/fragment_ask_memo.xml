@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.ask.AskMemoFragment">
+        tools:context=".ui.home.ask.AskMemoFragment"
+        android:background="@color/white">
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
@@ -96,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="부재 시 먼저 연락 드리겠습니다."
+            android:text="부재 시 먼저 연락드리겠습니다."
             android:textColor="@color/primary_black"
             android:textSize="13sp"
             android:gravity="left|center_vertical"

@@ -8,8 +8,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:context=".ui.home.ask.PromiseActivity">
-
+            tools:context=".ui.home.ask.PromiseActivity"
+            android:background="@color/white">
             <View
                 android:id="@+id/view3"
                 android:layout_width="0dp"
@@ -172,6 +172,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:overScrollMode="never"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_promise" />
 

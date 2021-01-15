@@ -11,6 +11,7 @@ import com.teamhousing.housing.databinding.FragmentHomeBinding
 import com.teamhousing.housing.ui.home.adapter.HomeAskListAdapter
 import com.teamhousing.housing.ui.home.ask.AskActivity
 import com.teamhousing.housing.ui.home.viewmodel.HomeViewModel
+import com.teamhousing.housing.util.UserTokenManager
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
         binding.rvHomeAskList.adapter = askListAdapter
         binding.rvHomeCompleteList.adapter = completeListAdapter
 
-        homeViewModel.getCommunicationList()
+        homeViewModel.getCommunicationList(UserTokenManager.getToken(requireContext()))
 
         homeViewModel.askList.observe(viewLifecycleOwner){ askList ->
             askListAdapter.replaceAskList(askList)
