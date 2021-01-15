@@ -29,6 +29,8 @@
         <activity android:name=".ui.home.ask.PromiseActivity" />
         <activity android:name=".ui.home.ask.AskActivity" />
         <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.join.JoinActivity"/>
     </application>
 
 </manifest>

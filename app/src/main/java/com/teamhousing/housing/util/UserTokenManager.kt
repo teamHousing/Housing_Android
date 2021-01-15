@@ -2,25 +2,20 @@ package com.teamhousing.housing.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.core.content.edit
 
 object UserTokenManager {
     private lateinit var pref:SharedPreferences
-    fun init(context: Context){
-        pref = context.getSharedPreferences("Housing", Context.MODE_PRIVATE)
-    }
-    var token: String?
-        get() = pref.getString("token", null)
-        set(value) = pref.edit{
-            it.putString("token",value)
+
+    fun getToken(context: Context): String{
+        val sharedPreferences = context.getSharedPreferences("token", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("token","")?:""
     }
 
-    private inline fun SharedPreferences.edit(
-        operation:
-        (SharedPreferences.Editor) -> Unit
-    ) {
-        val editor = edit()
-        operation(editor)
-        editor.apply()
+    fun setToken(context: Context, token: String){
+        val sharedPreferences = context.getSharedPreferences("token",Context.MODE_PRIVATE)
+        sharedPreferences
+            .edit()
+            .putString("token",token)
+            .apply()
     }
 }

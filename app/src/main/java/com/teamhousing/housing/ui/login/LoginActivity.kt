@@ -83,8 +83,7 @@ class LoginActivity : AppCompatActivity() {
                                 binding.etLoginPw.setBackgroundResource(R.drawable.border_black_underline)
                                 binding.tvLoginWrong.isVisible = false
 
-                                UserTokenManager.init(this@LoginActivity)
-                                UserTokenManager.token = response.body()!!.data.user_token
+                                UserTokenManager.setToken(this@LoginActivity, response.body()!!.data.user_token)
                                 //Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
