@@ -21,6 +21,8 @@ import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.ActivityPromiseBinding
 import com.teamhousing.housing.databinding.DialogTimePickerBinding
 import com.teamhousing.housing.network.HousingServiceImpl
+import com.teamhousing.housing.ui.home.ask.adapter.PromiseAdapter
+import com.teamhousing.housing.ui.home.ask.viewmodel.PromiseViewModel
 import com.teamhousing.housing.vo.*
 import retrofit2.Call
 import retrofit2.Callback
