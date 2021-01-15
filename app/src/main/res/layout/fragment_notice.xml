@@ -157,7 +157,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="16dp"
-            android:text="서로를 위해 조금만 조용히~ 오놀도 행복한 하루 :)"
+            android:text="서로를 위해 조금만 조용히~ 오늘도 행복한 하루 :)"
             android:textColor="@color/primary_black"
             android:fontFamily="@font/apple_sd_gothic_neo"
             android:textSize="13sp"
