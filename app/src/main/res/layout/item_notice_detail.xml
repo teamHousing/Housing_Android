@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/img_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -36,19 +36,19 @@
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintStart_toEndOf="@+id/img_circle"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/border_gray_fill_background" />
 
         <TextView
-            android:id="@+id/tv_notice_detail_day"
+            android:id="@+id/tv_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="49dp"
-            android:layout_marginLeft="49dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
+            android:text="2020.1.12"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:text="2020. 08. 15"
             android:gravity="center_horizontal"
             android:textColor="@color/primary_black"
             android:textSize="14sp"
@@ -56,32 +56,34 @@
             app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/img_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="29dp"
-            android:layout_marginLeft="29dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintStart_toEndOf="@+id/tv_notice_detail_day"
-            app:layout_constraintTop_toTopOf="@+id/tv_notice_detail_day"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_date"
             app:srcCompat="@drawable/line_121" />
 
         <TextView
-            android:id="@+id/tv_notice_detail_time"
+            android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginEnd="49dp"
-            android:layout_marginRight="49dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:text="22-23시"
             android:gravity="center_horizontal"
+            android:text="22-23시"
             android:textColor="@color/primary_black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView10"
-            app:layout_constraintStart_toStartOf="@+id/imageView11"
-            app:layout_constraintTop_toTopOf="@+id/tv_notice_detail_day" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/img_line"
+            app:layout_constraintTop_toTopOf="@+id/tv_date" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
