@@ -148,7 +148,7 @@
             app:srcCompat="@drawable/border_gray_fill_background" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/tv_notice_profile_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
