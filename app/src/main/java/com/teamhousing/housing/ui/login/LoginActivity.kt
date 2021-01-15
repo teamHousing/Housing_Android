@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
             binding.btnLoginLogin.setEnabled(!loginIdInput.isEmpty() && !loginpwInput.isEmpty())
             //로그인 버튼 색상 변경
             if (!loginIdInput.isNullOrBlank() && !loginpwInput.isNullOrBlank())
-                binding.btnLoginLogin.setBackgroundResource(R.drawable.border_black_fill_200)
+                binding.btnLoginLogin.setBackgroundResource(R.drawable.border_orange_fill_200)
             //서버통신 성공시 화면전환, 실패시 다시 버튼 비활성화
             else
                 binding.btnLoginLogin.setBackgroundResource(R.drawable.border_gray_fill_200)
