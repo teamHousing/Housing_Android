@@ -11,13 +11,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/main_gray">
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="318dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,15 +137,18 @@
 
         <ImageView
             android:id="@+id/imageView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/img_notice_owner"
             app:layout_constraintTop_toBottomOf="@+id/img_notice_owner"
             app:srcCompat="@drawable/border_gray_fill_background" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/tv_notice_profile_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -181,10 +184,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="36dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:text="우리집 공지사항"
             android:textColor="@color/primary_black"
             android:textSize="15sp"
-            android:fontFamily="@font/apple_sd_gothic_neo_bold"
             app:layout_constraintStart_toEndOf="@+id/view5"
             app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
@@ -205,12 +208,10 @@
             android:id="@+id/rv_notice_item"
             android:layout_width="0dp"
             android:layout_height="446dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
+            android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 

@@ -1,8 +1,11 @@
 package com.teamhousing.housing.ui.home.ask
 
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.teamhousing.housing.vo.PromiseData
 
 class AskViewModel : ViewModel() {
 
@@ -26,6 +29,14 @@ class AskViewModel : ViewModel() {
     val requestedTerm: LiveData<String>
         get() = _requestedTerm
 
+    private val _issueFilesUri = MutableLiveData<ArrayList<Uri>>()
+    val issueFilesUri: LiveData<ArrayList<Uri>>
+        get() = _issueFilesUri
+
+    private val _issueFileBitmap = MutableLiveData<Bitmap>()
+    val issueFileBitmap: LiveData<Bitmap>
+        get() = _issueFileBitmap
+
     fun changeIsPromise(chk: Int){
         _isPromise.value = chk
     }
@@ -44,5 +55,13 @@ class AskViewModel : ViewModel() {
 
     fun changeRequestedTerm(str: String){
         _requestedTerm.value = str
+    }
+
+    fun changeFilesUri(list : ArrayList<Uri>){
+        _issueFilesUri.value = list
+    }
+
+    fun changeFileBitmap(bmp : Bitmap){
+        _issueFileBitmap.value = bmp
     }
 }

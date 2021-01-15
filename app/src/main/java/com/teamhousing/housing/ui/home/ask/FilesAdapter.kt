@@ -1,8 +1,6 @@
 package com.teamhousing.housing.ui.home.ask
 
-import android.graphics.Bitmap
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

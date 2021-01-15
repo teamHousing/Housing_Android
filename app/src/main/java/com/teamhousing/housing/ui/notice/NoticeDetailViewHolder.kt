@@ -11,10 +11,8 @@ import com.teamhousing.housing.vo.NoticeDetailData
 class NoticeDetailViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
     private val notice_day : TextView = itemView.findViewById(R.id.tv_notice_detail_day)
     private val notice_time : TextView = itemView.findViewById(R.id.tv_notice_detail_time)
-    private val notice_contents :  TextView = itemView.findViewById(R.id.tv_notice_detail_contents)
     fun OnBind(data : NoticeDetailData){
         notice_day.text = data.day
         notice_time.text = data.time
-        notice_contents.text = data.content
     }
 }

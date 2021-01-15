@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.teamhousing.housing.R
-import com.teamhousing.housing.databinding.ActivityWriteContactBinding
 
 class AskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var binding = DataBindingUtil.setContentView<ActivityWriteContactBinding>(this, R.layout.activity_write_contact)
+        setContentView(R.layout.activity_write_ask)
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fm_temp, AskContentFragment()).commit()
