@@ -72,15 +72,15 @@
         android:id="@+id/img_userselect_owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:background="@drawable/img_house"
         app:layout_constraintEnd_toEndOf="@+id/btn_userselect_owner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_userselect_owner"
-        app:srcCompat="@drawable/img_4" />
+        app:layout_constraintTop_toTopOf="@+id/btn_userselect_owner" />
 
     <androidx.appcompat.widget.AppCompatCheckedTextView
         android:id="@+id/btn_userselect_tenant"
@@ -108,15 +108,15 @@
         android:id="@+id/img_userselect_tenant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/img_person"
         app:layout_constraintEnd_toEndOf="@+id/btn_userselect_tenant"
         app:layout_constraintStart_toStartOf="@+id/btn_userselect_tenant"
-        app:layout_constraintTop_toTopOf="@+id/btn_userselect_tenant"
-        app:srcCompat="@drawable/img_4" />
+        app:layout_constraintTop_toTopOf="@+id/btn_userselect_tenant" />
 
     <Button
         android:id="@+id/btn_userselect_next"
