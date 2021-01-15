@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
 import com.teamhousing.housing.ui.home.detail.HomeDetailActivity
+import com.teamhousing.housing.ui.notice.NoticeDetailActivity
 import com.teamhousing.housing.vo.CalendarData
 
 class DailyAdapter(private val context: Context)
@@ -44,6 +45,9 @@ class DailyAdapter(private val context: Context)
             is NoticeViewHolder -> {
                 holder.onBind(data[position])
                 holder.itemView.setOnClickListener {
+                    val intent = Intent(context, NoticeDetailActivity::class.java)
+                    intent.putExtra("id", data[position].noticeId)
+                    startActivity(context, intent, null)
                 }
             }
         }
