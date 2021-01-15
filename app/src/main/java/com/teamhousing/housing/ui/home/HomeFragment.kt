@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
 
         setAskListAdapter()
         onClickAskBtn()
+        refresh()
 
         return binding.root
     }
@@ -50,6 +51,15 @@ class HomeFragment : Fragment() {
         homeViewModel.completeList.observe(viewLifecycleOwner){ completeList ->
             completeListAdapter.replaceAskList(completeList)
             binding.txtHomeCompleteCount.text = "("+completeList.size.toString()+")"
+        }
+    }
+
+    private fun refresh(){
+        binding.slHomeList.apply{
+            setOnRefreshListener {
+                homeViewModel.getCommunicationList(UserTokenManager.getToken(requireContext()))
+                this@apply.isRefreshing = false
+            }
         }
     }
 

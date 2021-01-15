@@ -27,7 +27,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -107,15 +107,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="52dp"
-                    app:tabMode="fixed"
                     android:background="@drawable/tab_home_detail_background"
-                    app:tabTextAppearance="@style/HomeDetailTab"
-                    app:tabIndicator="@drawable/tab_home_detail_indicator"
-                    app:tabSelectedTextColor="@color/primary_black"
-                    app:tabIndicatorHeight="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_contents">
+                    app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_contents"
+                    app:tabIndicator="@drawable/tab_home_detail_indicator"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/primary_black"
+                    app:tabTextAppearance="@style/HomeDetailTab">
 
                 </com.google.android.material.tabs.TabLayout>
 

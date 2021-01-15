@@ -37,7 +37,7 @@ class DailyAdapter(private val context: Context)
                 holder.onBind(data[position])
                 holder.itemView.setOnClickListener {
                     val intent = Intent(context, HomeDetailActivity::class.java)
-                    intent.putExtra("issueId", data[position].issueId)
+                    intent.putExtra("id", data[position].issueId)
                     startActivity(context, intent, null)
                 }
             }
