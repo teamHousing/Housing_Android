@@ -1,10 +1,13 @@
 package com.teamhousing.housing.ui.calender
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.teamhousing.housing.R
+import com.teamhousing.housing.ui.home.detail.HomeDetailActivity
 import com.teamhousing.housing.vo.CalendarData
 
 class DailyAdapter(private val context: Context)
@@ -29,8 +32,21 @@ class DailyAdapter(private val context: Context)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
-            is PromiseViewHolder -> holder.onBind(data[position])
-            is NoticeViewHolder -> holder.onBind(data[position])
+            is PromiseViewHolder -> {
+                holder.onBind(data[position])
+                holder.itemView.setOnClickListener {
+                    val intent = Intent(context, HomeDetailActivity::class.java)
+                    intent.putExtra("issueId", data[position].issueId)
+                    startActivity(context, intent, null)
+                }
+            }
+
+            is NoticeViewHolder -> {
+                holder.onBind(data[position])
+                holder.itemView.setOnClickListener {
+                }
+            }
         }
     }
+
 }
