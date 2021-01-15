@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="부재 시 먼저 연락 드리겠습니다."
+            android:text="부재 시 먼저 연락드리겠습니다."
             android:textColor="@color/primary_black"
             android:textSize="13sp"
             android:gravity="left|center_vertical"
