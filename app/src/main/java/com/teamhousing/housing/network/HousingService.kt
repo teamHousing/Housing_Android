@@ -1,13 +1,18 @@
 package com.teamhousing.housing.network
 
+import retrofit2.Call
 import com.teamhousing.housing.vo.*
 import okhttp3.MultipartBody
-import retrofit2.Call
 import retrofit2.http.*
 
 interface HousingService {
     @POST("/user/login")
     fun postLogin(@Body body : RequestLoginData) : Call<ResponseLoginData>
+
+    @POST("/calendar/schedule")
+    fun postCalendar(
+            @Header("jwt") token: String?
+    ) : Call<ResponseCalendarData>
 
     @POST("/authentication/confirm")
     fun postAuthCheck(@Body body : RequestAuthNumData) : Call<ResponseAuthNumData>
@@ -57,4 +62,5 @@ interface HousingService {
     fun postHouseNotice(
             @Header("jwt") token: String,
     ) : Call<ResponseNoticeData>
+
 }

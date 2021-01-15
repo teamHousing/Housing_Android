@@ -82,4 +82,10 @@ dependencies {
 
     //StickyScrollView
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
+
+    // lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 }
