@@ -41,7 +41,7 @@ class HomeViewModel : ViewModel() {
 
     fun getCommunicationList(){
         val call : Call<ResponseHomeAskListData> = HousingServiceImpl.service.getCommunicationList(
-                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiLsnbTsp4TtmLgiLCJhZGRyZXNzIjoi6rK96riw64-EIOyViOyCsOyLnCDqs6DsnpTroZwxMTUiLCJ0eXBlIjoxLCJpYXQiOjE2MTA2NDQ4MTMsImV4cCI6MTYxMTI0OTYxMywiaXNzIjoiY3loIn0.rgAbXl5mkp-cDkx0v3qaoTQF_3mjm0ymKI4BHkokSag",
+                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Iu2VmOyasOynhCIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIDEzNSIsInR5cGUiOjEsImlhdCI6MTYxMDY4MzQzOSwiZXhwIjoxNjExMjg4MjM5LCJpc3MiOiJjeWgifQ.GwqiDkwtI54GLdMyS6jGvWJkHThPiede_wy7fqvFjjc",
                 unit = -1
         )
         call.enqueue(object : Callback<ResponseHomeAskListData> {

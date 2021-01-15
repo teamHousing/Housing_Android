@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentHomeDetailInfoBinding
 import com.teamhousing.housing.ui.home.detail.adapter.InfoCommunicationListAdapter
+import com.teamhousing.housing.ui.home.detail.viewModel.HomeDetailViewModel
 
 class HomeDetailInfoFragment : Fragment() {
     private lateinit var binding : FragmentHomeDetailInfoBinding
@@ -32,8 +32,6 @@ class HomeDetailInfoFragment : Fragment() {
         infoCommunicationListAdapter = InfoCommunicationListAdapter(requireContext())
 
         binding.rvHomeDetailCommunication.adapter = infoCommunicationListAdapter
-
-        homeDetailViewModel.setDummyCommunicationList()
 
         homeDetailViewModel.communicationList.observe(viewLifecycleOwner){ communicationList ->
             infoCommunicationListAdapter.replaceAskList(communicationList)

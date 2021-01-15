@@ -45,4 +45,10 @@ interface HousingService {
         @Header("jwt") token: String,
         @Path("unit") unit: Int?
     ) : Call<ResponseHomeAskListData>
+
+    @GET("communication/detail/{id}")
+    fun getCommunicationDetail(
+        @Header("jwt") token: String,
+        @Path("id") id: Int?
+    ) : Call<ResponseHomeDetailData>
 }
