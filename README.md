@@ -170,7 +170,7 @@
 ## 🔍핵심 기능 구현 방법 및 코드, 화면
 ### : wiki에 맡은 부분별로 정리되어 있어요 :)
 - [스플래시, 캘린더](https://github.com/teamHousing/Housing_Android/wiki/%EC%98%88%EC%9D%B8-%EC%BA%98%EB%A6%B0%EB%8D%94,-%EC%8A%A4%ED%94%8C%EB%9E%98%EC%8B%9C)
-- [회원가입, 로그인, 우리집 소식](https://github.com/teamHousing/Housing_Android/wiki/%EA%B0%80%EC%9D%80---%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85,-%EB%A1%9C%EA%B7%B8%EC%9D%B8,-%EC%9A%B0%EB%A6%AC%EC%A7%91-%EC%86%8C%EC%8B%9D)
+- [회원가입, 로그인, 우리집 소식](https://github.com/teamHousing/Housing_Android/wiki/%EA%B0%80%EC%9D%80--%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85,-%EB%A1%9C%EA%B7%B8%EC%9D%B8,-%EC%9A%B0%EB%A6%AC%EC%A7%91-%EC%86%8C%EC%8B%9D)
 - [소통하기](https://github.com/teamHousing/Housing_Android/wiki/%EB%AA%85%ED%9D%AC-%ED%99%88,-%EC%86%8C%ED%86%B5%ED%95%98%EA%B8%B0)
 - [문의 작성, 약속 일정 잡기](https://github.com/teamHousing/Housing_Android/wiki/%EC%8A%B9%EC%99%84---%EB%AC%B8%EC%9D%98-%ED%95%98%EA%B8%B0,-%EC%95%BD%EC%86%8D-%ED%95%98%EA%B8%B0)
 
