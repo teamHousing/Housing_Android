@@ -9,8 +9,8 @@
 > 프로젝트 기간 2020.12.26 ~ 2021.1.16
 
 <div span=center>
-<img src="https://user-images.githubusercontent.com/39720852/103648655-8fbfb780-4fa0-11eb-8c01-d10da8e37ea3.png" width = "40%" >
-<img src="https://user-images.githubusercontent.com/39720852/103648648-8df5f400-4fa0-11eb-8f8a-70937a755c45.png" width = "40%" > 
+<img src="https://user-images.githubusercontent.com/47289479/104741217-3f104180-578c-11eb-96d4-c19ba5d7119e.png" width = "40%" >
+<img src="https://user-images.githubusercontent.com/47289479/104741220-40416e80-578c-11eb-8f60-f0017637d679.png" width = "40%" > 
 </div>
 
 <br/>
