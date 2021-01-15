@@ -38,6 +38,8 @@ class HomeDetailInfoFragment : Fragment() {
 
         binding.rvHomeDetailCommunication.adapter = infoCommunicationListAdapter
 
+        homeDetailViewModel.setDummyCommunicationList()
+
         homeDetailViewModel.communicationList.observe(viewLifecycleOwner){ communicationList ->
             infoCommunicationListAdapter.replaceCommunicationList(communicationList)
 

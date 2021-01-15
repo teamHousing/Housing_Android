@@ -109,7 +109,7 @@
             android:layout_marginRight="20dp"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
             android:includeFontPadding="false"
-            android:text="@{item.method}"
+            android:text="@{item.way}"
             android:textColor="@color/primary_black"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView35"

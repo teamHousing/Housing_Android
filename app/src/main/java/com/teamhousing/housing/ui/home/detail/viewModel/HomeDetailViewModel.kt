@@ -100,4 +100,37 @@ class HomeDetailViewModel : ViewModel() {
         val ob = JSONObject(e.string())
         Log.d("홈 - 문의 상세 조회 오류", ob.toString())
     }
+
+    fun setDummyCommunicationList(){
+        val dummyCommunicationList = listOf(
+            InfoCommunicationListData(
+                date = "2020. 08. 25",
+                time = "22 - 23시",
+                way = "집방문"
+            ),
+            InfoCommunicationListData(
+                date = "2020. 09. 25",
+                time = "13 - 14시",
+                way = "전화방문"
+            ),
+            InfoCommunicationListData(
+                date = "2020. 10. 25",
+                time = "22 - 23시",
+                way = "집방문"
+            ),
+            InfoCommunicationListData(
+                date = "2020. 09. 25",
+                time = "13 - 14시",
+                way = "전화방문"
+            ),
+            InfoCommunicationListData(
+                date = "2020. 10. 25",
+                time = "22 - 23시",
+                way = "집방문"
+            )
+        )
+
+        _communicationList.value = dummyCommunicationList.toMutableList()
+    }
+
 }

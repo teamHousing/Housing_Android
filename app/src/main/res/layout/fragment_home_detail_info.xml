@@ -40,7 +40,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:text="@{viewModel.term}"
+            android:text="최대한 신속하게 확인 부탁드려요."
             android:fontFamily="@font/apple_sd_gothic_neo_medium"
             android:textSize="15dp"
             android:includeFontPadding="false"
