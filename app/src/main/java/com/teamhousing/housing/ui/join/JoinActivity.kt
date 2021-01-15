@@ -82,7 +82,7 @@ class JoinActivity : AppCompatActivity() {
                             ?.body()
                             ?.let {
                                 Log.e("JoinActivity",it.toString())
-                                binding.btnJoinComplete.setBackgroundResource(R.drawable.border_black_fill_200)
+                                binding.btnJoinComplete.setBackgroundResource(R.drawable.border_orange_fill_200)
                                 val intent = Intent(this@JoinActivity, LoginActivity::class.java)
                                 startActivity(intent)
                             } ?: showError(response.errorBody())

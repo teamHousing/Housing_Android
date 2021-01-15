@@ -95,7 +95,7 @@ class AuthNumberActivity : AppCompatActivity() { //여기오류..?
             binding.btnAuthnumberNext.setEnabled(!binding.etAuthnumberAuth.equals(""))
             //로그인 버튼 색상 변경
             if (!AuthNumberInput.equals(""))
-                binding.btnAuthnumberNext.setBackgroundResource(R.drawable.border_black_fill_200)
+                binding.btnAuthnumberNext.setBackgroundResource(R.drawable.border_orange_fill_200)
             else
                 binding.btnAuthnumberNext.setBackgroundResource(R.drawable.border_gray_fill_200)
 

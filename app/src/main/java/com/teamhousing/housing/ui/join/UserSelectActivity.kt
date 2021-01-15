@@ -30,7 +30,7 @@ class UserSelectActivity : AppCompatActivity() {
             binding.btnUserselectTenant.isChecked = false
             if(binding.btnUserselectOwner.isChecked){
                 binding.btnUserselectNext.isEnabled=false
-                binding.btnUserselectNext.setBackgroundResource(R.drawable.border_black_fill_200)
+                binding.btnUserselectNext.setBackgroundResource(R.drawable.border_orange_fill_200)
             }
             else {
                 binding.btnUserselectNext.isEnabled = false
@@ -46,7 +46,7 @@ class UserSelectActivity : AppCompatActivity() {
             //세입자 버튼 선택됐을 때만 다음 버튼 활성화
             if(binding.btnUserselectTenant.isChecked){
                 binding.btnUserselectNext.isEnabled = true
-                binding.btnUserselectNext.setBackgroundResource(R.drawable.border_black_fill_200)
+                binding.btnUserselectNext.setBackgroundResource(R.drawable.border_orange_fill_200)
                 //세입자 타입을 intent로 넘겨주기-> 1 : 세입자, Postman통신할 때 :type 빼고 ~~/1 넣어서 보내주면 됨
                 //joinActivity로 넘어가기
                 isTenantValid = 1
