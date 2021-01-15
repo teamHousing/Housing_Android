@@ -25,6 +25,7 @@ import java.util.*
 class CalenderFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
+    val today = Calendar.getInstance()
     val events = arrayListOf<EventDay>()
     var allData: HashMap<String, MutableList<CalendarData>> = hashMapOf()
     private lateinit var dailyAdapter: DailyAdapter
@@ -41,24 +42,19 @@ class CalenderFragment : Fragment() {
     ): View? {
         _binding = FragmentCalenderBinding.inflate(inflater, container, false)
         binding.calendar.setCalendarDayLayout(R.layout.item_calendar_cell)
-        connectSever()
-        dailyAdapter = DailyAdapter(requireContext())
 
+        connectSever()
+        setDateText(today)
+
+        dailyAdapter = DailyAdapter(requireContext())
         binding.rvDaily.apply {
             adapter = dailyAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        val today = Calendar.getInstance()
-        setDateText(today)
-
-        var tempData : List<CalendarData>?
         binding.calendar.setOnDayClickListener(object : OnDayClickListener {
             override fun onDayClick(eventDay: EventDay) {
-                tempData = getDailyData(eventDay.calendar)
-                tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
-                dailyAdapter.notifyDataSetChanged()
-
+                setRecyclerView(eventDay.calendar)
                 setDateText(eventDay.calendar)
             }
         })
@@ -66,6 +62,14 @@ class CalenderFragment : Fragment() {
         return binding.root
     }
 
+    fun setRecyclerView(targetDay : Calendar){
+        var tempData : List<CalendarData>?
+        tempData = getDailyData(targetDay)
+        tempData?.let { dailyAdapter.data = it } ?: run { dailyAdapter.data = emptyList() }
+        dailyAdapter.notifyDataSetChanged()
+
+        Log.d("today", tempData.toString())
+    }
 
     fun connectSever(){
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IuydtOynleynlSIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIiwidHlwZSI6MSwiaWF0IjoxNjEwNTAzNjE3LCJleHAiOjE2MTExMDg0MTcsImlzcyI6ImN5aCJ9.HephRWwnmsYALG9ohvCGi6nURTHFlgdsaJeNz6kUe5Q"
@@ -75,7 +79,7 @@ class CalenderFragment : Fragment() {
 
         call.enqueue(object : Callback<ResponseCalendarData>{
             override fun onFailure(call: Call<ResponseCalendarData>, t: Throwable) {
-                Toast.makeText(context, "통신 실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "서버가 닫혀있어요!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<ResponseCalendarData>, response: Response<ResponseCalendarData>) {
@@ -84,6 +88,7 @@ class CalenderFragment : Fragment() {
                         ?.let { it ->
                             calendarDataBind(it.data)
                             drawIcons()
+                            setRecyclerView(today)
                         } ?: showError(response.errorBody())
             }
         })
@@ -146,7 +151,7 @@ class CalenderFragment : Fragment() {
             }
         }
 
-        println(allData)
+        Log.d("allData: ", allData.toString())
     }
 
     fun drawIcons(){
@@ -185,9 +190,7 @@ class CalenderFragment : Fragment() {
         var day = clickedDay.get(Calendar.DATE).toString()
         var keyDate = "$year.$month.$day"
 
-        println(keyDate)
-        println(allData[keyDate])
-        println(allData)
+        Log.d("getDailyData: ", allData[keyDate].toString())
 
         allData[keyDate]?.let{return allData[keyDate]} ?: run {return emptyList()}
 
