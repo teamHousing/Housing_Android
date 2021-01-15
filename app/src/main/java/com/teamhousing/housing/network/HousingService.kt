@@ -63,4 +63,10 @@ interface HousingService {
             @Header("jwt") token: String,
     ) : Call<ResponseNoticeData>
 
+
+    @GET("/houseInfo/{id}/notice")
+    fun getAddCalendarNotice(
+            @Header("jwt") token: String,
+            @Path("id") id: Int
+    ) : Call<ResponseAddCalendarData>
 }

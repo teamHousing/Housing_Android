@@ -1,5 +1,6 @@
 package com.teamhousing.housing.ui.notice
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +28,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.nio.file.Files.size
 
 class NoticeFragment : Fragment() {
 
@@ -54,7 +56,7 @@ class NoticeFragment : Fragment() {
         noticeAdapter = NoticeAdapter(view.context)
         binding.rvNoticeItem.adapter = noticeAdapter
         val call : Call<ResponseNoticeData> = HousingServiceImpl.service.postHouseNotice(
-                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Iu2VmOyasOynhCIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIDEzNSIsInR5cGUiOjEsImlhdCI6MTYxMDY4MTkwOSwiZXhwIjoxNjExMjg2NzA5LCJpc3MiOiJjeWgifQ.A_2g2qiLjkwt0bU8VeAeYP62p5P8MwxQqZj5sr-zy-I")
+                token = UserTokenManager.getToken(requireContext()))
         call.enqueue(object : Callback<ResponseNoticeData> {
             override fun onFailure(call: Call<ResponseNoticeData>, t: Throwable) {
                 Log.e("error", t.toString())
@@ -71,6 +73,7 @@ class NoticeFragment : Fragment() {
                                 responseNoticeList.apply{
                                     add(
                                             NoticeData(
+                                                    item.id,
                                                     item.notice_title,
                                                     item.notice_contents
                                             )
@@ -79,7 +82,9 @@ class NoticeFragment : Fragment() {
                             }
                             noticeAdapter.data = responseNoticeList
                             noticeAdapter.notifyDataSetChanged()
-                            Log.e("NoticeFragment",responseNoticeList.toString())
+                            binding.tvNoticeCnt.text = noticeAdapter.data.size.toString()
+
+                            //Log.e("NoticeFragment",responseNoticeList.toString())
                         } ?: showError(response.errorBody())
             }
         }
