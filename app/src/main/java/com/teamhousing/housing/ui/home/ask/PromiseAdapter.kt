@@ -12,7 +12,8 @@ import com.teamhousing.housing.vo.PromiseData
 
 class PromiseAdapter : RecyclerView.Adapter<PromiseAdapter.VHolder>() {
 
-    var data: MutableList<PromiseData> = mutableListOf()
+    var data: MutableList<PromiseData> = mutableListOf() // 뷰모델에 넣을 리스트 (리싸이클러뷰)
+    var data2: MutableList<PromiseData> = mutableListOf() // 서버에 보낼 리스트
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_promise, parent, false)
@@ -33,6 +34,7 @@ class PromiseAdapter : RecyclerView.Adapter<PromiseAdapter.VHolder>() {
                 data.removeAt(position)
                 notifyItemRemoved(position)
                 notifyItemRangeChanged(position, data.size)
+                data2.removeAt(position)
             }
         }
     }
