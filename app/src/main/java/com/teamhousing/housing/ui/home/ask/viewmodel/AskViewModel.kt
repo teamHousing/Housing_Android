@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.home.ask
+package com.teamhousing.housing.ui.home.ask.viewmodel
 
 import android.graphics.Bitmap
 import android.net.Uri

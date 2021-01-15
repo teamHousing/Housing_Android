@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.home.ask
+package com.teamhousing.housing.ui.home.ask.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

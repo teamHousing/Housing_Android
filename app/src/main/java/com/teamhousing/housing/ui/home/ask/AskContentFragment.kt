@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentAskContentBinding
+import com.teamhousing.housing.ui.home.ask.viewmodel.AskViewModel
 
 class AskContentFragment() : Fragment() {
 
