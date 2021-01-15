@@ -22,7 +22,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/border_white_fill_background" />
+            app:srcCompat="@drawable/border_white_fill_shadow_16" />
 
         <View
             android:layout_width="0dp"
@@ -63,9 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="나주인"
-            android:textColor="@color/primary_black"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:text="류주미"
+            android:textColor="@color/primary_black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_notice_owner"
             app:layout_constraintTop_toTopOf="@+id/img_notice_owner" />
@@ -127,7 +127,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:text="5분 이내 답장"
+            android:text="5분 이내"
             android:textColor="@color/point_orange"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView17"
@@ -157,7 +157,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="16dp"
-            android:text="최대 글자는 띄어쓰기 포함 48자 왈라라 너무 잠온다 ㅈ자고싶어요 왈라라라"
+            android:text="서로를 위해 조금만 조용히~ 오놀도 행복한 하루 :)"
             android:textColor="@color/primary_black"
             android:fontFamily="@font/apple_sd_gothic_neo"
             android:textSize="13sp"
@@ -195,11 +195,12 @@
             android:id="@+id/tv_notice_cnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="(23)"
-            android:textColor="@color/notice_gray"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
             android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:text="23"
+            android:gravity="center_horizontal"
+            android:textColor="@color/notice_gray"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/textView39"
             app:layout_constraintTop_toTopOf="@+id/textView39" />
@@ -214,6 +215,19 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_bold"
+            android:text="(    )"
+            android:textColor="@color/notice_gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/textView39"
+            app:layout_constraintTop_toTopOf="@+id/textView39" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
