@@ -13,6 +13,7 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.teamhousing.housing.R
 import com.teamhousing.housing.databinding.FragmentCalenderBinding
 import com.teamhousing.housing.network.HousingServiceImpl
+import com.teamhousing.housing.util.UserTokenManager
 import com.teamhousing.housing.vo.CalendarData
 import com.teamhousing.housing.vo.ResponseCalendarData
 import okhttp3.ResponseBody
@@ -72,7 +73,8 @@ class CalenderFragment : Fragment() {
     }
 
     fun connectSever(){
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IuydtOynleynlSIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIiwidHlwZSI6MSwiaWF0IjoxNjEwNTAzNjE3LCJleHAiOjE2MTExMDg0MTcsImlzcyI6ImN5aCJ9.HephRWwnmsYALG9ohvCGi6nURTHFlgdsaJeNz6kUe5Q"
+
+        val token = UserTokenManager.getToken(requireContext())
         val call : Call<ResponseCalendarData> = HousingServiceImpl.service.postCalendar(
                 token
         )
