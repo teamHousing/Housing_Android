@@ -117,7 +117,7 @@
 
                 </com.google.android.material.tabs.TabLayout>
 
-                <com.teamhousing.housing.utill.MeasuredViewPager
+                <com.teamhousing.housing.util.MeasuredViewPager
                     android:id="@+id/vp_home_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
