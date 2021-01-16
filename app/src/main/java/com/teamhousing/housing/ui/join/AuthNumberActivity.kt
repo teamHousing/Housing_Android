@@ -26,7 +26,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AuthNumberActivity : AppCompatActivity() { //여기오류..?
+class AuthNumberActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthNumberBinding
     var isTenantValid : Int = 1
     
@@ -92,27 +92,26 @@ class AuthNumberActivity : AppCompatActivity() { //여기오류..?
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             //인증번호
             val AuthNumberInput = binding.etAuthnumberAuth.text.toString().toInt()
-            binding.btnAuthnumberNext.setEnabled(!binding.etAuthnumberAuth.equals(""))
+            binding.btnAuthnumberNext.setEnabled(!binding.etAuthnumberAuth.toString().isEmpty())
             //로그인 버튼 색상 변경
-            if (!AuthNumberInput.equals(""))
+            if (!AuthNumberInput.toString().isEmpty())
                 binding.btnAuthnumberNext.setBackgroundResource(R.drawable.border_orange_fill_200)
             else
                 binding.btnAuthnumberNext.setBackgroundResource(R.drawable.border_gray_fill_200)
 
             //content clear 버튼 : 인증번호 != NULL일 때 생성
-            checkBlankAndImgbtn(binding.btnAuthnumberClose, AuthNumberInput, binding.etAuthnumberAuth)
+           checkBlankAndImgbtn(binding.btnAuthnumberClose, AuthNumberInput, binding.etAuthnumberAuth)
         }
     }
 
     private fun checkBlankAndImgbtn(imgV: ImageView, int: Int , edt: EditText) {
-        if (!int.equals("")) {
+        if (int.toByte() >0) {
             imgV.isVisible = true
             imgV.setOnClickListener {
                 edt.getText().clear()
             }
-        } else if (int.equals(""))
+        } else {
             imgV.isVisible = false
-        else {
         }
     }
 }
