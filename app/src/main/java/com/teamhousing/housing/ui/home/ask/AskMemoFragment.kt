@@ -3,6 +3,7 @@ package com.teamhousing.housing.ui.home.ask
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -32,6 +33,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
+
 
 class AskMemoFragment() : Fragment() {
 
@@ -118,10 +120,12 @@ class AskMemoFragment() : Fragment() {
             if(viewModel.issueFileBitmap.value != null){
                 val bitmap = viewModel.issueFileBitmap.value!!
                 val byteArrayOutputStream = ByteArrayOutputStream()
-                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
                 val photoBody =
-                    RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
-
+                    RequestBody.create(
+                        MediaType.parse("image/jpg"),
+                        byteArrayOutputStream.toByteArray()
+                    )
                 imageParts.add(
                     MultipartBody.Part.createFormData(
                         "issue_img",
@@ -205,6 +209,7 @@ class AskMemoFragment() : Fragment() {
                         }
                     }
             }
+
             override fun onFailure(call: Call<ResponseAskData>, t: Throwable) {
             }
         })
