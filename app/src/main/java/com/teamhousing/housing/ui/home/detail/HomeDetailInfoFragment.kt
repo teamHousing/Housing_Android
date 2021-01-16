@@ -1,5 +1,6 @@
 package com.teamhousing.housing.ui.home.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,10 +28,17 @@ class HomeDetailInfoFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         initEmojiTitle()
+
         setCommunicationListAdapter()
-        setPhotoListAdapter()
+//        setPhotoListAdapter()
+//        setDetailInfo()
 
         return  binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getInfo()
     }
 
     private fun setCommunicationListAdapter(){
@@ -38,7 +46,7 @@ class HomeDetailInfoFragment : Fragment() {
 
         binding.rvHomeDetailCommunication.adapter = infoCommunicationListAdapter
 
-        homeDetailViewModel.setDummyCommunicationList()
+//        homeDetailViewModel.setDummyCommunicationList()
 
         homeDetailViewModel.communicationList.observe(viewLifecycleOwner){ communicationList ->
             infoCommunicationListAdapter.replaceCommunicationList(communicationList)
@@ -46,16 +54,22 @@ class HomeDetailInfoFragment : Fragment() {
         }
 
     }
+//
+//    private fun setPhotoListAdapter(){
+//        infoPhotoListAdapter = InfoPhotoListAdapter(requireContext())
+//
+//        binding.rvHomeDetailPhoto.adapter = infoPhotoListAdapter
+//        homeDetailViewModel.photoList.observe(viewLifecycleOwner){ photoList ->
+//            infoPhotoListAdapter.replacePhotoList(photoList)
+//
+//        }
+//    }
 
-    private fun setPhotoListAdapter(){
-        infoPhotoListAdapter = InfoPhotoListAdapter(requireContext())
-
-        binding.rvHomeDetailPhoto.adapter = infoPhotoListAdapter
-        homeDetailViewModel.photoList.observe(viewLifecycleOwner){ photoList ->
-            infoPhotoListAdapter.replacePhotoList(photoList)
-
-        }
+    private fun getInfo(){
+        Log.d("이거", homeDetailViewModel.term.value.toString())
+        binding.txtHomeDetailInfoTerm.text = homeDetailViewModel.term.value
     }
+
 
     private fun initEmojiTitle(){
         binding.txtHomeDetailInfoAskTitle.text = getEmoji(0x1F6A8)+" 요청 사항"

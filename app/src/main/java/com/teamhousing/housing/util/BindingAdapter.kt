@@ -60,4 +60,26 @@ object BindingAdapter {
             .into(view)
 
     }
+
+    @JvmStatic
+    @BindingAdapter("setReply")
+    fun TextView.setReply(reply: Int) {
+        text = when (reply) {
+            0 -> {
+                ""
+            }
+            1 -> {
+                "약속이 확정되었어요"
+            }
+            2 -> {
+                "문의사항을 확인했어요"
+            }
+            3 -> {
+                "다시한번 약속해주세요"
+            }
+            else -> {
+                "문의사항이 해결됐어요"
+            }
+        }
+    }
 }

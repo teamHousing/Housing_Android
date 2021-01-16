@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.teamhousing.housing.network.HousingServiceImpl
-import com.teamhousing.housing.vo.AskItem
-import com.teamhousing.housing.vo.InfoCommunicationListData
-import com.teamhousing.housing.vo.ResponseHomeDetailData
+import com.teamhousing.housing.vo.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -27,13 +25,17 @@ class HomeDetailViewModel : ViewModel() {
     val topInfo : LiveData<AskItem>
         get() = _topInfo
 
+    private val _detailInfo = MutableLiveData<DetailInfo>()
+    val detailInfo : LiveData<DetailInfo>
+        get() = _detailInfo
+
     private val _communicationList = MutableLiveData<MutableList<InfoCommunicationListData>>()
     val communicationList : LiveData<MutableList<InfoCommunicationListData>>
         get() = _communicationList
 
-    fun getCommunicationDetail(id : Int){
+    fun getCommunicationDetail(token : String, id : Int){
         val call : Call<ResponseHomeDetailData> = HousingServiceImpl.service.getCommunicationDetail(
-            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Iu2VmOyasOynhCIsImFkZHJlc3MiOiLshJzsmrjtirnrs4Tsi5wg7Jqp7IKw6rWsIO2VnOqwleuhnCAy6rCAIDEzNSIsInR5cGUiOjEsImlhdCI6MTYxMDY4MzQzOSwiZXhwIjoxNjExMjg4MjM5LCJpc3MiOiJjeWgifQ.GwqiDkwtI54GLdMyS6jGvWJkHThPiede_wy7fqvFjjc",
+            token = token,
             id = id
         )
         call.enqueue(object : Callback<ResponseHomeDetailData> {
@@ -49,6 +51,7 @@ class HomeDetailViewModel : ViewModel() {
                     ?.body()
                     ?.let {
                         Log.d("명",it.data.toString())
+
                         _topInfo.postValue(
                             AskItem(
                                 it.data.id,
@@ -59,7 +62,16 @@ class HomeDetailViewModel : ViewModel() {
                             )
                         )
 
-                        _term.postValue(it.data.requested_term)
+//                        _detailInfo.postValue(
+//                            DetailInfo(
+//                                null,
+//                                null,
+//                                it.data.requested_term
+//                            )
+//                        )
+
+
+                        _term.value = it.data.requested_term
                         Log.d("요청사항", _term.value.toString())
 
                         val responseCommunicationList = mutableListOf<InfoCommunicationListData>()
@@ -76,8 +88,8 @@ class HomeDetailViewModel : ViewModel() {
                             }
                         }
 
-                        _communicationList.postValue(responseCommunicationList)
-                        Log.d("명",_communicationList.value.toString())
+                        _communicationList.value = responseCommunicationList
+                        Log.d("소통방식",_communicationList.value.toString())
 
                         val responsePhotoList = mutableListOf<String>()
                         for(item in it.data.issue_img){
@@ -88,7 +100,12 @@ class HomeDetailViewModel : ViewModel() {
                             }
                         }
 
-                        _photoList.postValue(responsePhotoList)
+                        _photoList.value = responsePhotoList
+                        Log.d("사진", _photoList.value.toString())
+
+                        val detailInfo = mutableListOf<DetailInfo>()
+
+
 
                     } ?: showError(response.errorBody())
             }
