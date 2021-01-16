@@ -35,7 +35,6 @@
 
 | Category |       What we used           |
 |:--------| :------------------ |
-| Design Pattern | MVP |
 |JetPack Components | ViewModel, LiveData, Lifecycle, ViewBinding
 | Network | OkHttp, Retrofit2|
 | Other Tools | Notion, Slack, Zeplin, Figma |
