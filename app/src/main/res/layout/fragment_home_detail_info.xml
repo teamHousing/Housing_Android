@@ -74,6 +74,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_sub_title"
             tools:itemCount="2"
+            android:overScrollMode="never"
             tools:listitem="@layout/rv_item_home_detail_info" />
 
         <TextView

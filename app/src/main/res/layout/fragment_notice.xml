@@ -9,20 +9,34 @@
             type="com.teamhousing.housing.ui.notice.NoticeFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/main_gray">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="0dp"
-            android:layout_height="318dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/border_white_fill_shadow_16" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_gray">
+
+            <ImageView
+                android:id="@+id/imgageView13"
+                android:layout_width="0dp"
+                android:layout_height="318dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/border_white_fill_shadow_16" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="match_parent"
+                android:layout_height="318dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/border_white_fill_shadow_16" />
 
         <View
             android:layout_width="0dp"
@@ -136,7 +150,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView17" />
 
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/img_notice_bg"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginTop="20dp"
@@ -161,10 +175,10 @@
             android:textColor="@color/primary_black"
             android:fontFamily="@font/apple_sd_gothic_neo"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
-            app:layout_constraintEnd_toEndOf="@+id/imageView18"
-            app:layout_constraintStart_toStartOf="@+id/imageView18"
-            app:layout_constraintTop_toTopOf="@+id/imageView18" />
+            app:layout_constraintBottom_toBottomOf="@+id/img_notice_bg"
+            app:layout_constraintEnd_toEndOf="@+id/img_notice_bg"
+            app:layout_constraintStart_toStartOf="@+id/img_notice_bg"
+            app:layout_constraintTop_toTopOf="@+id/img_notice_bg" />
 
         <View
             android:id="@+id/view5"
@@ -191,48 +205,31 @@
             app:layout_constraintStart_toEndOf="@+id/view5"
             app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
-        <TextView
-            android:id="@+id/tv_notice_cnt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:gravity="center_horizontal"
-            android:text="6"
-            android:textColor="@color/notice_gray"
-            android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/textView39"
-            app:layout_constraintTop_toTopOf="@+id/textView39" />
-
+            <TextView
+                android:id="@+id/tv_notice_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_bold"
+                android:gravity="center_horizontal"
+                android:text="(6)"
+                android:textColor="@color/notice_gray"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/textView39"
+                app:layout_constraintTop_toTopOf="@+id/textView39" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notice_item"
             android:layout_width="0dp"
-            android:layout_height="446dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
-
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:fontFamily="@font/apple_sd_gothic_neo_bold"
-            android:text="(    )"
-            android:textColor="@color/notice_gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_notice_cnt"
-            app:layout_constraintHorizontal_bias="0.625"
-            app:layout_constraintStart_toEndOf="@+id/textView39"
-            app:layout_constraintTop_toTopOf="@+id/textView39" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </layout>

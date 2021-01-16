@@ -1,4 +1,4 @@
-package com.teamhousing.housing.ui.home.ask
+package com.teamhousing.housing.ui.home.ask.adapter
 
 import android.view.LayoutInflater
 import android.view.View
