@@ -29,3 +29,9 @@ data class ReplyData(
     val user_status : List<Int>,
     val id : Int
 )
+
+data class DetailInfo(
+    val issue_img : List<String>?,
+    val promise_option : MutableList<InfoCommunicationListData>,
+    val requested_term : String
+)

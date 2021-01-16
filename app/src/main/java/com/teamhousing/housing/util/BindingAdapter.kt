@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
@@ -54,10 +55,32 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("setImage")
     fun setImage(view: ImageView, res: String?) {
-        Glide.with(view.context)
+        GlideApp.with(view.context)
             .load(res)
             .transform(CenterCrop(), RoundedCorners(15))
             .into(view)
 
+    }
+
+    @JvmStatic
+    @BindingAdapter("setReply")
+    fun TextView.setReply(reply: Int) {
+        text = when (reply) {
+            0 -> {
+                ""
+            }
+            1 -> {
+                "약속이 확정되었어요"
+            }
+            2 -> {
+                "문의사항을 확인했어요"
+            }
+            3 -> {
+                "다시한번 약속해주세요"
+            }
+            else -> {
+                "문의사항이 해결됐어요"
+            }
+        }
     }
 }

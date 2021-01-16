@@ -19,11 +19,7 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.notice.NoticeDetailActivity"/>
         <activity android:name=".ui.join.UserSelectActivity"/>
@@ -31,7 +27,13 @@
         <activity android:name=".ui.home.detail.HomeDetailActivity"/>
         <activity android:name=".ui.home.ask.PromiseActivity" />
         <activity android:name=".ui.home.ask.AskActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.join.JoinActivity"/>
     </application>
