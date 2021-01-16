@@ -16,7 +16,7 @@ class InfoPhotoListAdapter (private val context: Context) : RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoPhotoListViewHolder {
         val binding : RvItemHomeDetailPhotoBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.rv_item_home_detail_info,
+            R.layout.rv_item_home_detail_photo,
             parent,
             false
         )
@@ -34,10 +34,6 @@ class InfoPhotoListAdapter (private val context: Context) : RecyclerView.Adapter
 
     override fun getItemCount(): Int = data.size
 
-    fun replacePhotoList(list : MutableList<String>){
-        data = list
-        notifyDataSetChanged()
-    }
 
 }
 

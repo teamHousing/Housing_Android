@@ -14,6 +14,7 @@ class HomeDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeDetailBinding
     private lateinit var viewPagerAdapter : ViewPagerAdapter
     private val homeDetailViewModel : HomeDetailViewModel by viewModels()
+    var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,10 @@ class HomeDetailActivity : AppCompatActivity() {
         binding.vpHomeDetail.adapter = viewPagerAdapter
     }
 
+    fun sendData() : Int{
+        return id
+    }
+
     private fun initTab(){
         binding.tlHomeDetail.setupWithViewPager(binding.vpHomeDetail)
         binding.tlHomeDetail.apply {
@@ -48,7 +53,7 @@ class HomeDetailActivity : AppCompatActivity() {
 
     private fun setInfo(){
         if(intent.hasExtra("id")){
-            val id = intent.getIntExtra("id", 0)
+            id = intent.getIntExtra("id", 0)
             homeDetailViewModel.getCommunicationDetail(UserTokenManager.getToken(this), id)
         }
     }

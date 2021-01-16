@@ -40,7 +40,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:text="@{viewModel.term}"
+            android:text="부재 시 먼저 연락드리겠습니다."
             android:fontFamily="@font/apple_sd_gothic_neo_medium"
             android:textSize="15dp"
             android:includeFontPadding="false"
@@ -74,7 +74,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_home_detail_info_sub_title"
             tools:itemCount="2"
-            android:overScrollMode="never"
             tools:listitem="@layout/rv_item_home_detail_info" />
 
         <TextView
@@ -97,8 +96,9 @@
             android:layout_marginTop="16dp"
             android:clipToPadding="false"
             android:paddingHorizontal="16dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="2"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/rv_item_home_detail_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

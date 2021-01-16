@@ -62,15 +62,6 @@ class HomeDetailViewModel : ViewModel() {
                             )
                         )
 
-//                        _detailInfo.postValue(
-//                            DetailInfo(
-//                                null,
-//                                null,
-//                                it.data.requested_term
-//                            )
-//                        )
-
-
                         _term.value = it.data.requested_term
                         Log.d("요청사항", _term.value.toString())
 
@@ -103,9 +94,14 @@ class HomeDetailViewModel : ViewModel() {
                         _photoList.value = responsePhotoList
                         Log.d("사진", _photoList.value.toString())
 
-                        val detailInfo = mutableListOf<DetailInfo>()
+                        _detailInfo.value =
+                            DetailInfo(
+                                responsePhotoList,
+                                responseCommunicationList,
+                                it.data.requested_term
+                            )
 
-
+                        Log.d("여기여기", _detailInfo.value.toString())
 
                     } ?: showError(response.errorBody())
             }
@@ -148,6 +144,15 @@ class HomeDetailViewModel : ViewModel() {
         )
 
         _communicationList.value = dummyCommunicationList.toMutableList()
+    }
+
+    fun setDummyPhotoList(){
+        val dummyPhotoList = listOf<String>(
+            "https://sopt-27-jinho.s3.ap-northeast-2.amazonaws.com/images/origin/1610679008339.jpg",
+            "https://sopt-27-jinho.s3.ap-northeast-2.amazonaws.com/images/origin/1610679008339.jpg"
+        )
+
+        _photoList.value = dummyPhotoList.toMutableList()
     }
 
 }

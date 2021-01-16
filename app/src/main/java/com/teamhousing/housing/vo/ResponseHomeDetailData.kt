@@ -32,6 +32,6 @@ data class ReplyData(
 
 data class DetailInfo(
     val issue_img : List<String>?,
-    val promise_option : List<List<String>>?,
+    val promise_option : MutableList<InfoCommunicationListData>,
     val requested_term : String
 )
