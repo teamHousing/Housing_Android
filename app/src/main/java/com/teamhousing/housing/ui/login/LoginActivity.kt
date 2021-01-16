@@ -86,7 +86,9 @@ class LoginActivity : AppCompatActivity() {
                                 UserTokenManager.setToken(this@LoginActivity, response.body()!!.data.user_token)
                                 //Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 startActivity(intent)
+                                finish()
                             } ?: showError(response.errorBody())
                 }
             }
