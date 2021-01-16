@@ -64,9 +64,8 @@ class NoticeDetailActivity : AppCompatActivity() {
                             var year = it.data.notice_year
                             var month = it.data.notice_month
                             var day = it.data.notice_day
-                            var time= it.data.notice_time
                             var date = "${year}. ${month}. ${day}"
-                            var times = "${time}시"
+                            var times = it.data.notice_time.substring(0,1)+it.data.notice_time.substring(5,7) + "시"
 
                             binding.tvNoticeDetailTitle.text = title
                             binding.tvNoticeDetailContent.text = contents
