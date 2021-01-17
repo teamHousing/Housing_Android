@@ -105,7 +105,7 @@ class AuthNumberActivity : AppCompatActivity() {
     }
 
     private fun checkBlankAndImgbtn(imgV: ImageView, int: Int , edt: EditText) {
-        if (int.toByte() >0) {
+        if (!int.toString().isEmpty()) {
             imgV.isVisible = true
             imgV.setOnClickListener {
                 edt.getText().clear()
